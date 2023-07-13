@@ -55,17 +55,58 @@
   margin-left: -30px;
 }
 /* ----------------------------- SiderBar css end ----------------------------- */
-/* ----------------------------- Mobile SiderBar css start ----------------------------- */
+/* ----------------------------- Mobile SiderBar media query css start ----------------------------- */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .menu_bar {
+    display: none;
+  }
+  /* .sidebar_section_mobile {
+    display: none;
+  } */
+  .sidebar_section {
+    position: absolute;
+    z-index: 1;
+  }
+}
 
-@media only screen and (min-width: 769px) {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
   .menu_bar {
     display: none;
   }
   .sidebar_section_mobile {
     display: none;
   }
+  /* .sidebar_section {
+    display: none;
+  } */
 }
-/* ----------------------------- Mobile SiderBar css end ----------------------------- */
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .menu_bar {
+    display: none;
+  }
+  .sidebar_section {
+    display: none;
+  }
+  .input_section {
+    width: 90% !important;
+  }
+  .edit_main_box_content{
+    width: 100% !important;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+/* ----------------------------- Mobile SiderBar media query css end ----------------------------- */
 /* ----------------------------- Header css start ----------------------------- */
 /* .header_section {
   padding-top: 50px;
