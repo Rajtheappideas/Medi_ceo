@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Josefin+Sans:ital,wght@0,100;0,300;0,400;1,300&family=Raleway:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  /* font-family: "Josefin Sans", sans-serif;
+  font-family: "Raleway", sans-serif; */
+}
+/* ----------------------------- SiderBar css start ----------------------------- */
+.sidebar_section {
+  background: #fff;
+  border-right: 1px solid #f0efef;
+  height: 100vh;
+}
+.left_icons ul {
+  cursor: pointer;
+  font-size: 20px;
+}
+.left_icons ul li {
+  list-style: none;
+  display: flex;
+  margin-top: 30px;
+  margin-left: 3px;
+}
+.left_icons ul li p {
+  margin-bottom: 0;
+  font-size: 16px;
+  margin-left: 17px;
+}
+.object_list {
+  align-items: start;
+}
+.object {
+  display: block;
+}
+.object p {
+  line-height: 30px;
+  text-align: left;
+}
+.logo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 13px;
+  cursor: pointer;
+}
+.logo h4 {
+  margin-right: 7px;
+}
+.logo li {
+  margin-right: 7px;
+}
+.bottom_profile {
+  margin-top: 130px;
+  margin-left: -30px;
+}
+/* ----------------------------- SiderBar css end ----------------------------- */
+/* ----------------------------- Mobile SiderBar css start ----------------------------- */
+
+@media only screen and (min-width: 769px) {
+  .menu_bar {
+    display: none;
+  }
+  .sidebar_section_mobile {
+    display: none;
+  }
+}
+/* ----------------------------- Mobile SiderBar css end ----------------------------- */
+/* ----------------------------- Header css start ----------------------------- */
+/* .header_section {
+  padding-top: 50px;
+} */
+.profile_content {
+  display: flex;
+  justify-content: space-between;
+}
+.profile_name {
+  text-transform: uppercase;
+  color: #f4c430;
+}
+.right_content {
+  display: flex;
+  cursor: pointer;
+}
+/* ----------------------------- Header css end ----------------------------- */
+/* ----------------------------- Input checkbox css start ----------------------------- */
+.input_section {
+  padding-top: 70px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.main_box {
+  display: flex;
+  align-items: center;
+}
+.input_box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ececec;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+.box_left_content span {
+  font-size: 16px;
+  font-weight: 600;
+  padding-left: 18px;
+}
+
+/* ----------------------------- Input checkbox css end ----------------------------- */
+/* ----------------------------- common button css start  ----------------------------- */
+.common_btn {
+  background-color: #f4c430;
+  color: #fff;
+  border: none;
+  width: 130px;
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* ----------------------------- button css end  ----------------------------- */
+
+/* ----------------------------- Editbox css end  ----------------------------- */
+.edit_main_box_content {
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  padding: 13px;
+}
+.edit_left_botton {
+  background-color: #f4c430;
+  color: #fff;
+  border: none;
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  float: right;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dropdown {
+  width: 151px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  float: right;
+}
+.dropdown-item {
+  display: block;
+  width: 100%;
+  /* padding: 0.25rem 1.5rem; */
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  padding-left: 0px;
+}
+
+.dropdown-body {
+  padding: 5px;
+  display: none;
+}
+
+.dropdown-body.open {
+  display: block;
+  background-color: #fff;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-item {
+  padding: 10px;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+}
+
+.input_Field p {
+  margin-bottom: 2px;
+  color: #344054;
+  font-weight: 600;
+  font-size: 14px;
+  padding-top: 10px;
+}
+.input_Field input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d0d5dd;
+  outline: none;
+  padding: 5px;
+}
+.right {
+  justify-content: right;
+}
+.dec {
+  display: flex;
+  justify-content: space-between;
+  color: #475467;
+  font-size: 14px;
+}
+.input_title p {
+  margin-top: 1rem;
+  margin-bottom: 2px;
+}
+.input_title label {
+  width: 100%;
+}
+.input_title textarea {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d0d5dd;
+  outline: none;
+  padding: 5px;
+}
+.bottom_btn {
+  display: flex;
+  justify-content: end;
+}
+.change_btn {
+  background-color: #f4c430;
+  color: #fff;
+  border: none;
+  width: 130px;
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.change_btn:hover {
+  background-color: #fff;
+  border: 1px solid #d0d5dd;
+  color: #344054;
+  transition: 0.5s;
+}
+.cancel_btn {
+  background-color: #fff;
+  border: 1px solid #d0d5dd;
+  color: #344054;
+  width: 100px;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cancel_btn:hover {
+  background-color: #f4c430;
+  color: #fff;
+  border: none;
+  transition: 0.5s;
+}
+/* ----------------------------- Editbox css end  ----------------------------- */
