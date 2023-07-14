@@ -9,6 +9,7 @@ import Group from '../assets/images/Group.svg'
 import document from '../assets/images/document-filter 1.svg'
 import objects from '../assets/images/objects.svg'
 import sms from '../assets/images/sms 1.svg'
+import { FiLogOut } from 'react-icons/fi'
 
 const SideBar = ({
   setOpenSidebar,
@@ -72,6 +73,15 @@ const SideBar = ({
         </div>
         <div className="bottom_profile">
           <img src={require('../assets/images/Account.png')} alt="Account" />
+          {openSidebar && (
+            <div className="bottom_profile_logout">
+              <div>
+                <p style={{fontWeight:"700", fontSize:"16px", marginBottom:"0px"}}>John Doe</p> {' '}
+                <p style={{ color: '#8B8B8B' }}>example@xyz.com</p>
+              </div>
+              <FiLogOut style={{ marginLeft: '60px', marginTop: '10px' }} />
+            </div>
+          )}
         </div>
       </div>
       {/* for Mobile view */}
@@ -122,6 +132,9 @@ const SideBar = ({
           </div>
           <div className="bottom_profile">
             <img src={require('../assets/images/Account.png')} alt="Account" />
+            <p>John Doe</p>
+            <p className="email">example@xyz.com</p>
+            <FiLogOut />
           </div>
         </div>
       )}

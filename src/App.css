@@ -51,8 +51,13 @@
   margin-right: 7px;
 }
 .bottom_profile {
-  margin-top: 130px;
+  margin-top: 70px;
   margin-left: -30px;
+  display: flex;
+  align-items: start;
+}
+.bottom_profile_logout{
+  display: flex;
 }
 /* ----------------------------- SiderBar css end ----------------------------- */
 /* ----------------------------- Mobile SiderBar media query css start ----------------------------- */
