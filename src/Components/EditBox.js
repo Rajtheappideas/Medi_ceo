@@ -6,17 +6,17 @@ const data = [
   { id: 1, label: 'Action 2' },
   { id: 2, label: 'Action 3' },
 ]
-const EditBox = ({setShowEditbox}) => {
+const EditBox = ({ setShowEditbox }) => {
   const [isOpen, setOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState(null)
 
   const toggleDropdown = () => setOpen(!isOpen)
 
   return (
-    <div className="col-md-6">
+    <div className="col-lg-6 col-md-12">
       <div className="edit_main_box_content">
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-12 col-md-12">
             <div className="dropdown">
               <div className="edit_left_botton" onClick={toggleDropdown}>
                 {selectedItem !== null ? selectedItem : 'Add Entry'}
@@ -70,7 +70,11 @@ const EditBox = ({setShowEditbox}) => {
           </div>
         </div>
         <div className="bottom_btn">
-          <div type="button" onClick={() => setShowEditbox(false)} className="cancel_btn">
+          <div
+            type="button"
+            onClick={() => setShowEditbox(false)}
+            className="cancel_btn"
+          >
             <span>Cancel</span>
           </div>
           <div type="button" className="change_btn">

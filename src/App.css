@@ -56,64 +56,156 @@
 }
 /* ----------------------------- SiderBar css end ----------------------------- */
 /* ----------------------------- Mobile SiderBar media query css start ----------------------------- */
+.sidebar_section_mobile {
+  position: absolute;
+  background: #ebebeb;
+  /* width: 35%; */
+  z-index: 1;
+  left: 0px;
+  padding-left: 20px;
+}
+.menu_close_btn {
+  margin: -20px 20px 0px 0px;
+  font-size: 20px;
+  float: right;
+}
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media (min-width: 1200px) {
   .menu_bar {
     display: none;
   }
-  /* .sidebar_section_mobile {
-    display: none;
-  } */
+}
+@media only screen and (max-width: 1199px) {
   .sidebar_section {
     position: absolute;
     z-index: 1;
+    /* display: none; */
   }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-  .menu_bar {
-    display: none;
-  }
-  .sidebar_section_mobile {
-    display: none;
-  }
-  /* .sidebar_section {
+  /* .sidebar_section_mobile{
     display: none;
   } */
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-  .menu_bar {
+  /* .menu_bar{
     display: none;
+  } */
+  .left_content {
+    padding-left: 8%;
   }
+  .header_section {
+    padding-top: 25px;
+  }
+}
+@media (max-width: 768px) {
   .sidebar_section {
     display: none;
   }
+  /* .header_section {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  } */
+  .profile_content {
+    font-size: 10px;
+  }
+  .menu_bar {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  .left_content {
+    font-size: 14px;
+    padding-top: 10px;
+    padding-left: 0px;
+    display: flex;
+    align-items: center;
+  }
+  .right_content {
+    padding: 14px 0px 0px 60px;
+    font-size: 14px;
+  }
+  .sidebar_section_mobile {
+    width: 80%;
+  }
   .input_section {
+    padding-top: 10px !important;
     width: 90% !important;
   }
-  .edit_main_box_content{
-    width: 100% !important;
+
+  .left_icons ul li p {
+    font-size: 15px;
+  }
+  .main_box_icon {
+    margin: 20px 5px 0px 0px !important;
+  }
+}
+@media (min-width: 769px) and (max-width: 1023px) {
+  .header_section {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .profile_content {
+    font-size: 10px;
+  }
+  .menu_bar {
+    margin: 15px;
+    font-size: 20px;
+  }
+  .left_content {
+    font-size: 13px;
+    font-weight: 600;
+    padding-top: 10px;
+  }
+  .right_content {
+    padding: 14px 0px 0px 60px;
+    font-size: 16px;
+  }
+  .sidebar_section_mobile {
+    width: 80%;
+  }
+  .input_section {
+    padding-top: 10px !important;
+    width: 70% !important;
+  }
+
+  .left_icons ul li p {
+    font-size: 15px;
+  }
+  .main_box_icon {
+    margin: 20px 5px 0px 0px !important;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .sidebar_section_mobile {
+    display: none;
+  }
+  .menu_bar {
+    display: none;
+  }
+  .input_section {
+    /* padding-top: 70px; */
+    width: 51% !important;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto !important;
+  }
+  .edit_main_box_content {
+    width: 700px !important;
+    margin: 0px 0px 0px 181px;
   }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-}
 /* ----------------------------- Mobile SiderBar media query css end ----------------------------- */
 /* ----------------------------- Header css start ----------------------------- */
-/* .header_section {
-  padding-top: 50px;
-} */
+
 .profile_content {
   display: flex;
   justify-content: space-between;
+}
+.header_section {
+  padding-top: 20px;
+}
+.left_content p {
+  margin-bottom: 0;
 }
 .profile_name {
   text-transform: uppercase;
@@ -147,6 +239,10 @@
   padding: 12px;
   border-radius: 10px;
   justify-content: space-between;
+}
+.main_box_icon {
+  margin: 20px 20px 0 0;
+  font-size: 30px;
 }
 .box_left_content span {
   font-size: 16px;

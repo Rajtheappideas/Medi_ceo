@@ -7,7 +7,8 @@ const InputCheckbox = ({ setShowEditbox }) => {
   return (
     <div className="main_box">
       <RxDragHandleDots2
-        style={{ fontSize: '30px', margin: '20px 20px 0 0' }}
+        // style={{ fontSize: '30px', margin: '20px 20px 0 0' }}
+        className='main_box_icon'
       />
       <div className="input_box">
         <div className="box_left_content">
