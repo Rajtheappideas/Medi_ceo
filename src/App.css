@@ -47,9 +47,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .choose_topic_box {
-  @apply border-[3px] bg-white cursor-pointer text-center w-full md:h-48 h-40 md:p-4 p-2 rounded-lg border-Yellow flex items-center justify-start md:gap-2 gap-1 flex-col;
+  @apply border-[3px] bg-white cursor-pointer text-center w-full md:h-48 h-32 md:p-4 p-2 rounded-lg border-Yellow flex items-center justify-start md:gap-2 gap-1 flex-col;
 }
 
-.yellow_button{
-  @apply text-white text-center px-5 active:scale-90 font-semibold py-3 bg-Yellow rounded-md shadow-md hover:bg-Yellow/80 transition
+.yellow_button {
+  @apply text-white text-center md:px-5 px-3 md:py-3 py-2 active:scale-90 font-semibold bg-Yellow rounded-md shadow-md hover:bg-Yellow/80 transition;
 }

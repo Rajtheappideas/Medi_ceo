@@ -5,9 +5,9 @@ import { toast } from "react-hot-toast";
 
 const SingleList = ({ title }) => {
   return (
-    <div className="w-full flex select-none items-center cursor-pointer justify-start gap-3">
+    <div className="w-full flex select-none items-center cursor-pointer justify-start md:gap-x-3 gap-x-1">
       <MdOutlineDragIndicator size={30} />
-      <div className="p-4 w-full shadow-md rounded-md flex items-center gap-3">
+      <div className="md:p-4 p-2 w-full shadow-md rounded-md flex items-center md:gap-x-3 gap-x-1">
         <input
           type="radio"
           id={title}

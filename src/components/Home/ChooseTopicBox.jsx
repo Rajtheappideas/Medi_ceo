@@ -8,7 +8,7 @@ import { handleChangeTopic } from "../../redux/GlobalStates";
 const ChooseTopicBox = () => {
   const dispatch = useDispatch();
   return (
-    <div className="lg:w-1/2 w-full rounded-md bg-gray-50 p-5 mx-auto shadow-md flex flex-col items-start justify-center">
+    <div className="xl:w-1/2 lg:w-2/3 w-full rounded-md bg-gray-50 p-5 mx-auto shadow-md flex flex-col items-start justify-center">
       <div className="pb-10 w-full flex items-center justify-between">
         <div className="w-10/12">
           <p className="font-bold">CHOOSE TOPIC</p>

@@ -39,13 +39,13 @@ const Sidebar = ({
 
   return (
     <div
-      className={` overflow-y-scroll scrollbar ${
-        openSidebar ? "xl:w-[20%] lg:w-1/5" : "lg:w-[10%]"
+      className={`scrollbar ${
+        openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"
       } h-auto capitalize`}
     >
       {/* for desktop */}
       <div
-        className={`min-h-screen w-full xl:px-6 lg:px-3 lg:block hidden py-3`}
+        className={`min-h-screen w-full xl:px-4 lg:px-2 lg:block hidden py-3`}
       >
         <p
           onClick={() => setOpenSidebar(!openSidebar)}
@@ -162,7 +162,7 @@ const Sidebar = ({
                   <span className="block text-gray-500">example@xyz.com</span>
                 </p>
               )}
-              {openSidebar && <FiLogOut size={20} />}
+              {openSidebar && <FiLogOut size={20} className="ml-auto" />}
             </List>
           </ul>
         </div>
@@ -172,9 +172,9 @@ const Sidebar = ({
         ref={sidebarRef}
         className={`min-h-screen absolute scrollbar overflow-y-scroll max-h-screen md:w-1/2 w-4/5 z-50 bg-white ${
           openSidebar ? "translate-x-0" : "-translate-x-[100%]"
-        } px-4 transition duration-300 ease-in-out lg:hidden block py-3 shadow-xl`}
+        } md:px-4 px-2 transition duration-300 ease-in-out lg:hidden block py-3 shadow-xl`}
       >
-        <p className="my-3 xl:text-4xl text-2xl font-semibold">
+        <p className="my-2 xl:text-4xl text-2xl font-semibold">
           <img
             src={require("../assets/images/logo.png")}
             className="w-fit h-fit object-contain object-center inline-block"
@@ -281,5 +281,5 @@ const Sidebar = ({
 export default Sidebar;
 
 const List = tw.li`
-flex items-center text-black xl:px-2 px-1 py-1 rounded-md xl:gap-x-5 gap-x-2 w-full font-medium cursor-pointer
+flex items-center text-black xl:px-2 px-1 py-1 rounded-md xl:gap-x-3 gap-x-4 w-full font-medium cursor-pointer
 `;

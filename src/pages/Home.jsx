@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet";
@@ -15,10 +15,18 @@ const Home = () => {
     (state) => state.globalStates
   );
 
+  useEffect(() => {
+    if (openSidebar) {
+      window.document.body.style.overflow = "hidden";
+    } else {
+      window.document.body.style.overflow = "unset";
+    }
+  }, [openSidebar]);
+
   return (
     <>
       <Helmet title={`Medi Ceo`} />
-      <div className="w-full flex items-start lg:gap-3 flex-row h-auto">
+      <div className="w-full flex items-start justify-start lg:gap-3 flex-row h-auto">
         <Sidebar
           setActiveComponent={setActiveComponent}
           activeComponent={activeComponent}
@@ -26,7 +34,7 @@ const Home = () => {
           setOpenSidebar={setOpenSidebar}
         />
         <section
-          className={`border-l lg:p-5 p-3 h-full space-y-5 min-h-screen ${
+          className={`lg:border-l lg:p-5 md:p-3 p-2 h-full space-y-5 min-h-screen ${
             openSidebar ? "xl:w-10/12 lg:w-4/5 w-full" : "lg:w-[90%] w-full"
           }`}
         >
