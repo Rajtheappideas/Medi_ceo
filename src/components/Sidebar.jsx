@@ -174,7 +174,7 @@ const Sidebar = ({
           openSidebar ? "translate-x-0" : "-translate-x-[100%]"
         } md:px-4 px-2 transition duration-300 ease-in-out lg:hidden block py-3 shadow-xl`}
       >
-        <p className="my-2 xl:text-4xl text-2xl font-semibold">
+        <p className="my-2 font-semibold">
           <img
             src={require("../assets/images/logo.png")}
             className="w-fit h-fit object-contain object-center inline-block"
@@ -186,7 +186,7 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <ul className="w-full space-y-3 max-h-screen overflow-y-scroll">
+        <ul className="w-full space-y-3 max-h-screen">
           <List
             onClick={() => setActiveComponent("dashboard")}
             className={` ${openSidebar ? "justify-start" : "justify-center"} `}
