@@ -41,7 +41,7 @@ const Home = () => {
           />
         </div>
         <section
-          className={`lg:border-l  h-full space-y-5 min-h-screen ${
+          className={`lg:border-l-2 h-full space-y-5 min-h-screen ${
             openSidebar ? "xl:w-10/12 lg:w-4/5 w-full" : "lg:max-w-[90%] w-full"
           }`}
         >

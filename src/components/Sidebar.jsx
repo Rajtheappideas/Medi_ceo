@@ -39,7 +39,9 @@ const Sidebar = ({
 
   return (
     <div
-      className={`scrollbar w-[10%] lg:fixed bg-white h-auto capitalize`}
+      className={`scrollbar ${
+        openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"
+      } lg:fixed bg-white h-auto capitalize`}
     >
       {/* for desktop */}
       <div
