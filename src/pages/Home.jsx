@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import ChooseTopicFromSelectedCategoryList from "../components/Home/ChooseTopicFromSelectedCategoryList";
 import ListBox from "../components/Home/ListBox";
 import ResultBox from "../components/Home/ResultBox";
+import EditBox from "../components/Home/EditBox";
 
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState("dashboard");
@@ -51,7 +52,7 @@ const Home = () => {
             activeComponent={activeComponent}
             setActiveComponent={setActiveComponent}
           />
-          {activeTopic === "" && <ChooseTopicBox />}
+          {/* {activeTopic === "" && <ChooseTopicBox />}
           {activeTopic !== "" && activeCategory === "" && <ChooseCategoryBox />}
           {activeCategory !== "" && activeTopicOfCategory === "" && (
             <ChooseTopicFromSelectedCategoryList />
@@ -59,7 +60,8 @@ const Home = () => {
           {activeTopicOfCategory !== "" && activeListName === "" && <ListBox />}
           {activeTopicOfCategory !== "" && activeListName !== "" && (
             <ResultBox />
-          )}
+          )} */}
+          <EditBox/>
         </section>
       </div>
     </>
