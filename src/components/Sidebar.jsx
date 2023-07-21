@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { FiLogOut, FiUsers } from "react-icons/fi";
+import { FiLogOut, FiUsers, FiEdit } from "react-icons/fi";
 import { RiBarChartLine } from "react-icons/ri";
 import { IoMailOutline } from "react-icons/io5";
 import { BsShieldCheck } from "react-icons/bs";
@@ -39,9 +39,7 @@ const Sidebar = ({
 
   return (
     <div
-      className={`scrollbar ${
-        openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"
-      } h-auto capitalize`}
+      className={`scrollbar w-[10%] lg:fixed bg-white h-auto capitalize`}
     >
       {/* for desktop */}
       <div
@@ -50,7 +48,7 @@ const Sidebar = ({
         <p
           onClick={() => setOpenSidebar(!openSidebar)}
           className={`cursor-pointer my-3 mt-5 flex items-center  ${
-            openSidebar ? "justify-between" : "justify-end"
+            openSidebar ? "justify-between" : "justify-center ml-7"
           } gap-x-3 py-1 xl:text-4xl text-2xl font-semibold text-center`}
         >
           <img
@@ -66,7 +64,7 @@ const Sidebar = ({
         </p>
         <div className="w-full  text-sm flex flex-col h-[80vh] justify-between">
           <ul className="w-full space-y-3">
-            <List
+            {/* <List
               onClick={() => setActiveComponent("dashboard")}
               className={` ${
                 openSidebar ? "justify-start" : "justify-center"
@@ -114,7 +112,7 @@ const Sidebar = ({
             >
               <BsShieldCheck className={`text-textColor`} size={25} />
               {openSidebar && <span>Permission Management</span>}
-            </List>
+            </List> */}
             <List
               onClick={() => setActiveComponent("cms")}
               className={`items-start ${
@@ -126,13 +124,16 @@ const Sidebar = ({
                 alt="cms"
                 className="h-7 w-7 text-textColor object-contain object-center"
               />{" "}
-              {openSidebar && (
-                <p className="space-y-3">
-                  <span className="block">CMS</span>
-                  <span className="block">Content List</span>
-                  <span className="block">Sandbox Mode</span>
-                </p>
-              )}
+              {openSidebar && <span className="block">Content List</span>}
+            </List>
+            <List
+              onClick={() => setActiveComponent("cms")}
+              className={`items-start ${
+                openSidebar ? "justify-start" : "justify-center"
+              } `}
+            >
+              <FiEdit size={25} />
+              {openSidebar && <span className="block">Sandbox Mode</span>}
             </List>
             <List
               onClick={() => setActiveComponent("source_management")}
@@ -186,8 +187,8 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <ul className="w-full space-y-3 max-h-screen">
-          <List
+        <div className="w-full space-y-3 max-h-screen h-full flex flex-col justify-between">
+          {/* <List
             onClick={() => setActiveComponent("dashboard")}
             className={` ${openSidebar ? "justify-start" : "justify-center"} `}
           >
@@ -225,51 +226,62 @@ const Sidebar = ({
           >
             <BsShieldCheck className={`text-textColor`} size={25} />
             {openSidebar && <span>Permission Management</span>}
-          </List>
-          <List
-            onClick={() => setActiveComponent("cms")}
-            className={`items-start ${
-              openSidebar ? "justify-start" : "justify-center"
-            } `}
-          >
-            <img
-              src={cms}
-              alt="cms"
-              className="h-7 w-7 text-textColor object-contain object-center"
-            />{" "}
-            {openSidebar && (
-              <p className="space-y-3">
-                <span className="block">CMS</span>
-                <span className="block">Content List</span>
-                <span className="block">Sandbox Mode</span>
-              </p>
-            )}
-          </List>
-          <List
-            onClick={() => setActiveComponent("source_management")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <img
-              src={sourceManagement}
-              alt="source management"
-              className="h-7 w-7 text-textColor object-contain object-center"
-            />{" "}
-            {openSidebar && <span>Source Management</span>}
-          </List>
-          <List
-            onClick={() => setActiveComponent("source_management")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <span className="bg-gray-200 rounded-full w-9 h-9"></span>
-            {openSidebar && (
-              <p>
-                <span className="block">John Doe</span>
-                <span className="block text-gray-500">example@xyz.com</span>
-              </p>
-            )}
-            {openSidebar && <FiLogOut size={20} className="ml-auto" />}
-          </List>
-        </ul>
+          </List> */}
+          <ul className="space-y-3">
+            <List
+              onClick={() => setActiveComponent("cms")}
+              className={`items-start ${
+                openSidebar ? "justify-start" : "justify-center"
+              } `}
+            >
+              <img
+                src={cms}
+                alt="cms"
+                className="h-7 w-7 text-textColor object-contain object-center"
+              />{" "}
+              {openSidebar && <span className="block">Content List</span>}
+            </List>
+            <List
+              onClick={() => setActiveComponent("cms")}
+              className={`items-start ${
+                openSidebar ? "justify-start" : "justify-center"
+              } `}
+            >
+              <FiEdit size={25} />
+              {openSidebar && <span className="block">Sandbox Mode</span>}
+            </List>
+            <List
+              onClick={() => setActiveComponent("source_management")}
+              className={` ${
+                openSidebar ? "justify-start" : "justify-center"
+              } `}
+            >
+              <img
+                src={sourceManagement}
+                alt="source management"
+                className="h-7 w-7 text-textColor object-contain object-center"
+              />{" "}
+              {openSidebar && <span>Source Management</span>}
+            </List>
+          </ul>
+          <ul>
+            <List
+              onClick={() => setActiveComponent("source_management")}
+              className={` ${
+                openSidebar ? "justify-start" : "justify-center"
+              } `}
+            >
+              <span className="bg-gray-200 rounded-full w-9 h-9"></span>
+              {openSidebar && (
+                <p>
+                  <span className="block">John Doe</span>
+                  <span className="block text-gray-500">example@xyz.com</span>
+                </p>
+              )}
+              {openSidebar && <FiLogOut size={20} className="ml-auto" />}
+            </List>
+          </ul>
+        </div>
       </div>
       {openSidebar && (
         <div className="absolute lg:hidden block z-30 inset-0 bg-black bg-opacity-20 backdrop-blur-sm max-w-[100%] h-full overflow-hidden" />

@@ -1,0 +1,79 @@
+[
+  {
+    "page": {
+      "boxes": [
+        {
+          "fieldTitle": "All stadiums",
+          "title": "<p>All stages</p><ul><li><p>Stop antigen delivery!</p></li></ul><p></p>",
+          "contentfulId": "11Ws3KdS8lFJzu7Lt9ypOv",
+          "id": "actionRecommendationBox"
+        },
+        {
+          "title": "Enter weight",
+          "unit": "Kg",
+          "contentfulId": "23zCiAf2S14fSucpKdKCc3",
+          "id": "calculatorBox"
+        },
+        {
+          "title": "For mild courses (stage I & II)",
+          "color": "gold",
+          "contentfulId": "6JsifqacM0fRQ5wXk1hOkb",
+          "id": "textBox"
+        },
+        {
+          "fieldTitle": "Clemastine",
+          "title": "<p>Clemastine{_source1}</p>",
+          "content": "<p>0.03 mg/kg bw i.v.</p>",
+          "contentfulId": "6UA81AThp2HBPsmMoUJPMq",
+          "id": "dosingRecommendationBox"
+        },
+        {
+          "title": "Stage II & III",
+          "color": "gold",
+          "contentfulId": "eWWQ5hRoAoEnc0M4cFzUL",
+          "id": "textBox"
+        },
+        {
+          "fieldTitle": "Adrenalin i.m.",
+          "title": "<p>Adrenaline{_source1,2}\n</p>",
+          "content": "<p>150-500 μg i.m.</p>",
+          "contentfulId": "ut2mN4wfY3UpxdRqBENmt",
+          "id": "dosingRecommendationBox"
+        },
+        {
+          "fieldTitle": "Adrenalin i.v.",
+          "title": "<p>Adrenaline{_source1,2}</p>",
+          "content": "<p>1 μg/kg bw i.v.</p>",
+          "contentfulId": "3DlOhebCFK1AhiJ4JVFzoX",
+          "id": "dosingRecommendationBox"
+        },
+        {
+          "fieldTitle": "Oxygen administration",
+          "title": "<p>Oxygen{_source1,2}</p>",
+          "content": "<p>High flow &gt;10 l/min and FiO₂ 1.0 </p>",
+          "contentfulId": "1xBcIIYeQhYbc3PjktO4VA",
+          "id": "dosingRecommendationBox"
+        },
+        {
+          "fieldTitle": "Volume output",
+          "title": "<p>Volume gift{_source1,2}</p>",
+          "content": "<p>20 ml/kg bw balanced whole electrolyte solution</p>.",
+          "contentfulId": "10Q3Mq52T9wq2goh6b70iN",
+          "id": "dosingRecommendationBox"
+        },
+        {
+          "fieldTitle": "Methylprednisolone",
+          "title": "<p>Methylprednisolone{_source1}</p>",
+          "content": "<p>1-2 mg/kg bw i.v.</p>",
+          "contentfulId": "2s8w2tH7lhD0MurREG83S7",
+          "id": "dosingRecommendationBox"
+        }
+      ],
+      "sources": "<p><a href=\"https://www.ai-online.info/images/ai-ausgabe/2015/03-2015/2015_3_126-134_Allergie%20und%20Anaphylaxie%20in%20der%20Kinderanaesthesie.pdf\">1. 2015, AI, Review, Allergie und Anaphylaxie in der Kinderanästhesie</a></p><p><a href=\"https://register.awmf.org/assets/guidelines/061-025l_S2k_Akuttherapie-Management-Anaphylaxie_2021-10.pdf\">2. 2021, AWMF, S2k-Leitlinie, Akuttherapie undManagement der Anaphylaxie</a></p>",
+      "pageId": "KA_NM_ANA",
+      "id": "3MfcTQKmKt59g0f6OIy88f",
+      "title": "Anaphylaxis"
+    },
+    "path": ["Anesthesiology", "Children", "Emergency medication"]
+  }
+]

@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlineRight } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { handleChangeCategory, handleChangeTopic } from "../redux/GlobalStates";
+import {
+  handleChangeCategory,
+  handleChangeListName,
+  handleChangeTopic,
+  handleChangeTopicOfCategory,
+} from "../redux/GlobalStates";
 
 const Navbar = ({
   openSidebar,
@@ -11,21 +16,37 @@ const Navbar = ({
   activeComponent,
   setActiveComponent,
 }) => {
-  useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
-  const { activeTopic, activeCategory } = useSelector(
-    (state) => state.globalStates
-  );
+  const { activeTopic, activeCategory, activeTopicOfCategory, activeListName } =
+    useSelector((state) => state.globalStates);
 
   const dispatch = useDispatch();
 
   const handlePreviousChanges = () => {
-    if (activeCategory) {
+    if (activeListName) {
+      return dispatch(handleChangeListName(""));
+    } else if (activeTopicOfCategory) {
+      return dispatch(handleChangeTopicOfCategory(""));
+    } else if (activeCategory) {
       return dispatch(handleChangeCategory(""));
     } else if (activeTopic) {
       return dispatch(handleChangeTopic(""));
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll", () => {});
+    };
+  }, []);
 
   return (
     <>
@@ -37,13 +58,17 @@ const Navbar = ({
         />
       )}
       {activeTopic !== "" && (
-        <div className="w-full flex items-center justify-between">
+        <div
+          className={`w-full ${
+            isSticky && "sticky top-0 shadow-md"
+          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
+        >
           {/* left side */}
           <div className="flex items-center flex-1 gap-x-2">
             <HiMenuAlt2
               onClick={() => setOpenSidebar(!openSidebar)}
               role="button"
-              className="lg:text-2xl text-xl lg:hidden"
+              className="text-2xl lg:hidden"
             />
             <div className="flex flex-col items-start justify-start lg:gap-3 lg:text-xl md:text-base text-sm">
               <div className="flex items-center md:gap-x-2 gap-x-1 justify-start text-gray-400">

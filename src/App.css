@@ -47,7 +47,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .choose_topic_box {
-  @apply border-[3px] bg-white cursor-pointer text-center w-full md:h-48 h-32 md:p-4 p-2 rounded-lg border-Yellow flex items-center justify-start md:gap-2 gap-1 flex-col;
+  @apply border-[3px] bg-white cursor-pointer text-center 2xl:w-10/12 md:w-[90%] md:h-[90%] w-full 2xl:h-5/6 h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
+}
+
+.choose_category_box {
+  @apply border-[3px] bg-white cursor-pointer text-center 2xl:w-10/12 w-full 2xl:h-5/6 h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
 }
 
 .yellow_button {

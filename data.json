@@ -1,0 +1,28 @@
+[
+  {
+    "boxes": [
+      {
+        "fieldTitle": "Emergency",
+        "title": "<p>Emergency</p>",
+        "resultOrNodeId": "1b5XgyRX7dRT3eZWfjgkqb",
+        "contentfulId": "2mvTkB8lXneX8NNTs16LKO",
+        "id": "furtherResultPageBox"
+      }
+    ],
+    "id": "1xzLPVyiVIpDQdMZ8Ur7Q5",
+    "title": "Children"
+  },
+  {
+    "boxes": [
+      {
+        "fieldTitle": "Anaphylaxis",
+        "title": "<p>Anaphylaxis</p>",
+        "resultOrNodeId": "3MfcTQKmKt59g0f6OIy88f",
+        "contentfulId": "3jfpVIpqhn8RSkwE988Xic",
+        "id": "furtherResultPageBox"
+      }
+    ],
+    "id": "1b5XgyRX7dRT3eZWfjgkqb",
+    "title": "Emergency medication"
+  }
+]

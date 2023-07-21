@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   activeTopic: "",
   activeCategory: "",
+  activeTopicOfCategory: "",
+  activeListName: "",
 };
 
 const GlobalStates = createSlice({
@@ -15,9 +17,20 @@ const GlobalStates = createSlice({
     handleChangeCategory: (state, { payload }) => {
       state.activeCategory = payload;
     },
+    handleChangeTopicOfCategory: (state, { payload }) => {
+      state.activeTopicOfCategory = payload;
+    },
+    handleChangeListName: (state, { payload }) => {
+      state.activeListName = payload;
+    },
   },
 });
 
-export const { handleChangeCategory, handleChangeTopic } = GlobalStates.actions;
+export const {
+  handleChangeCategory,
+  handleChangeTopic,
+  handleChangeListName,
+  handleChangeTopicOfCategory,
+} = GlobalStates.actions;
 
 export default GlobalStates.reducer;
