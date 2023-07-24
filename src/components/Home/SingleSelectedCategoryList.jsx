@@ -1,7 +1,6 @@
 import React from "react";
 import { MdOutlineDragIndicator } from "react-icons/md";
 import { HiOutlinePencil } from "react-icons/hi";
-import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import {
   handleChangeTopicOfCategory,
@@ -21,7 +20,10 @@ const SingleSelectedCategoryList = ({ title }) => {
           id={title}
           name="topiclist"
           className="h-5 w-5 cursor-pointer"
-          onClick={() => dispatch(handleToggleShowSubCategoryList(true))}
+          onClick={() => {
+            dispatch(handleToggleShowSubCategoryList(true));
+            dispatch(handleToggleEditBox(false));
+          }}
         />
         <label
           htmlFor={title}
