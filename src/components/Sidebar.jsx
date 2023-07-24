@@ -116,10 +116,10 @@ const Sidebar = ({
               {openSidebar && <span>Permission Management</span>}
             </List> */}
             <List
-              onClick={() => setActiveComponent("cms")}
+              onClick={() => setActiveComponent("content_list")}
               className={`items-start ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
+                activeComponent === "content_list" && "bg-gray-200 rounded-md"
+              } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <img
                 src={cms}
@@ -129,19 +129,20 @@ const Sidebar = ({
               {openSidebar && <span className="block">Content List</span>}
             </List>
             <List
-              onClick={() => setActiveComponent("cms")}
+              onClick={() => setActiveComponent("sandbox")}
               className={`items-start ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
+                activeComponent === "sandbox" && "bg-gray-200 rounded-md"
+              } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <FiEdit size={25} />
               {openSidebar && <span className="block">Sandbox Mode</span>}
             </List>
             <List
               onClick={() => setActiveComponent("source_management")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
+              className={`${
+                activeComponent === "source_management" &&
+                "bg-gray-200 rounded-md"
+              } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <img
                 src={sourceManagement}
@@ -231,10 +232,13 @@ const Sidebar = ({
           </List> */}
           <ul className="space-y-3">
             <List
-              onClick={() => setActiveComponent("cms")}
+              onClick={() => {
+                setActiveComponent("content_list");
+                setOpenSidebar(false);
+              }}
               className={`items-start ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
+                activeComponent === "content_list" && "bg-gray-200 rounded-md"
+              }  ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <img
                 src={cms}
@@ -244,19 +248,26 @@ const Sidebar = ({
               {openSidebar && <span className="block">Content List</span>}
             </List>
             <List
-              onClick={() => setActiveComponent("cms")}
+              onClick={() => {
+                setActiveComponent("sandbox");
+                setOpenSidebar(false);
+              }}
               className={`items-start ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
+                activeComponent === "sandbox" && "bg-gray-200 rounded-md"
+              } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <FiEdit size={25} />
               {openSidebar && <span className="block">Sandbox Mode</span>}
             </List>
             <List
-              onClick={() => setActiveComponent("source_management")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
+              onClick={() => {
+                setActiveComponent("source_management");
+                setOpenSidebar(false);
+              }}
+              className={`${
+                activeComponent === "source_management" &&
+                "bg-gray-200 rounded-md"
+              } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <img
                 src={sourceManagement}
@@ -268,7 +279,9 @@ const Sidebar = ({
           </ul>
           <ul>
             <List
-              onClick={() => setActiveComponent("source_management")}
+              onClick={() => {
+                setOpenSidebar(false);
+              }}
               className={` ${
                 openSidebar ? "justify-start" : "justify-center"
               } `}

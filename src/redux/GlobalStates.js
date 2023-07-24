@@ -5,6 +5,8 @@ const initialState = {
   activeCategory: "",
   activeTopicOfCategory: "",
   activeListName: "",
+  showEditBox: false,
+  showSubCategoryList: false,
 };
 
 const GlobalStates = createSlice({
@@ -23,6 +25,12 @@ const GlobalStates = createSlice({
     handleChangeListName: (state, { payload }) => {
       state.activeListName = payload;
     },
+    handleToggleEditBox: (state, { payload }) => {
+      state.showEditBox = payload;
+    },
+    handleToggleShowSubCategoryList: (state, { payload }) => {
+      state.showSubCategoryList = payload;
+    },
   },
 });
 
@@ -31,6 +39,8 @@ export const {
   handleChangeTopic,
   handleChangeListName,
   handleChangeTopicOfCategory,
+  handleToggleEditBox,
+  handleToggleShowSubCategoryList,
 } = GlobalStates.actions;
 
 export default GlobalStates.reducer;

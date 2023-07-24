@@ -8,6 +8,7 @@ import {
   handleChangeListName,
   handleChangeTopic,
   handleChangeTopicOfCategory,
+  handleToggleShowSubCategoryList,
 } from "../redux/GlobalStates";
 
 const Navbar = ({
@@ -18,13 +19,20 @@ const Navbar = ({
 }) => {
   const [isSticky, setIsSticky] = useState(false);
 
-  const { activeTopic, activeCategory, activeTopicOfCategory, activeListName } =
-    useSelector((state) => state.globalStates);
+  const {
+    activeTopic,
+    activeCategory,
+    activeTopicOfCategory,
+    activeListName,
+    showSubCategoryList,
+  } = useSelector((state) => state.globalStates);
 
   const dispatch = useDispatch();
 
   const handlePreviousChanges = () => {
-    if (activeListName) {
+    if (showSubCategoryList) {
+      return dispatch(handleToggleShowSubCategoryList(false));
+    } else if (activeListName) {
       return dispatch(handleChangeListName(""));
     } else if (activeTopicOfCategory) {
       return dispatch(handleChangeTopicOfCategory(""));
@@ -60,7 +68,7 @@ const Navbar = ({
       {activeTopic !== "" && (
         <div
           className={`w-full ${
-            isSticky && "sticky top-0 shadow-md"
+            isSticky && "sticky top-0 shadow-md z-50"
           } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
         >
           {/* left side */}

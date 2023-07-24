@@ -8,10 +8,9 @@ import { useSelector } from "react-redux";
 import ChooseTopicFromSelectedCategoryList from "../components/Home/ChooseTopicFromSelectedCategoryList";
 import ListBox from "../components/Home/ListBox";
 import ResultBox from "../components/Home/ResultBox";
-import EditBox from "../components/Home/EditBox";
 
 const Home = () => {
-  const [activeComponent, setActiveComponent] = useState("dashboard");
+  const [activeComponent, setActiveComponent] = useState("sandbox");
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const { activeTopic, activeCategory, activeTopicOfCategory, activeListName } =
@@ -30,9 +29,7 @@ const Home = () => {
       <Helmet title={`Medi Ceo`} />
       <div className="w-full flex items-start justify-start lg:gap-3 flex-row h-auto">
         <div
-          className={`${
-            openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"
-          }`}
+          className={`${openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"}`}
         >
           <Sidebar
             setActiveComponent={setActiveComponent}
@@ -42,7 +39,7 @@ const Home = () => {
           />
         </div>
         <section
-          className={`lg:border-l-2 h-full space-y-5 min-h-screen ${
+          className={`lg:border-l-2 p-1 h-full space-y-5 min-h-screen ${
             openSidebar ? "xl:w-10/12 lg:w-4/5 w-full" : "lg:max-w-[90%] w-full"
           }`}
         >
@@ -52,16 +49,23 @@ const Home = () => {
             activeComponent={activeComponent}
             setActiveComponent={setActiveComponent}
           />
-          {/* {activeTopic === "" && <ChooseTopicBox />}
-          {activeTopic !== "" && activeCategory === "" && <ChooseCategoryBox />}
-          {activeCategory !== "" && activeTopicOfCategory === "" && (
-            <ChooseTopicFromSelectedCategoryList />
+          {activeComponent === "sandbox" && (
+            <>
+              {activeTopic === "" && <ChooseTopicBox />}
+              {activeTopic !== "" && activeCategory === "" && (
+                <ChooseCategoryBox />
+              )}
+              {activeCategory !== "" && activeTopicOfCategory === "" && (
+                <ChooseTopicFromSelectedCategoryList />
+              )}
+              {activeTopicOfCategory !== "" && activeListName === "" && (
+                <ListBox />
+              )}
+              {activeTopicOfCategory !== "" && activeListName !== "" && (
+                <ResultBox />
+              )}
+            </>
           )}
-          {activeTopicOfCategory !== "" && activeListName === "" && <ListBox />}
-          {activeTopicOfCategory !== "" && activeListName !== "" && (
-            <ResultBox />
-          )} */}
-          <EditBox/>
         </section>
       </div>
     </>

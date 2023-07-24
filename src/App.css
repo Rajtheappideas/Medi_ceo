@@ -46,6 +46,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+.rdw-option-wrapper,
+.rdw-dropdown-wrapper {
+  background-color: transparent !important;
+}
+
 .choose_topic_box {
   @apply border-[3px] bg-white cursor-pointer text-center 2xl:w-10/12 md:w-[90%] md:h-[90%] w-full 2xl:h-5/6 h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
 }
@@ -56,4 +61,8 @@ body::-webkit-scrollbar-thumb {
 
 .yellow_button {
   @apply text-white text-center md:px-5 px-3 md:py-3 py-2 active:scale-90 font-semibold bg-Yellow rounded-md shadow-md hover:bg-Yellow/80 transition;
+}
+
+.common_button {
+  @apply active:scale-90 transition md:px-5 px-3 md:py-3 py-2 duration-100 border;
 }
