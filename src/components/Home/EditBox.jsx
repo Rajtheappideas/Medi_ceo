@@ -18,7 +18,7 @@ const EditBox = () => {
     selectedItem === value ? setSelectedItem(null) : setSelectedItem(value)
   }
   return (
-    <div className="w-1/2 flex items-start justify-start flex-col mx-auto rounded-lg shadow-md p-4">
+    <div className="lg:w-1/2 flex items-start justify-start flex-col mx-auto rounded-lg shadow-md p-4 sm:w-full">
       <div
         className="w-full bg-Yellow text-white p-3 rounded-md flex justify-between items-center"
         onClick={toggleDropdown}
@@ -64,8 +64,8 @@ const EditBox = () => {
           rows="4"
           className="block w-full text-sm bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
         ></textarea>
-        {/* 
-        <form>
+        
+        {/* <form>
           <div className="w-full mb-4 border  rounded-md bg-gray-50 dark:bg-lightGray dark:border-1-#EAECF0">
             <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
               <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600">
@@ -289,7 +289,7 @@ const EditBox = () => {
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">0 characters</p>
-          <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+          <p className="text-[#475467] text-sm sm:text-sm">Maximum 256 characters</p>
         </div>
       </div>
       <hr className="h-px my-3 bg-gray-200 border-0  w-full" />
@@ -297,7 +297,7 @@ const EditBox = () => {
         <button className="border border-1-#EAECF0 mx-3 bg-white text-black px-5 text-md rounded-lg">
           Cancel
         </button>
-        <button className="bg-Yellow text-white p-3 justify-end rounded-lg text-md">
+        <button className="bg-Yellow text-white p-3 justify-end rounded-lg text-md  ">
           Save Change
         </button>
       </div>
