@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findDataOfNodes } from "../../redux/GlobalStates";
 
 const NodesList = memo(() => {
-  const { nodes, activeNodes, activeSingleNode } = useSelector(
-    (state) => state.globalStates
-  );
+  const { activeSingleNode } = useSelector((state) => state.globalStates);
 
   const dispatch = useDispatch();
 

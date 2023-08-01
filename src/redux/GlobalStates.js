@@ -9,7 +9,6 @@ const initialState = {
   showSubCategoryList: false,
   data: jsonData,
   nodes: [],
-  activeNodes: [],
   activeSingleNode: null,
   resultPage: null,
   resultPageDirectAfterNodeListOfSubcategory: null,
@@ -45,7 +44,6 @@ const GlobalStates = createSlice({
         );
         if (!duplicateData) {
           state.nodes = [...state.nodes, findData];
-          state.activeNodes = [...state.activeNodes, findData?.id];
           state.activeSingleNode = findData;
         }
       } else if (findData?.type === "resultPage" && state.nodes.length > 0) {
@@ -54,13 +52,11 @@ const GlobalStates = createSlice({
         state.resultPageDirectAfterNodeListOfSubcategory = findData;
       }
     },
-    handleChangeNodes: (state, { payload }) => {
+    handleChangeNodes: (state) => {
       const deleteLastNode = state.nodes.splice(-1);
-      const deleteLastActiveNode = state.activeNodes.splice(-1);
       const nodesCopy = [...state.nodes];
       state.activeSingleNode = nodesCopy.splice(-1)[0];
       state.nodes = state.nodes;
-      state.activeNodes = state.activeNodes;
     },
     handleChangeNodeListOfSubcategory: (state, { payload }) => {
       state.nodeListOfSubcategory = payload;
