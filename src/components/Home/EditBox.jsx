@@ -4,16 +4,19 @@ import { handleToggleEditBox } from "../../redux/GlobalStates";
 import { useDispatch } from "react-redux";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState } from "draft-js";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import DOMPurify from "dompurify";
 
-const EditBox = () => {
+const EditBox = ({ data }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
   const [convertedContent, setConvertedContent] = useState(null);
+  // const _contentState = ContentState.createFromText("Sample content state");
+  // const raw = convertToRaw(_contentState);
+  // const [contentState, setContentState] = useState(raw);
 
   const dispatch = useDispatch();
 
@@ -27,6 +30,9 @@ const EditBox = () => {
       __html: DOMPurify.sanitize(html),
     };
   }
+
+  // console.log(createMarkup(editorState));
+  // console.log(contentState);
 
   return (
     <div className="w-full relative flex items-start select-none justify-start shadow-md flex-col mx-auto rounded-lg p-4">
@@ -79,6 +85,7 @@ const EditBox = () => {
         <input
           type="text"
           className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+          value={data?.fieldTitle}
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">30 characters</p>
@@ -103,7 +110,9 @@ const EditBox = () => {
             padding: "4px",
             minHeight: "10rem",
           }}
+          // defaultContentState={ContentState}
           toolbarStyle={{ backgroundColor: "#EAECF0" }}
+defaultContentState="sample"
           // toolbar={{
           //   options: ["inline", "blockType"],
           // }}
@@ -122,7 +131,7 @@ const EditBox = () => {
         />
         {/* <div
           className="preview"
-          dangerouslySetInnerHTML={createMarkup(convertedContent)}
+          dangerouslySetInnerHTML={createMarkup(data?.title)}
         ></div> */}
       </div>
       {/* result node */}
@@ -131,6 +140,7 @@ const EditBox = () => {
         <input
           type="text"
           className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+          value={data?.resultOrNodeId}
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">22 characters</p>

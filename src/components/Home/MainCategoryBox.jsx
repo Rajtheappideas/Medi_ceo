@@ -1,9 +1,9 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { handleChangeTopic } from "../../redux/GlobalStates";
+import { handleChangeMainCategory } from "../../redux/GlobalStates";
 
-const ChooseTopicBox = () => {
+const MainCategoryBox = () => {
   const dispatch = useDispatch();
   return (
     <div className="xl:w-1/2 lg:w-2/3 w-full rounded-md p-5 mx-auto shadow-lg flex flex-col items-start justify-center">
@@ -21,7 +21,7 @@ const ChooseTopicBox = () => {
       <div className="w-full grid md:grid-cols-2 md:grid-rows-2 2xl:h-[80vh] h-screen place-items-center 2xl:items-start items-center 2xl:gap-0 gap-5">
         <div
           className="choose_topic_box"
-          onClick={() => dispatch(handleChangeTopic("anesthesiology"))}
+          onClick={() => dispatch(handleChangeMainCategory("anesthesiology"))}
         >
           <p className="font-semibold 2xl:text-2xl text-lg capitalize">anesthesiology</p>
           <img
@@ -33,7 +33,7 @@ const ChooseTopicBox = () => {
         <div
           className="choose_topic_box"
           onClick={() =>
-            dispatch(handleChangeTopic("Perioperative Complications"))
+            dispatch(handleChangeMainCategory("Perioperative Complications"))
           }
         >
           <p className="font-semibold 2xl:text-2xl text-lg capitalize">Perioperative Complications</p>
@@ -44,7 +44,7 @@ const ChooseTopicBox = () => {
           />
         </div>
         <div
-          onClick={() => dispatch(handleChangeTopic("Cardiology"))}
+          onClick={() => dispatch(handleChangeMainCategory("Cardiology"))}
           className="border-[3px] col-span-full bg-white cursor-pointer text-center 2xl:w-6/12 md:w-6/12 w-full 2xl:h-5/6 lg:h-4/5 h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col"
         >
           <p className="font-semibold 2xl:text-2xl text-lg capitalize">Cardiology</p>
@@ -59,4 +59,4 @@ const ChooseTopicBox = () => {
   );
 };
 
-export default ChooseTopicBox;
+export default MainCategoryBox;

@@ -2,19 +2,26 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet";
-import ChooseTopicBox from "../components/Home/ChooseTopicBox";
-import ChooseCategoryBox from "../components/Home/ChooseCategoryBox";
+import MainCategoryBox from "../components/Home/MainCategoryBox";
+import SubCategoryBox from "../components/Home/SubCategoryBox";
 import { useSelector } from "react-redux";
-import ChooseTopicFromSelectedCategoryList from "../components/Home/ChooseTopicFromSelectedCategoryList";
-import ListBox from "../components/Home/ListBox";
+import NodeListOfSubcategory from "../components/Home/NodeListOfSubcategory";
+import NodesList from "../components/Home/NodesList";
 import ResultBox from "../components/Home/ResultBox";
+import ResultBoxDirectAfterNodeListOfSubcategory from "../components/Home/ResultBoxDirectAfterNodeListOfSubcategory";
 
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState("sandbox");
   const [openSidebar, setOpenSidebar] = useState(false);
 
-  const { activeTopic, activeCategory, activeTopicOfCategory, activeListName } =
-    useSelector((state) => state.globalStates);
+  const {
+    activeMainCategory,
+    activeSubCategory,
+    nodeListOfSubcategory,
+    nodes,
+    resultPage,
+    resultPageDirectAfterNodeListOfSubcategory,
+  } = useSelector((state) => state.globalStates);
 
   useEffect(() => {
     if (openSidebar && window.document.body.clientWidth < 1024) {
@@ -51,19 +58,45 @@ const Home = () => {
           />
           {activeComponent === "sandbox" && (
             <>
-              {activeTopic === "" && <ChooseTopicBox />}
-              {activeTopic !== "" && activeCategory === "" && (
-                <ChooseCategoryBox />
+              {/* main category component */}
+              {activeMainCategory === "" && activeSubCategory === null && (
+                <MainCategoryBox />
               )}
-              {activeCategory !== "" && activeTopicOfCategory === "" && (
-                <ChooseTopicFromSelectedCategoryList />
-              )}
-              {activeTopicOfCategory !== "" && activeListName === "" && (
-                <ListBox />
-              )}
-              {activeTopicOfCategory !== "" && activeListName !== "" && (
-                <ResultBox />
-              )}
+
+              {/* subcategory box */}
+              {activeMainCategory !== "" &&
+                nodeListOfSubcategory.length === 0 && <SubCategoryBox />}
+
+              {/* nodelist of subcategory */}
+              {activeSubCategory !== null &&
+                nodeListOfSubcategory.length > 0 &&
+                nodes.length === 0 &&
+                resultPageDirectAfterNodeListOfSubcategory === null && (
+                  <NodeListOfSubcategory />
+                )}
+
+              {/* nodelist */}
+              {nodes &&
+                nodes.length > 0 &&
+                resultPage === null &&
+                resultPageDirectAfterNodeListOfSubcategory === null && (
+                  <NodesList />
+                )}
+
+              {/* result box */}
+              {nodes &&
+                nodes.length > 0 &&
+                resultPage !== null &&
+                resultPageDirectAfterNodeListOfSubcategory === null && (
+                  <ResultBox />
+                )}
+
+              {/* result box right after the node list of subcategory */}
+              {nodes.length === 0 &&
+                resultPage === null &&
+                resultPageDirectAfterNodeListOfSubcategory !== null && (
+                  <ResultBoxDirectAfterNodeListOfSubcategory />
+                )}
             </>
           )}
         </section>

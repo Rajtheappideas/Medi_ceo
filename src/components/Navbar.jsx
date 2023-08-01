@@ -4,11 +4,13 @@ import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlineRight } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  handleChangeCategory,
+  handleChangeSubCategory,
   handleChangeListName,
-  handleChangeTopic,
-  handleChangeTopicOfCategory,
+  handleChangeMainCategory,
+  handleChangeNodeListOfSubcategory,
   handleToggleShowSubCategoryList,
+  handleChangeNodes,
+  handleChangeResultPage,
 } from "../redux/GlobalStates";
 
 const Navbar = ({
@@ -20,26 +22,31 @@ const Navbar = ({
   const [isSticky, setIsSticky] = useState(false);
 
   const {
-    activeTopic,
-    activeCategory,
-    activeTopicOfCategory,
-    activeListName,
-    showSubCategoryList,
+    activeMainCategory,
+    activeSubCategory,
+    nodeListOfSubcategory,
+    nodes,
+    resultPage,
+    resultPageDirectAfterNodeListOfSubcategory,
+    activeSingleNode,
   } = useSelector((state) => state.globalStates);
 
   const dispatch = useDispatch();
 
   const handlePreviousChanges = () => {
-    if (showSubCategoryList) {
-      return dispatch(handleToggleShowSubCategoryList(false));
-    } else if (activeListName) {
-      return dispatch(handleChangeListName(""));
-    } else if (activeTopicOfCategory) {
-      return dispatch(handleChangeTopicOfCategory(""));
-    } else if (activeCategory) {
-      return dispatch(handleChangeCategory(""));
-    } else if (activeTopic) {
-      return dispatch(handleChangeTopic(""));
+    if (
+      resultPage !== null ||
+      resultPageDirectAfterNodeListOfSubcategory !== null
+    ) {
+      return dispatch(handleChangeResultPage());
+    } else if (nodes.length > 0) {
+      return dispatch(handleChangeNodes());
+    } else if (nodeListOfSubcategory.length > 0) {
+      return dispatch(handleChangeNodeListOfSubcategory([]));
+    } else if (activeSubCategory?.title) {
+      return dispatch(handleChangeSubCategory(null));
+    } else if (activeMainCategory) {
+      return dispatch(handleChangeMainCategory(""));
     }
   };
 
@@ -58,14 +65,14 @@ const Navbar = ({
 
   return (
     <>
-      {activeTopic === "" && (
+      {activeMainCategory === "" && (
         <HiMenuAlt2
           onClick={() => setOpenSidebar(!openSidebar)}
           role="button"
           className="lg:text-2xl text-xl lg:hidden"
         />
       )}
-      {activeTopic !== "" && (
+      {activeMainCategory !== "" && (
         <div
           className={`w-full ${
             isSticky && "sticky top-0 shadow-md z-50"
@@ -79,16 +86,27 @@ const Navbar = ({
               className="text-2xl lg:hidden"
             />
             <div className="flex flex-col items-start justify-start lg:gap-3 lg:text-xl md:text-base text-sm">
-              <div className="flex items-center md:gap-x-2 gap-x-1 justify-start text-gray-400">
-                <p>{activeTopic}</p>
-                {activeCategory !== "" && (
+              <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 justify-start text-gray-400">
+                <p>{activeMainCategory}</p>
+                {activeSubCategory !== "" && (
                   <>
                     <AiOutlineRight size={15} />
-                    <p className="font-semibold">{activeCategory}</p>
+                    <span>{activeSubCategory?.title}</span>
                   </>
                 )}
+                {nodes.length > 0 &&
+                  nodes.map((node) => (
+                    <p className=" flex items-center gap-x-1" key={node?.id}>
+                      <AiOutlineRight size={15} />
+                      <span>{node?.title}</span>
+                    </p>
+                  ))}
               </div>
-              <p className="text-Yellow font-semibold">Allgemeinanästhesie</p>
+              <p className="text-Yellow font-semibold">
+                {activeSingleNode === null
+                  ? nodeListOfSubcategory[0]?.title
+                  : activeSingleNode?.title}
+              </p>
             </div>
           </div>
           {/* right side profile */}
