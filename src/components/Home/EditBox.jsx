@@ -4,19 +4,23 @@ import { handleToggleEditBox } from "../../redux/GlobalStates";
 import { useDispatch } from "react-redux";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
+import { EditorState, ContentState } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import DOMPurify from "dompurify";
+import htmlToDraft from "html-to-draftjs";
 
 const EditBox = ({ data }) => {
+  const content = htmlToDraft(data?.title);
+  const contentstate = ContentState.createFromBlockArray(
+    content?.contentBlocks,
+    content?.entityMap
+  );
+
   const [showDropdown, setShowDropdown] = useState(false);
   const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
+    EditorState.createWithContent(contentstate)
   );
   const [convertedContent, setConvertedContent] = useState(null);
-  // const _contentState = ContentState.createFromText("Sample content state");
-  // const raw = convertToRaw(_contentState);
-  // const [contentState, setContentState] = useState(raw);
 
   const dispatch = useDispatch();
 
@@ -31,8 +35,7 @@ const EditBox = ({ data }) => {
     };
   }
 
-  // console.log(createMarkup(editorState));
-  // console.log(contentState);
+  // console.log(convertedContent)
 
   return (
     <div className="w-full relative flex items-start select-none justify-start shadow-md flex-col mx-auto rounded-lg p-4">
@@ -104,15 +107,16 @@ const EditBox = ({ data }) => {
         <Editor
           editorState={editorState}
           onEditorStateChange={setEditorState}
+          // defaultContentState={contentState}
+          // onContentStateChange={setContentState}
           editorStyle={{
             border: "1px solid lightGray",
             borderRadius: "5px",
             padding: "4px",
             minHeight: "10rem",
           }}
-          // defaultContentState={ContentState}
           toolbarStyle={{ backgroundColor: "#EAECF0" }}
-defaultContentState="sample"
+          // defaultContentState={data?.title}
           // toolbar={{
           //   options: ["inline", "blockType"],
           // }}
@@ -131,7 +135,7 @@ defaultContentState="sample"
         />
         {/* <div
           className="preview"
-          dangerouslySetInnerHTML={createMarkup(data?.title)}
+          dangerouslySetInnerHTML={createMarkup(convertedContent)}
         ></div> */}
       </div>
       {/* result node */}
