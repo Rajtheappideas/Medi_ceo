@@ -105,8 +105,8 @@ const EditBox = ({ data }) => {
           Title
         </label>
         <Editor
-          editorState={editorState}
-          onEditorStateChange={setEditorState}
+          // editorState={editorState}
+          // onEditorStateChange={setEditorState}
           // defaultContentState={contentState}
           // onContentStateChange={setContentState}
           editorStyle={{
