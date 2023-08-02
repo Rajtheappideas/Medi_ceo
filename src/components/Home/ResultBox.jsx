@@ -33,7 +33,7 @@ const ResultBox = () => {
         </p>
         {/* options */}
         <div className="flex items-center gap-x-1 w-auto">
-          <p className="md:w-10 md:h-10 w-7 h-7 text-Yellow text-center rounded-full md:p-1.5 p-1 transition border hover:border-2 border-Yellow cursor-pointer">
+          <p className="md:w-10 md:h-10 w-7 h-7 text-Yellow text-center rounded-full md:p-1.5 p-1 transition border hover:border-2 hover:border-Yellow cursor-pointer">
             <FiEdit2 className="mx-auto md:text-2xl text-base" />
           </p>
           <p className="md:w-10 md:h-10 w-7 h-7 text-black text-center rounded-full md:p-1.5 p-1 transition border hover:border-2 border-black cursor-pointer">

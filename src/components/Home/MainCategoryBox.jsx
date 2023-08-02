@@ -8,9 +8,9 @@ const MainCategoryBox = () => {
   return (
     <div className="xl:w-1/2 lg:w-2/3 w-full rounded-md p-5 mx-auto shadow-lg flex flex-col items-start justify-center">
       <div className="pb-10 w-full flex items-center justify-between">
-        <div className="w-10/12 2xl:text-3xl">
+        <div className="w-10/12 2xl:text-2xl">
           <p className="font-bold">CHOOSE TOPIC</p>
-          <p className="font-semibold">
+          <p className="font-semibold 2xl:text-xl">
             And immediately find the right treatment for your patient
           </p>
         </div>

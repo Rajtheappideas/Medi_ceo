@@ -5,37 +5,13 @@ import { useDispatch } from "react-redux";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, ContentState } from "draft-js";
-import { convertToHTML } from "draft-convert";
+import { convertToHTML, convertFromHTML } from "draft-convert";
 import DOMPurify from "dompurify";
-import htmlToDraft from "html-to-draftjs";
 
 const EditBox = ({ data }) => {
-  const content = htmlToDraft(data?.title);
-  const contentstate = ContentState.createFromBlockArray(
-    content?.contentBlocks,
-    content?.entityMap
-  );
-
   const [showDropdown, setShowDropdown] = useState(false);
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createWithContent(contentstate)
-  );
-  const [convertedContent, setConvertedContent] = useState(null);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    let html = convertToHTML(editorState.getCurrentContent());
-    setConvertedContent(html);
-  }, [editorState]);
-
-  function createMarkup(html) {
-    return {
-      __html: DOMPurify.sanitize(html),
-    };
-  }
-
-  // console.log(convertedContent)
 
   return (
     <div className="w-full relative flex items-start select-none justify-start shadow-md flex-col mx-auto rounded-lg p-4">
