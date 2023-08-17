@@ -21,7 +21,8 @@ const Home = () => {
     nodes,
     resultPage,
     resultPageDirectAfterNodeListOfSubcategory,
-  } = useSelector((state) => state.globalStates);
+    data,
+  } = useSelector((state) => state.root.globalStates);
 
   useEffect(() => {
     if (openSidebar && window.document.body.clientWidth < 1024) {
@@ -64,12 +65,13 @@ const Home = () => {
               )}
 
               {/* subcategory box */}
-              {activeMainCategory !== "" &&
-                nodeListOfSubcategory.length === 0 && <SubCategoryBox />}
+              {activeMainCategory !== "" && nodeListOfSubcategory === null && (
+                <SubCategoryBox />
+              )}
 
               {/* nodelist of subcategory */}
               {activeSubCategory !== null &&
-                nodeListOfSubcategory.length > 0 &&
+                nodeListOfSubcategory !== null &&
                 nodes.length === 0 &&
                 resultPageDirectAfterNodeListOfSubcategory === null && (
                   <NodeListOfSubcategory />

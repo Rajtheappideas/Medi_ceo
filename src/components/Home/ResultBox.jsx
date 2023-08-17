@@ -11,7 +11,7 @@ const ResultBox = () => {
     activeSubCategory,
     activeSingleNode,
     resultPage,
-  } = useSelector((state) => state.globalStates);
+  } = useSelector((state) => state.root.globalStates);
 
   const { boxes, sources, pageId, id, title, type, path } = resultPage;
 
@@ -49,8 +49,8 @@ const ResultBox = () => {
       </div>
       {boxes !== undefined &&
         boxes.length > 0 &&
-        boxes.map((box) => (
-          <div key={box?.contentfulId} className="w-full space-y-2">
+        boxes.map((box,index) => (
+          <div key={index} className="w-full space-y-2">
             {box?.fieldTitle !== undefined && (
               <div className="w-full text-Yellow ">
                 <span>{box?.fieldTitle}</span>

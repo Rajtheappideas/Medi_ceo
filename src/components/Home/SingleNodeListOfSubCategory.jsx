@@ -1,47 +1,70 @@
-import React from "react";
+import React, { useRef } from "react";
 import { MdOutlineDragIndicator } from "react-icons/md";
 import { HiOutlinePencil } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { handleToggleEditBox, findDataOfNodes } from "../../redux/GlobalStates";
+import {
+  handleToggleEditBox,
+  findDataOfNodes,
+  handleChangeDataSendToEditbox,
+} from "../../redux/GlobalStates";
+import { Draggable } from "react-beautiful-dnd";
+import { useSelector } from "react-redux";
 
-const SingleNodeListOfSubCategory = React.memo(
-  ({ data, setDataSendToEditBox }) => {
-    const dispatch = useDispatch();
+const SingleNodeListOfSubCategory = React.memo(({ data, index }) => {
+  const { showEditBox } = useSelector((state) => state.root.globalStates);
 
-    return (
-      <div className="w-full flex select-none items-center cursor-pointer justify-start md:gap-x-3 gap-x-1">
-        <MdOutlineDragIndicator
-          size={30}
-          className="cursor-grab active:cursor-grabbing"
-        />
-        <div className="md:p-4 p-2 w-full shadow-md rounded-md flex items-center justify-start md:gap-x-3 gap-x-1">
-          <label
-            htmlFor={data?.resultOrNodeId}
-            className="font-semibold cursor-pointer capitalize tracking-normal w-full text-left gap-x-2 flex items-center"
-            onClick={() => {
-              // dispatch(findDataOfNodes("3MfcTQKmKt59g0f6OIy88f"));
-              dispatch(findDataOfNodes(data?.resultOrNodeId));
-            }}
+  const dispatch = useDispatch();
+
+  return (
+    <>
+      <Draggable draggableId={data?.resultOrNodeId} index={index}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className="w-full flex select-none items-center cursor-pointer justify-start md:gap-x-3 gap-x-1"
           >
-            <input
-              type="radio"
-              name="topiclist"
-              className="h-5 w-5 cursor-pointer"
+            <MdOutlineDragIndicator
+              size={30}
+              className="cursor-grab active:cursor-grabbing min-w-[2rem]"
             />
-            <span>{data?.fieldTitle}</span>
-          </label>
-          <HiOutlinePencil
-            size={25}
-            className="ml-auto cursor-pointer"
-            onClick={() => {
-              dispatch(handleToggleEditBox(true));
-              setDataSendToEditBox(data);
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-);
+            <div className="md:p-4 p-2 w-full shadow-md rounded-md flex items-center justify-start md:gap-x-3 gap-x-1">
+              <label
+                htmlFor={data?.resultOrNodeId}
+                className="font-semibold cursor-pointer capitalize tracking-normal w-full text-left gap-x-2 flex items-center"
+                onClick={() => {
+                  dispatch(findDataOfNodes(data?.resultOrNodeId));
+                  if (showEditBox) {
+                    dispatch(handleToggleEditBox(false));
+                  }
+                }}
+              >
+                <input
+                  type="radio"
+                  name="topiclist"
+                  className="md:h-5 md:w-5 h-3 w-3 cursor-pointer"
+                  readOnly={true}
+                />
+                <span className="truncate xl:max-w-[10rem] md:max-w-[3rem] max-w-[1rem] text-xs md:text-base">{data?.fieldTitle}</span>
+                <span className="text-xs md:text-base">({data?.resultOrNodeId})</span>
+              </label>
+              <HiOutlinePencil
+                size={25}
+                className="ml-auto cursor-pointer"
+                onClick={() => {
+                  if (!showEditBox) {
+                    dispatch(handleToggleEditBox(true));
+                  }
+                  dispatch(handleChangeDataSendToEditbox(data));
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </Draggable>
+    </>
+  );
+});
 
 export default SingleNodeListOfSubCategory;

@@ -1,21 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { handleToggleEditBox } from "../../redux/GlobalStates";
-import { useDispatch } from "react-redux";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, ContentState } from "draft-js";
-import { convertToHTML, convertFromHTML } from "draft-convert";
-import DOMPurify from "dompurify";
+import {
+  handleToggleEditBox,
+  handleClearDataSendToEditbox,
+  handleChangeValueOfDataFromEditBox,
+} from "../../redux/GlobalStates";
+import { useDispatch, useSelector } from "react-redux";
+import Editor from "../Editor";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
-const EditBox = ({ data }) => {
+const EditBox = memo(() => {
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const { dataSendToEditBox, data, nodeListOfSubcategory, activeSingleNode } =
+    useSelector((state) => state.root.globalStates);
 
   const dispatch = useDispatch();
 
+  const { fieldTitle, resultOrNodeId, title, contentfulId } = dataSendToEditBox;
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors, isDirty },
+    setValue,
+  } = useForm({
+    shouldFocusError: true,
+    // resolver: yupResolver(signinSchema),
+    defaultValues: {
+      fieldTitle,
+      resultOrNodeId,
+      title,
+    },
+  });
+
+  const onSubmit = (data) => {
+    const { fieldTitle, resultOrNodeId, title } = data;
+    dispatch(
+      handleChangeValueOfDataFromEditBox({
+        fieldTitle,
+        resultOrNodeId,
+        title,
+        id: contentfulId,
+        resultOrNodeIdOld: dataSendToEditBox?.resultOrNodeId,
+      })
+    );
+
+    toast.success("Data saved successfully.");
+    dispatch(handleToggleEditBox(false));
+  };
+
+  useEffect(() => {
+    reset({
+      fieldTitle,
+      resultOrNodeId,
+      title,
+    });
+  }, [dataSendToEditBox]);
+
+
   return (
-    <div className="w-full relative flex items-start select-none justify-start shadow-md flex-col mx-auto rounded-lg p-4">
-      {/* add entey */}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full relative flex items-start select-none justify-start shadow-md flex-col mx-auto rounded-lg p-4"
+    >
+      {/* add entry */}
       <div
         className="w-full bg-Yellow z-10 cursor-pointer text-white p-3 rounded-md flex justify-between items-center"
         onClick={() => setShowDropdown(!showDropdown)}
@@ -64,7 +116,7 @@ const EditBox = ({ data }) => {
         <input
           type="text"
           className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
-          value={data?.fieldTitle}
+          {...register("fieldTitle")}
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">30 characters</p>
@@ -72,7 +124,6 @@ const EditBox = ({ data }) => {
         </div>
       </div>
       {/* editor */}
-
       <div className="my-3 w-full">
         <label
           htmlFor="message"
@@ -80,39 +131,7 @@ const EditBox = ({ data }) => {
         >
           Title
         </label>
-        <Editor
-          // editorState={editorState}
-          // onEditorStateChange={setEditorState}
-          // defaultContentState={contentState}
-          // onContentStateChange={setContentState}
-          editorStyle={{
-            border: "1px solid lightGray",
-            borderRadius: "5px",
-            padding: "4px",
-            minHeight: "10rem",
-          }}
-          toolbarStyle={{ backgroundColor: "#EAECF0" }}
-          // defaultContentState={data?.title}
-          // toolbar={{
-          //   options: ["inline", "blockType"],
-          // }}
-          // hashtag={{
-          //   separator: " ",
-          //   trigger: "#",
-          // }}
-          // mention={{
-          //   separator: " ",
-          //   trigger: "@",
-          //   suggestions: [
-          //     { text: "JavaScript", value: "javascript", url: "js" },
-          //     { text: "Golang", value: "golang", url: "go" },
-          //   ],
-          // }}
-        />
-        {/* <div
-          className="preview"
-          dangerouslySetInnerHTML={createMarkup(convertedContent)}
-        ></div> */}
+        <Editor setValue={setValue} title={getValues().title} />
       </div>
       {/* result node */}
       <div className="my-3 w-full">
@@ -120,7 +139,7 @@ const EditBox = ({ data }) => {
         <input
           type="text"
           className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
-          value={data?.resultOrNodeId}
+          {...register("resultOrNodeId")}
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">22 characters</p>
@@ -145,17 +164,21 @@ const EditBox = ({ data }) => {
       {/* btns */}
       <div className="flex my-3 ml-auto gap-x-3">
         <button
+          type="button"
           onClick={() => {
             dispatch(handleToggleEditBox(false));
+            dispatch(handleClearDataSendToEditbox());
           }}
           className=" bg-white text-black text-md rounded-lg common_button"
         >
           Cancel
         </button>
-        <button className="yellow_button">Save Changes</button>
+        <button type="submit" className="yellow_button">
+          Save Changes
+        </button>
       </div>
-    </div>
+    </form>
   );
-};
+});
 
 export default EditBox;

@@ -18,7 +18,7 @@ const SubCategoryBox = () => {
   const [subcategory, setSubcategory] = useState([]);
 
   const { activeMainCategory, activeSubCategory, data } = useSelector(
-    (state) => state.globalStates
+    (state) => state.root.globalStates
   );
 
   const dispatch = useDispatch();

@@ -11,6 +11,7 @@ import {
   handleToggleShowSubCategoryList,
   handleChangeNodes,
   handleChangeResultPage,
+  handleToggleEditBox,
 } from "../redux/GlobalStates";
 
 const Navbar = ({
@@ -29,11 +30,14 @@ const Navbar = ({
     resultPage,
     resultPageDirectAfterNodeListOfSubcategory,
     activeSingleNode,
-  } = useSelector((state) => state.globalStates);
+    showEditBox,
+  } = useSelector((state) => state.root.globalStates);
 
   const dispatch = useDispatch();
 
   const handlePreviousChanges = () => {
+    if (showEditBox) dispatch(handleToggleEditBox(false));
+
     if (
       resultPage !== null ||
       resultPageDirectAfterNodeListOfSubcategory !== null
@@ -41,8 +45,8 @@ const Navbar = ({
       return dispatch(handleChangeResultPage());
     } else if (nodes.length > 0) {
       return dispatch(handleChangeNodes());
-    } else if (nodeListOfSubcategory.length > 0) {
-      return dispatch(handleChangeNodeListOfSubcategory([]));
+    } else if (nodeListOfSubcategory !== null) {
+      return dispatch(handleChangeNodeListOfSubcategory(null));
     } else if (activeSubCategory?.title) {
       return dispatch(handleChangeSubCategory(null));
     } else if (activeMainCategory) {
@@ -74,12 +78,12 @@ const Navbar = ({
       )}
       {activeMainCategory !== "" && (
         <div
-          className={`w-full ${
+          className={`w-full select-none ${
             isSticky && "sticky top-0 shadow-md z-50"
           } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
         >
           {/* left side */}
-          <div className="flex items-center flex-1 gap-x-2">
+          <div className="flex items-center flex-1 gap-x-2 capitalize">
             <HiMenuAlt2
               onClick={() => setOpenSidebar(!openSidebar)}
               role="button"
@@ -104,7 +108,7 @@ const Navbar = ({
               </div>
               <p className="text-Yellow font-semibold">
                 {activeSingleNode === null
-                  ? nodeListOfSubcategory[0]?.title
+                  ? nodeListOfSubcategory?.title
                   : activeSingleNode?.title}
               </p>
             </div>

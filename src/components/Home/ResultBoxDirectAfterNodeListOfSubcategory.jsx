@@ -10,7 +10,8 @@ const ResultBoxDirectAfterNodeListOfSubcategory = () => {
     activeSubCategory,
     activeSingleNode,
     resultPageDirectAfterNodeListOfSubcategory,
-  } = useSelector((state) => state.globalStates);
+  } = useSelector((state) => state.root
+  .globalStates);
 
   const { boxes, sources, pageId, id, title, type, path } =
     resultPageDirectAfterNodeListOfSubcategory;

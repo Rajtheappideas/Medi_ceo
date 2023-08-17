@@ -1,33 +1,72 @@
-import React, { useState } from "react";
+import React from "react";
 import SingleNodeListOfSubCategory from "./SingleNodeListOfSubCategory";
 import EditBox from "./EditBox";
 import { useDispatch, useSelector } from "react-redux";
-import { handleToggleEditBox } from "../../redux/GlobalStates";
+import {
+  handleToggleEditBox,
+  handleChangeOrderOfNodeListOfSubcategory,
+} from "../../redux/GlobalStates";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const NodeListOfSubcategory = () => {
-  const [dataSendToEditBox, setDataSendToEditBox] = useState(null);
-  const { showEditBox, nodeListOfSubcategory } = useSelector(
-    (state) => state.globalStates
+  const { showEditBox, nodeListOfSubcategory, data } = useSelector(
+    (state) => state.root.globalStates
   );
 
   const dispatch = useDispatch();
 
-  const { boxes, id, title, type } = nodeListOfSubcategory[0] || [];
+  const { boxes, id, title, type } =
+    nodeListOfSubcategory !== null && nodeListOfSubcategory;
+
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+    const reorderedItems = reorder(
+      boxes,
+      result.source.index,
+      result.destination.index
+    );
+
+    dispatch(handleChangeOrderOfNodeListOfSubcategory(reorderedItems));
+  };
 
   return (
     <div className="w-full flex lg:flex-row flex-col gap-5 items-center justify-center mx-auto">
       <div className="lg:w-1/2 md:w-2/3 w-full md:space-y-5 space-y-4 text-center">
-        {boxes.length > 0 &&
-          boxes.map((box) => (
-            <SingleNodeListOfSubCategory
-              key={box?.resultOrNodeId}
-              setDataSendToEditBox={setDataSendToEditBox}
-              data={box}
-            />
-          ))}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className="w-full md:space-y-5 space-y-4 text-center"
+              >
+                {boxes?.length > 0 &&
+                  boxes?.map((box, index) => (
+                    <SingleNodeListOfSubCategory
+                      key={box?.contentfulId}
+                      data={box}
+                      index={index}
+                    />
+                  ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
         <button
           onClick={() => {
-            dispatch(handleToggleEditBox(true));
+            if (!showEditBox) {
+              dispatch(handleToggleEditBox(true));
+            }
           }}
           className="yellow_button"
         >
@@ -36,7 +75,7 @@ const NodeListOfSubcategory = () => {
       </div>
       {showEditBox && (
         <div className="lg:w-1/2 md:w-2/3 w-full">
-          <EditBox data={dataSendToEditBox} />
+          <EditBox />
         </div>
       )}
     </div>

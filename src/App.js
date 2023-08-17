@@ -1,12 +1,13 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./components/ErrorFallBack";
 import Lottie from "lottie-react";
 import React, { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import PrivateRoute from "./pages/PrivateRoute";
+import jsonData from "./placeholder.json";
 
 function App() {
   const Home = lazy(() => import("./pages/Home"));
