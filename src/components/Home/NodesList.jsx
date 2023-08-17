@@ -5,6 +5,7 @@ import {
   handleChangeDataSendToEditbox,
   handleToggleEditBox,
   handleChangeOrderOfActiveSingleNode,
+  handleClearDataSendToEditbox,
 } from "../../redux/GlobalStates";
 import { HiOutlinePencil } from "react-icons/hi";
 import EditBox from "./EditBox";
@@ -133,6 +134,7 @@ const NodesList = memo(() => {
           <button
             onClick={() => {
               dispatch(handleToggleEditBox(true));
+              dispatch(handleClearDataSendToEditbox());
             }}
             className="yellow_button"
           >

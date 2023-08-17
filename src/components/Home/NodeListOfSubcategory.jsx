@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handleToggleEditBox,
   handleChangeOrderOfNodeListOfSubcategory,
+  handleClearDataSendToEditbox,
 } from "../../redux/GlobalStates";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
@@ -67,6 +68,7 @@ const NodeListOfSubcategory = () => {
             if (!showEditBox) {
               dispatch(handleToggleEditBox(true));
             }
+            dispatch(handleClearDataSendToEditbox());
           }}
           className="yellow_button"
         >

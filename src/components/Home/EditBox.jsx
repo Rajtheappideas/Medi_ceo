@@ -18,7 +18,8 @@ const EditBox = memo(() => {
 
   const dispatch = useDispatch();
 
-  const { fieldTitle, resultOrNodeId, title, contentfulId } = dataSendToEditBox;
+  const { fieldTitle, resultOrNodeId, title, contentfulId } =
+    dataSendToEditBox !== null && dataSendToEditBox;
 
   const {
     register,
@@ -54,13 +55,20 @@ const EditBox = memo(() => {
   };
 
   useEffect(() => {
-    reset({
-      fieldTitle,
-      resultOrNodeId,
-      title,
-    });
+    if (dataSendToEditBox === null) {
+      reset({
+        fieldTitle: "",
+        resultOrNodeId: "",
+        title: "",
+      });
+    } else {
+      reset({
+        fieldTitle,
+        resultOrNodeId,
+        title,
+      });
+    }
   }, [dataSendToEditBox]);
-
 
   return (
     <form
