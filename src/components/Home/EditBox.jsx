@@ -1,16 +1,18 @@
 import React, { memo, useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { AiFillCopy } from "react-icons/ai";
 import {
   handleToggleEditBox,
   handleClearDataSendToEditbox,
+  handleChangeValueOfResultPageFromEditBox,
   handleChangeValueOfDataFromEditBox,
 } from "../../redux/GlobalStates";
 import { useDispatch, useSelector } from "react-redux";
 import Editor from "../Editor";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
-const EditBox = memo(() => {
+const EditBox = memo(({ from }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const { dataSendToEditBox, data, nodeListOfSubcategory, activeSingleNode } =
@@ -18,14 +20,24 @@ const EditBox = memo(() => {
 
   const dispatch = useDispatch();
 
-  const { fieldTitle, resultOrNodeId, title, contentfulId } =
-    dataSendToEditBox !== null && dataSendToEditBox;
+  const {
+    fieldTitle,
+    resultOrNodeId,
+    title,
+    contentfulId,
+    expandableContent,
+    resultId,
+    content,
+    color,
+    id,
+  } = dataSendToEditBox !== null && dataSendToEditBox;
 
   const {
     register,
     handleSubmit,
     getValues,
     reset,
+    control,
     formState: { errors, isDirty },
     setValue,
   } = useForm({
@@ -33,25 +45,61 @@ const EditBox = memo(() => {
     // resolver: yupResolver(signinSchema),
     defaultValues: {
       fieldTitle,
-      resultOrNodeId,
+      resultOrNodeId: resultOrNodeId ?? resultOrNodeId,
       title,
+      content,
+      expandableContent,
+      resultId,
+      color,
+      id,
     },
   });
 
   const onSubmit = (data) => {
-    const { fieldTitle, resultOrNodeId, title } = data;
-    dispatch(
-      handleChangeValueOfDataFromEditBox({
-        fieldTitle,
-        resultOrNodeId,
-        title,
-        id: contentfulId,
-        resultOrNodeIdOld: dataSendToEditBox?.resultOrNodeId,
-      })
-    );
+    const {
+      fieldTitle,
+      resultOrNodeId,
+      title,
+      expandableContent,
+      resultId,
+      content,
+      color,
+      id,
+    } = data;
 
-    toast.success("Data saved successfully.");
-    dispatch(handleToggleEditBox(false));
+    if (!isDirty) {
+      return dispatch(handleToggleEditBox(false));
+    } else {
+      if (from === "resultPage") {
+        dispatch(
+          handleChangeValueOfResultPageFromEditBox({
+            fieldTitle,
+            resultOrNodeId,
+            title,
+            contentfulId,
+            resultOrNodeIdOld: dataSendToEditBox?.resultOrNodeId,
+            expandableContent,
+            resultId,
+            content,
+            color,
+            id,
+          })
+        );
+      } else {
+        dispatch(
+          handleChangeValueOfDataFromEditBox({
+            fieldTitle,
+            resultOrNodeId,
+            title,
+            contentfulId,
+            resultOrNodeIdOld: dataSendToEditBox?.resultOrNodeId,
+          })
+        );
+      }
+
+      toast.success("Data saved successfully.");
+      dispatch(handleToggleEditBox(false));
+    }
   };
 
   useEffect(() => {
@@ -60,15 +108,31 @@ const EditBox = memo(() => {
         fieldTitle: "",
         resultOrNodeId: "",
         title: "",
+        expandableContent: "",
+        resultId: "",
+        content: "",
       });
     } else {
       reset({
         fieldTitle,
-        resultOrNodeId,
+        resultOrNodeId: resultOrNodeId ?? resultOrNodeId,
         title,
+        expandableContent,
+        resultId,
+        content,
       });
     }
   }, [dataSendToEditBox]);
+
+  async function copyContent() {
+    try {
+      toast.remove();
+      await navigator.clipboard.writeText(contentfulId);
+      toast.success("contentfulId copied");
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  }
 
   return (
     <form
@@ -119,41 +183,93 @@ const EditBox = memo(() => {
         </label>
       </div>
       {/* field title */}
-      <div className="my-3 w-full">
-        <p className="font-medium ">Field Title</p>
-        <input
-          type="text"
-          className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
-          {...register("fieldTitle")}
-        />
-        <div className="flex justify-between">
-          <p className="text-[#475467] text-sm">30 characters</p>
-          <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+      {fieldTitle !== undefined && (
+        <div className="my-3 w-full">
+          <p className="font-medium ">Field Title</p>
+          <input
+            type="text"
+            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            {...register("fieldTitle")}
+          />
+          <div className="flex justify-between">
+            <p className="text-[#475467] text-sm">30 characters</p>
+            <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+          </div>
         </div>
-      </div>
-      {/* editor */}
+      )}
+      {/* id */}
+      {id !== undefined && (
+        <div className="my-3 w-full">
+          <p className="font-medium ">ID</p>
+          <input
+            type="text"
+            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            {...register("id")}
+          />
+          <div className="flex justify-between">
+            <p className="text-[#475467] text-sm">30 characters</p>
+            <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+          </div>
+        </div>
+      )}
+      {/* title */}
       <div className="my-3 w-full">
-        <label
-          htmlFor="message"
-          className="block mb-2  font-medium text-gray-90"
-        >
+        <label htmlFor="title" className="block mb-2  font-medium text-gray-90">
           Title
         </label>
-        <Editor setValue={setValue} title={getValues().title} />
+        <Editor name="title" control={control} setValue={setValue} />
       </div>
-      {/* result node */}
-      <div className="my-3 w-full">
-        <p className="font-medium ">Result Or Node ID</p>
-        <input
-          type="text"
-          className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
-          {...register("resultOrNodeId")}
-        />
-        <div className="flex justify-between">
-          <p className="text-[#475467] text-sm">22 characters</p>
-          <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+      {/* expandableContent */}
+      {expandableContent !== undefined && (
+        <div className="my-3 w-full">
+          <label
+            htmlFor="expandableContent"
+            className="block mb-2  font-medium text-gray-90"
+          >
+            Expandable Content
+          </label>
+          <Editor
+            name="expandableContent"
+            control={control}
+            setValue={setValue}
+          />
         </div>
-      </div>
+      )}
+      {/* content */}
+      {content !== undefined && (
+        <div className="my-3 w-full">
+          <label
+            htmlFor="expandableContent"
+            className="block mb-2  font-medium text-gray-90"
+          >
+            Content
+          </label>
+          <Editor name="content" control={control} setValue={setValue} />
+        </div>
+      )}
+      {/* result node */}
+      {resultOrNodeId !== undefined && (
+        <div className="my-3 w-full">
+          <p className="font-medium ">Result Or Node ID</p>
+          <Controller
+            control={control}
+            name="resultOrNodeId"
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <input
+                type="text"
+                className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+              />
+            )}
+          />
+          <div className="flex justify-between">
+            <p className="text-[#475467] text-sm">22 characters</p>
+            <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+          </div>
+        </div>
+      )}
       {/* filtered */}
       <div className="my-3 w-full">
         <p className="font-medium ">Filtered</p>
@@ -161,6 +277,57 @@ const EditBox = memo(() => {
           type="text"
           className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
         />
+        <div className="flex justify-between">
+          <p className="text-[#475467] text-sm">0 characters</p>
+          <p className="text-[#475467] text-sm sm:text-sm">
+            Maximum 256 characters
+          </p>
+        </div>
+      </div>
+      {/* result id */}
+      {resultId !== undefined && (
+        <div className="my-3 w-full">
+          <p className="font-medium ">Result ID</p>
+          <input
+            type="text"
+            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            {...register("resultId")}
+          />
+          <div className="flex justify-between">
+            <p className="text-[#475467] text-sm">0 characters</p>
+            <p className="text-[#475467] text-sm sm:text-sm">
+              Maximum 256 characters
+            </p>
+          </div>
+        </div>
+      )}
+      {/* color */}
+      {color !== undefined && (
+        <div className="my-3 w-full">
+          <p className="font-medium ">Color</p>
+          <input
+            type="text"
+            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            {...register("color")}
+          />
+          <div className="flex justify-between">
+            <p className="text-[#475467] text-sm">0 characters</p>
+            <p className="text-[#475467] text-sm sm:text-sm">
+              Maximum 256 characters
+            </p>
+          </div>
+        </div>
+      )}
+      {/* content full id */}
+      <div className="my-3 w-full">
+        <p className="font-medium ">Content full Id</p>
+        <p className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1">
+          {contentfulId}
+          <AiFillCopy
+            onClick={() => copyContent()}
+            className="float-right text-xl cursor-pointer"
+          />
+        </p>
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">0 characters</p>
           <p className="text-[#475467] text-sm sm:text-sm">

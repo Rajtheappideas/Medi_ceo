@@ -80,18 +80,18 @@ const Navbar = ({
         <div
           className={`w-full select-none ${
             isSticky && "sticky top-0 shadow-md z-50"
-          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
+          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center md:justify-between justify-end`}
         >
           {/* left side */}
-          <div className="flex items-center flex-1 gap-x-2 capitalize">
+          <div className="flex items-start gap-x-2 capitalize w-fit">
             <HiMenuAlt2
               onClick={() => setOpenSidebar(!openSidebar)}
               role="button"
               className="text-2xl lg:hidden"
             />
-            <div className="flex flex-col items-start justify-start lg:gap-3 lg:text-xl md:text-base text-sm">
-              <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 justify-start text-gray-400">
-                <p>{activeMainCategory}</p>
+            <div className="flex flex-col items-start justify-start lg:gap-3 lg:text-xl md:text-base text-sm w-full">
+              <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 whitespace-nowrap justify-start text-gray-400 flex-wrap">
+                <span>{activeMainCategory}</span>
                 {activeSubCategory !== "" && (
                   <>
                     <AiOutlineRight size={15} />
@@ -106,11 +106,11 @@ const Navbar = ({
                     </p>
                   ))}
               </div>
-              <p className="text-Yellow font-semibold">
+              <span className="text-Yellow font-semibold">
                 {activeSingleNode === null
                   ? nodeListOfSubcategory?.title
                   : activeSingleNode?.title}
-              </p>
+              </span>
             </div>
           </div>
           {/* right side profile */}

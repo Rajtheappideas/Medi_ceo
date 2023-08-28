@@ -5,6 +5,7 @@ import { handleChangeMainCategory } from "../../redux/GlobalStates";
 
 const MainCategoryBox = () => {
   const dispatch = useDispatch();
+
   return (
     <div className="xl:w-1/2 lg:w-2/3 w-full rounded-md p-5 mx-auto shadow-lg flex flex-col items-start justify-center">
       <div className="pb-10 w-full flex items-center justify-between">
@@ -23,7 +24,9 @@ const MainCategoryBox = () => {
           className="choose_topic_box"
           onClick={() => dispatch(handleChangeMainCategory("anesthesiology"))}
         >
-          <p className="font-semibold 2xl:text-2xl text-lg capitalize">anesthesiology</p>
+          <p className="font-semibold 2xl:text-2xl text-lg capitalize">
+            anesthesiology
+          </p>
           <img
             src={require("../../assets/images/anesthesiology.png")}
             alt="anesthesiology"
@@ -36,7 +39,9 @@ const MainCategoryBox = () => {
             dispatch(handleChangeMainCategory("Perioperative Complications"))
           }
         >
-          <p className="font-semibold 2xl:text-2xl text-lg capitalize">Perioperative Complications</p>
+          <p className="font-semibold 2xl:text-2xl text-lg capitalize">
+            Perioperative Complications
+          </p>
           <img
             src={require("../../assets/images/preporactive.png")}
             alt="anesthesiology"
@@ -47,7 +52,9 @@ const MainCategoryBox = () => {
           onClick={() => dispatch(handleChangeMainCategory("Cardiology"))}
           className="border-[3px] col-span-full bg-white cursor-pointer text-center 2xl:w-6/12 md:w-6/12 w-full 2xl:h-5/6 lg:h-4/5 h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col"
         >
-          <p className="font-semibold 2xl:text-2xl text-lg capitalize">Cardiology</p>
+          <p className="font-semibold 2xl:text-2xl text-lg capitalize">
+            Cardiology
+          </p>
           <img
             src={require("../../assets/images/cardiology.png")}
             alt="anesthesiology"

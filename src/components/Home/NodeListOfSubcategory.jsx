@@ -10,7 +10,7 @@ import {
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const NodeListOfSubcategory = () => {
-  const { showEditBox, nodeListOfSubcategory, data } = useSelector(
+  const { showEditBox, nodeListOfSubcategory } = useSelector(
     (state) => state.root.globalStates
   );
 
@@ -77,7 +77,7 @@ const NodeListOfSubcategory = () => {
       </div>
       {showEditBox && (
         <div className="lg:w-1/2 md:w-2/3 w-full">
-          <EditBox />
+          <EditBox from="nodeListOfSubcategory" />
         </div>
       )}
     </div>

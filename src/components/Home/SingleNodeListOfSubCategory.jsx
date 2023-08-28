@@ -46,8 +46,12 @@ const SingleNodeListOfSubCategory = React.memo(({ data, index }) => {
                   className="md:h-5 md:w-5 h-3 w-3 cursor-pointer"
                   readOnly={true}
                 />
-                <span className="truncate xl:max-w-[10rem] md:max-w-[3rem] max-w-[1rem] text-xs md:text-base">{data?.fieldTitle}</span>
-                <span className="text-xs md:text-base">({data?.resultOrNodeId})</span>
+                <span className="truncate xl:max-w-[10rem] md:max-w-[3rem] max-w-[1rem] text-xs md:text-base">
+                  {data?.fieldTitle}
+                </span>
+                <span className="text-xs md:text-base">
+                  ({data?.resultOrNodeId})
+                </span>
               </label>
               <HiOutlinePencil
                 size={25}

@@ -97,6 +97,31 @@ const GlobalStates = createSlice({
       );
     },
 
+    handleChangeOrderOfResultPage: (state, { payload }) => {
+      state.resultPage = {
+        ...state.resultPage,
+        boxes: payload,
+      };
+      state.data = state.data.map((box) =>
+        box?.id === state.resultPage?.id ? { ...box, boxes: payload } : box
+      );
+    },
+
+    handleChangeOrderOfResultPageDirectAfterSubCategory: (
+      state,
+      { payload }
+    ) => {
+      state.resultPageDirectAfterNodeListOfSubcategory = {
+        ...state.resultPageDirectAfterNodeListOfSubcategory,
+        boxes: payload,
+      };
+      state.data = state.data.map((box) =>
+        box?.id === state.resultPageDirectAfterNodeListOfSubcategory?.id
+          ? { ...box, boxes: payload }
+          : box
+      );
+    },
+
     handleChangeOrderOfActiveSingleNode: (state, { payload }) => {
       state.activeSingleNode = { ...state.activeSingleNode, boxes: payload };
       state.data = state.data.map((box) =>
@@ -116,7 +141,15 @@ const GlobalStates = createSlice({
 
     handleChangeValueOfDataFromEditBox: (
       state,
-      { payload: { title, fieldTitle, resultOrNodeId, id, resultOrNodeIdOld } }
+      {
+        payload: {
+          title,
+          fieldTitle,
+          resultOrNodeId,
+          contentfulId,
+          resultOrNodeIdOld,
+        },
+      }
     ) => {
       state.dataSendToEditBox = {
         ...state.dataSendToEditBox,
@@ -128,8 +161,13 @@ const GlobalStates = createSlice({
       state.nodeListOfSubcategory = {
         ...state.nodeListOfSubcategory,
         boxes: state.nodeListOfSubcategory?.boxes.map((box) =>
-          box?.contentfulId === id
-            ? { ...box, title, resultOrNodeId, fieldTitle }
+          box?.contentfulId === contentfulId
+            ? {
+                ...box,
+                title,
+                resultOrNodeId,
+                fieldTitle,
+              }
             : box
         ),
       };
@@ -139,8 +177,13 @@ const GlobalStates = createSlice({
           ? {
               ...box,
               boxes: box?.boxes?.map((data) =>
-                data?.contentfulId === id
-                  ? { ...data, title, resultOrNodeId, fieldTitle }
+                data?.contentfulId === contentfulId
+                  ? {
+                      ...data,
+                      title,
+                      resultOrNodeId,
+                      fieldTitle,
+                    }
                   : data
               ),
             }
@@ -157,8 +200,13 @@ const GlobalStates = createSlice({
             ? {
                 ...node,
                 boxes: node?.boxes?.map((data) =>
-                  data?.contentfulId === id
-                    ? { ...data, title, resultOrNodeId, fieldTitle }
+                  data?.contentfulId === contentfulId
+                    ? {
+                        ...data,
+                        title,
+                        resultOrNodeId,
+                        fieldTitle,
+                      }
                     : data
                 ),
               }
@@ -166,14 +214,19 @@ const GlobalStates = createSlice({
         );
       }
 
-      if (state.activeSingleNode === null) {
+      if (state.activeSingleNode !== null) {
         state.data = state.data.map((box) =>
           box?.id === state.activeSingleNode?.id
             ? {
                 ...box,
                 boxes: box?.boxes?.map((data) =>
-                  data?.contentfulId === id
-                    ? { ...data, title, resultOrNodeId, fieldTitle }
+                  data?.contentfulId === contentfulId
+                    ? {
+                        ...data,
+                        title,
+                        resultOrNodeId,
+                        fieldTitle,
+                      }
                     : data
                 ),
               }
@@ -182,11 +235,201 @@ const GlobalStates = createSlice({
         state.activeSingleNode = {
           ...state.activeSingleNode,
           boxes: state.activeSingleNode?.boxes.map((box) =>
-            box?.contentfulId === id
-              ? { ...box, title, resultOrNodeId, fieldTitle }
+            box?.contentfulId === contentfulId
+              ? {
+                  ...box,
+                  title,
+                  resultOrNodeId,
+                  fieldTitle,
+                }
               : box
           ),
         };
+      }
+      if (state.resultPage !== null) {
+        state.resultPage = {
+          ...state.resultPage,
+          boxes: state.resultPage?.boxes.map((box) =>
+            box?.contentfulId === contentfulId
+              ? {
+                  ...box,
+                  title,
+                  resultOrNodeId,
+                  fieldTitle,
+                }
+              : box
+          ),
+        };
+        state.data = state.data.map((box) =>
+          box?.id === state.resultPage?.id
+            ? {
+                ...box,
+                boxes: box?.boxes?.map((data) =>
+                  data?.contentfulId === contentfulId
+                    ? {
+                        ...data,
+                        title,
+                        resultOrNodeId,
+                        fieldTitle,
+                      }
+                    : data
+                ),
+              }
+            : box
+        );
+      }
+    },
+
+    handleChangeValueOfResultPageFromEditBox: (state, { payload }) => {
+      const newObj = {};
+      for (const keys in payload) {
+        if (payload[keys] !== undefined) {
+          newObj[keys] = payload[keys];
+        }
+      }
+      state.dataSendToEditBox = {
+        ...state.dataSendToEditBox,
+        ...newObj,
+      };
+
+      state.nodeListOfSubcategory = {
+        ...state.nodeListOfSubcategory,
+        boxes: state.nodeListOfSubcategory?.boxes.map((box) =>
+          box?.contentfulId === payload?.contentfulId
+            ? {
+                ...box,
+                ...newObj,
+              }
+            : box
+        ),
+      };
+
+      state.data = state.data.map((box) =>
+        box?.id === state.nodeListOfSubcategory?.id
+          ? {
+              ...box,
+              boxes: box?.boxes?.map((data) =>
+                data?.contentfulId === payload?.contentfulId
+                  ? {
+                      ...data,
+                      ...newObj,
+                    }
+                  : data
+              ),
+            }
+          : box
+      );
+
+      state.data = state.data.map((box) =>
+        box?.id === payload?.resultOrNodeIdOld
+          ? { ...box, id: payload?.resultOrNodeId }
+          : box
+      );
+
+      if (state.nodes.length > 0) {
+        state.nodes = state.nodes.map((node) =>
+          node?.id === state.activeSingleNode?.id
+            ? {
+                ...node,
+                boxes: node?.boxes?.map((data) =>
+                  data?.contentfulId === payload?.contentfulId
+                    ? {
+                        ...data,
+                        ...newObj,
+                      }
+                    : data
+                ),
+              }
+            : node
+        );
+      }
+
+      if (state.activeSingleNode !== null) {
+        state.data = state.data.map((box) =>
+          box?.id === state.activeSingleNode?.id
+            ? {
+                ...box,
+                boxes: box?.boxes?.map((data) =>
+                  data?.contentfulId === payload?.contentfulId
+                    ? {
+                        ...data,
+                        ...newObj,
+                      }
+                    : data
+                ),
+              }
+            : box
+        );
+        state.activeSingleNode = {
+          ...state.activeSingleNode,
+          boxes: state.activeSingleNode?.boxes.map((box) =>
+            box?.contentfulId === payload?.contentfulId
+              ? {
+                  ...box,
+                  ...newObj,
+                }
+              : box
+          ),
+        };
+      }
+
+      if (state.resultPage !== null) {
+        state.resultPage = {
+          ...state.resultPage,
+          boxes: state.resultPage?.boxes.map((box) =>
+            box?.contentfulId === payload?.contentfulId
+              ? {
+                  ...box,
+                  ...newObj,
+                }
+              : box
+          ),
+        };
+        state.data = state.data.map((box) =>
+          box?.id === state.resultPage?.id
+            ? {
+                ...box,
+                boxes: box?.boxes?.map((data) =>
+                  data?.contentfulId === payload?.contentfulId
+                    ? {
+                        ...data,
+                        ...newObj,
+                      }
+                    : data
+                ),
+              }
+            : box
+        );
+      }
+
+      if (state.resultPageDirectAfterNodeListOfSubcategory !== null) {
+        state.resultPageDirectAfterNodeListOfSubcategory = {
+          ...state.resultPageDirectAfterNodeListOfSubcategory,
+          boxes: state.resultPageDirectAfterNodeListOfSubcategory?.boxes.map(
+            (box) =>
+              box?.contentfulId === payload?.contentfulId
+                ? {
+                    ...box,
+                    ...newObj,
+                  }
+                : box
+          ),
+        };
+        state.data = state.data.map((box) =>
+          box?.id === state.resultPageDirectAfterNodeListOfSubcategory?.id
+            ? {
+                ...box,
+                boxes: box?.boxes?.map((data) =>
+                  data?.contentfulId === payload?.contentfulId
+                    ? {
+                        ...data,
+                        ...newObj,
+                      }
+                    : data
+                ),
+              }
+            : box
+        );
       }
     },
   },
@@ -208,6 +451,9 @@ export const {
   handleChangeDataSendToEditbox,
   handleChangeOrderOfActiveSingleNode,
   handleChangeValueOfDataFromEditBox,
+  handleChangeOrderOfResultPageDirectAfterSubCategory,
+  handleChangeOrderOfResultPage,
+  handleChangeValueOfResultPageFromEditBox,
 } = GlobalStates.actions;
 
 export default GlobalStates.reducer;

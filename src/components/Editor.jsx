@@ -1,8 +1,9 @@
 import React, { useState, memo, useRef, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import { useSelector } from "react-redux";
+import { Controller } from "react-hook-form";
 
-const Editor = memo(({ setValue, title }) => {
+const Editor = memo(({ name, control }) => {
   const { dataSendToEditBox } = useSelector((state) => state.root.globalStates);
 
   const editor = useRef(null);
@@ -182,26 +183,24 @@ const Editor = memo(({ setValue, title }) => {
     //     textIcons: false,
   };
 
-  useEffect(() => {
-    if (dataSendToEditBox?.title) {
-      setValue("title", dataSendToEditBox?.title);
-    } else {
-      setValue("title", "");
-    }
-  }, [dataSendToEditBox]);
-
   return (
-    <JoditEditor
-      ref={editor}
-      value={title}
-      config={config}
-      tabIndex={1}
-      onBlur={(newContent) => setValue("title", newContent)}
-      onChange={(newContent) => {
-        // console.log(newContent);
-      }}
-      className=""
-    />
+    <>
+      <Controller
+        control={control}
+        name={name}
+        render={({ field: { onChange, onBlur, value, ref } }) => (
+          <JoditEditor
+            ref={editor}
+            value={value}
+            config={config}
+            tabIndex={1}
+            onBlur={onBlur}
+            onChange={onChange}
+            className=""
+          />
+        )}
+      />
+    </>
   );
 });
 
