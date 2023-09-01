@@ -12,7 +12,7 @@ import Editor from "../Editor";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
-const EditBox = memo(({ from }) => {
+const EditBox = ({ from }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const { dataSendToEditBox, data, nodeListOfSubcategory, activeSingleNode } =
@@ -188,7 +188,7 @@ const EditBox = memo(({ from }) => {
           <p className="font-medium ">Field Title</p>
           <input
             type="text"
-            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("fieldTitle")}
           />
           <div className="flex justify-between">
@@ -203,7 +203,7 @@ const EditBox = memo(({ from }) => {
           <p className="font-medium ">ID</p>
           <input
             type="text"
-            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("id")}
           />
           <div className="flex justify-between">
@@ -257,7 +257,7 @@ const EditBox = memo(({ from }) => {
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <input
                 type="text"
-                className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+                className="w-full bg-white border rounded-md p-2 outline-none my-1"
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
@@ -275,7 +275,7 @@ const EditBox = memo(({ from }) => {
         <p className="font-medium ">Filtered</p>
         <input
           type="text"
-          className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+          className="w-full bg-white border rounded-md p-2 outline-none my-1"
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">0 characters</p>
@@ -290,7 +290,7 @@ const EditBox = memo(({ from }) => {
           <p className="font-medium ">Result ID</p>
           <input
             type="text"
-            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("resultId")}
           />
           <div className="flex justify-between">
@@ -307,7 +307,7 @@ const EditBox = memo(({ from }) => {
           <p className="font-medium ">Color</p>
           <input
             type="text"
-            className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1"
+            className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("color")}
           />
           <div className="flex justify-between">
@@ -321,19 +321,13 @@ const EditBox = memo(({ from }) => {
       {/* content full id */}
       <div className="my-3 w-full">
         <p className="font-medium ">Content full Id</p>
-        <p className="w-full bg-white border border-1-#EAECF0 rounded-md p-2 outline-none my-1">
+        <p className="w-full bg-gray-100 rounded-md p-2 outline-none my-1">
           {contentfulId}
           <AiFillCopy
             onClick={() => copyContent()}
             className="float-right text-xl cursor-pointer"
           />
         </p>
-        <div className="flex justify-between">
-          <p className="text-[#475467] text-sm">0 characters</p>
-          <p className="text-[#475467] text-sm sm:text-sm">
-            Maximum 256 characters
-          </p>
-        </div>
       </div>
       <hr className="my-3 h-[1px] bg-gray-200 w-full" />
       {/* btns */}
@@ -354,6 +348,6 @@ const EditBox = memo(({ from }) => {
       </div>
     </form>
   );
-});
+};
 
-export default EditBox;
+export default memo(EditBox);

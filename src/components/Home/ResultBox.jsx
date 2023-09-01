@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { handleChangeOrderOfResultPage } from "../../redux/GlobalStates";
 import SingleListOfResultPage from "./SIngleListOfResultPage";
 import EditBox from "./EditBox";
+import SourceBox from "./SourceBox";
 
 const ResultBox = () => {
   const {
@@ -45,11 +46,11 @@ const ResultBox = () => {
 
   return (
     <div className=" w-full flex  items-center justify-center lg:p-5 p-3 mx-auto xl:flex-row flex-col gap-5">
-      <div className="xl:w-[60%] md:w-10/12 w-full lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto rounded-md shadow-lg">
+      <div className="xl:w-[60%] md:w-10/12 text-center w-full lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto rounded-md shadow-lg">
         {/* top div , your result */}
         <div className="w-full flex flex-wrap md:flex-row flex-col md:justify-between justify-start items-start md:gap-3 gap-1 ">
           {/* your result */}
-          <div>
+          <div className="text-left">
             <p className="uppercase text-green-500 font-semibold">
               Your result
             </p>
@@ -113,6 +114,9 @@ const ResultBox = () => {
             )}
           </Droppable>
         </DragDropContext>
+          <button className="yellow_button">Add element</button>
+        {/* source box */}
+        <SourceBox /> 
       </div>
 
       {showEditBox && (
