@@ -12,6 +12,7 @@ const Login = () => {
   const handleOnClick = () => {
     dispatch(handleChangeLoggedIn(true));
     dispatch(handleChangeIsIdleTimerStart(false));
+    window.localStorage.setItem("timer", JSON.stringify(10));
   };
 
   return (

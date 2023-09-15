@@ -59,7 +59,7 @@ const Home = () => {
     onIdle,
     startManually: true,
     startOnMount: false,
-    timeout: timeout !== null && timeout !== 0 ? timeout : 60000,
+    timeout: timeout !== null && timeout !== 0 ? timeout : 3_00_000,
     throttle: 500,
     stopOnIdle: true,
     events: [],
