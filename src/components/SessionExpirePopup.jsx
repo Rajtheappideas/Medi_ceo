@@ -24,7 +24,7 @@ const SessionExpirePopup = () => {
     <>
       <div className="bg-black backdrop-blur-md drop-shadow-lg bg-opacity-30 fixed inset-0 w-screen h-screen z-20"></div>
       <div className="md:w-1/2 w-10/12 text-center h-auto bg-white space-y-4 rounded-lg z-20 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 p-5">
-        <p className="font-semibold xl:text-3xl md:text-2xl text-lg text-center">
+        <p className="xl:text-3xl md:text-2xl text-lg text-center">
           Your Session is Expired
         </p>
         <button
