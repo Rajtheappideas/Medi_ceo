@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const SourceBox = () => {
+  const [isChangesAreThere, setIsChangesAreThere] = useState(false);
+
+  const handleOnChange = () => {
+    setIsChangesAreThere(true);
+  };
+
+  useEffect(() => {
+    return () => setIsChangesAreThere(false);
+  }, []);
+
   return (
     <div className="w-full border border-gray-300 rounded-lg md:p-5 p-3 h-auto md:space-y-5 space-y-3 text-left">
       {/* source id */}
@@ -11,6 +21,9 @@ const SourceBox = () => {
         <input
           type="text"
           className="w-full border-gray-300 border rounded-md p-2 outline-none my-1"
+          onChange={() => {
+            handleOnChange();
+          }}
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">30 characters</p>
@@ -25,8 +38,9 @@ const SourceBox = () => {
           value="placeholder..."
           //   config={config}
           tabIndex={1}
-          //     onBlur={onBlur}
-          //     onChange={onChange}
+          onBlur={() => {
+            handleOnChange();
+          }}
           className=""
         />
       </div>
@@ -36,6 +50,9 @@ const SourceBox = () => {
         <input
           type="text"
           className="w-full border-gray-300 border rounded-md p-2 outline-none my-1"
+          onChange={() => {
+            handleOnChange();
+          }}
         />
         <div className="flex justify-between">
           <p className="text-[#475467] text-sm">22 characters</p>
@@ -51,7 +68,9 @@ const SourceBox = () => {
           //   config={config}
           tabIndex={1}
           //     onBlur={onBlur}
-          //     onChange={onChange}
+          onBlur={() => {
+            handleOnChange();
+          }}
           className=""
         />
       </div>
@@ -61,17 +80,34 @@ const SourceBox = () => {
         <input
           type="text"
           className="w-full border-gray-300 border rounded-md p-2 outline-none my-1"
+          onChange={() => {
+            handleOnChange();
+          }}
         />
         <div className="flex justify-start items-center gap-x-3">
           <div className="flex items-center gap-x-1">
-            <input type="radio" name="quick_help" id="yes" />
+            <input
+              type="radio"
+              name="quick_help"
+              id="yes"
+              onChange={() => {
+                handleOnChange();
+              }}
+            />
             <label htmlFor="yes">
               <span>Yes</span>
             </label>
           </div>
           <div className="flex items-center gap-x-1">
             <div className="flex items-center gap-x-1">
-              <input type="radio" name="quick_help" id="no" />
+              <input
+                type="radio"
+                name="quick_help"
+                id="no"
+                onChange={() => {
+                  handleOnChange();
+                }}
+              />
               <label htmlFor="no">
                 <span>No</span>
               </label>
@@ -97,12 +133,20 @@ const SourceBox = () => {
       <div className="flex my-3 w-full justify-end gap-x-3">
         <button
           type="button"
-        
-          className=" bg-white text-black text-md rounded-lg common_button"
+          className={`bg-white text-black text-md rounded-lg  ${
+            isChangesAreThere ? "common_button" : "common_button_disable"
+          } `}
+          disabled={!isChangesAreThere}
         >
           Cancel
         </button>
-        <button type="submit" className="yellow_button">
+        <button
+          disabled={!isChangesAreThere}
+          type="submit"
+          className={` ${
+            isChangesAreThere ? "yellow_button" : "yellow_button_disable"
+          } `}
+        >
           Save Changes
         </button>
       </div>

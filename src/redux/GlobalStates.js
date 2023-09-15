@@ -13,6 +13,9 @@ const initialState = {
   resultPage: null,
   resultPageDirectAfterNodeListOfSubcategory: null,
   dataSendToEditBox: null,
+  showExpirePopup: false,
+  loggedIn: false,
+  isIdleTimerStart: false,
 };
 
 const GlobalStates = createSlice({
@@ -432,6 +435,16 @@ const GlobalStates = createSlice({
         );
       }
     },
+
+    handleChangeShowExpireSession: (state, { payload }) => {
+      state.showExpirePopup = payload;
+    },
+    handleChangeLoggedIn: (state, { payload }) => {
+      state.loggedIn = payload;
+    },
+    handleChangeIsIdleTimerStart: (state, { payload }) => {
+      state.isIdleTimerStart = payload;
+    },
   },
 });
 
@@ -454,6 +467,9 @@ export const {
   handleChangeOrderOfResultPageDirectAfterSubCategory,
   handleChangeOrderOfResultPage,
   handleChangeValueOfResultPageFromEditBox,
+  handleChangeShowExpireSession,
+  handleChangeLoggedIn,
+  handleChangeIsIdleTimerStart,
 } = GlobalStates.actions;
 
 export default GlobalStates.reducer;

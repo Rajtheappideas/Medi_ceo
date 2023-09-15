@@ -79,7 +79,7 @@ const Navbar = ({
       {activeMainCategory !== "" && (
         <div
           className={`w-full select-none ${
-            isSticky && "sticky top-0 shadow-md z-50"
+            isSticky && "sticky top-0 shadow-md z-10"
           } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center md:justify-between justify-end`}
         >
           {/* left side */}

@@ -60,9 +60,16 @@ body::-webkit-scrollbar-thumb {
 }
 
 .yellow_button {
-  @apply text-white text-center md:px-5 px-3 md:py-3 py-2 active:scale-90 font-semibold bg-Yellow rounded-md shadow-md hover:bg-Yellow/80 transition;
+  @apply text-white text-center md:px-5 px-3 cursor-pointer md:py-3 py-2 active:scale-90 font-semibold bg-Yellow rounded-md shadow-md hover:bg-Yellow/80 transition;
+}
+.yellow_button_disable {
+  @apply text-white text-center md:px-5 px-3 cursor-not-allowed md:py-3 py-2 font-semibold bg-Yellow rounded-md shadow-md;
 }
 
 .common_button {
   @apply active:scale-90 transition md:px-5 px-3 md:py-3 py-2 duration-100 border;
+}
+
+.common_button_disable {
+  @apply md:px-5 px-3 md:py-3 py-2 duration-100 border cursor-not-allowed;
 }

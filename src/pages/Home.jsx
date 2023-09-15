@@ -4,15 +4,24 @@ import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet";
 import MainCategoryBox from "../components/Home/MainCategoryBox";
 import SubCategoryBox from "../components/Home/SubCategoryBox";
-import { useSelector } from "react-redux";
 import NodeListOfSubcategory from "../components/Home/NodeListOfSubcategory";
 import NodesList from "../components/Home/NodesList";
 import ResultBox from "../components/Home/ResultBox";
 import ResultBoxDirectAfterNodeListOfSubcategory from "../components/Home/ResultBoxDirectAfterNodeListOfSubcategory";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleChangeShowExpireSession,
+  handleChangeIsIdleTimerStart,
+  handleChangeLoggedIn,
+} from "../redux/GlobalStates";
+import { useIdleTimer } from "react-idle-timer";
 
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState("sandbox");
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [timeout, setTimeout] = useState(
+    JSON.parse(window.localStorage.getItem("timer")) * 1000
+  );
 
   const {
     activeMainCategory,
@@ -21,7 +30,9 @@ const Home = () => {
     nodes,
     resultPage,
     resultPageDirectAfterNodeListOfSubcategory,
-    data,
+    showExpirePopup,
+    loggedIn,
+    isIdleTimerStart,
   } = useSelector((state) => state.root.globalStates);
 
   useEffect(() => {
@@ -31,6 +42,62 @@ const Home = () => {
       window.document.body.style.overflow = "unset";
     }
   }, [openSidebar]);
+
+  const dispatch = useDispatch();
+
+  let interval;
+
+  const onIdle = () => {
+    clearInterval(interval);
+
+    dispatch(handleChangeShowExpireSession(true));
+    dispatch(handleChangeIsIdleTimerStart(false));
+    dispatch(handleChangeLoggedIn(false));
+  };
+
+  var { start, getRemainingTime, isIdle } = useIdleTimer({
+    onIdle,
+    startManually: true,
+    startOnMount: false,
+    timeout: timeout !== null && timeout !== 0 ? timeout : 60000,
+    throttle: 500,
+    stopOnIdle: true,
+    events: [],
+  });
+
+  // for timer
+  useEffect(() => {
+    if (!isIdle()) {
+      if (loggedIn && !showExpirePopup && !isIdleTimerStart) {
+        interval = setInterval(() => {
+          window.localStorage.setItem(
+            "timer",
+            JSON.stringify(Math.ceil(getRemainingTime() / 1000))
+          );
+        }, 1000);
+      } else if (loggedIn && !showExpirePopup && isIdleTimerStart) {
+        start();
+        interval = setInterval(() => {
+          window.localStorage.setItem(
+            "timer",
+            JSON.stringify(Math.ceil(getRemainingTime() / 1000))
+          );
+        }, 1000);
+      }
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  // when user enter first time after login
+  useEffect(() => {
+    if (loggedIn && !showExpirePopup && !isIdleTimerStart) {
+      start();
+      dispatch(handleChangeIsIdleTimerStart(true));
+    }
+  }, []);
 
   return (
     <>
@@ -47,7 +114,7 @@ const Home = () => {
           />
         </div>
         <section
-          className={`lg:border-l-2 p-1 h-full space-y-5 min-h-screen ${
+          className={`p-1 h-full space-y-5 min-h-screen ${
             openSidebar ? "xl:w-10/12 lg:w-4/5 w-full" : "lg:max-w-[90%] w-full"
           }`}
         >

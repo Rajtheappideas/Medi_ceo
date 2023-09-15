@@ -5,15 +5,14 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  //   const { user } = useSelector((state) => state.root.user);
-
-  let user;
+  const { loggedIn } = useSelector((state) => state.root.globalStates);
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (user === null) {
-      navigate("/sign-in");
-      toast.error("Please sign-in first!!!");
+    if (!loggedIn) {
+      navigate("/login");
+      toast.error("Please login first");
     }
   }, []);
   return <>{children}</>;
