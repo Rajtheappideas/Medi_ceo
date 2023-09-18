@@ -445,6 +445,12 @@ const GlobalStates = createSlice({
     handleChangeIsIdleTimerStart: (state, { payload }) => {
       state.isIdleTimerStart = payload;
     },
+    handleLogout: (state) => {
+      state.loggedIn = false;
+      state.isIdleTimerStart = false;
+      window.localStorage.setItem("timer", JSON.stringify(0));
+      window.location.href=window.location.href.concat("login")
+    },
   },
 });
 
@@ -470,6 +476,7 @@ export const {
   handleChangeShowExpireSession,
   handleChangeLoggedIn,
   handleChangeIsIdleTimerStart,
+  handleLogout,
 } = GlobalStates.actions;
 
 export default GlobalStates.reducer;

@@ -9,6 +9,9 @@ import apiManagement from "../assets/images/code-1 1.png";
 import cms from "../assets/images/objects.png";
 import sourceManagement from "../assets/images/document-filter 1.png";
 import tw from "tailwind-styled-components";
+import { useDispatch } from "react-redux";
+import { handleLogout } from "../redux/GlobalStates";
+import toast from "react-hot-toast";
 
 const Sidebar = ({
   setActiveComponent,
@@ -17,6 +20,8 @@ const Sidebar = ({
   openSidebar,
 }) => {
   const sidebarRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (window.screen.width < 1024) {
@@ -36,6 +41,14 @@ const Sidebar = ({
   function handleClickOutside() {
     setOpenSidebar(false);
   }
+
+  const handlelogout = () => {
+    toast.loading("Logout...");
+    setTimeout(() => {
+      toast.remove();
+      dispatch(handleLogout());
+    }, 2000);
+  };
 
   return (
     <div
@@ -154,7 +167,6 @@ const Sidebar = ({
           </ul>
           <ul>
             <List
-              onClick={() => setActiveComponent("source_management")}
               className={` ${
                 openSidebar ? "justify-start" : "justify-center"
               } `}
@@ -166,7 +178,13 @@ const Sidebar = ({
                   <span className="block text-gray-500">example@xyz.com</span>
                 </p>
               )}
-              {openSidebar && <FiLogOut size={20} className="ml-auto" />}
+              {openSidebar && (
+                <FiLogOut
+                  onClick={() => handlelogout()}
+                  size={20}
+                  className="ml-auto"
+                />
+              )}
             </List>
           </ul>
         </div>

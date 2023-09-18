@@ -89,7 +89,7 @@ const Home = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [loggedIn, showExpirePopup, isIdleTimerStart]);
 
   // when user enter first time after login
   useEffect(() => {
@@ -97,7 +97,7 @@ const Home = () => {
       start();
       dispatch(handleChangeIsIdleTimerStart(true));
     }
-  }, []);
+  }, [loggedIn, showExpirePopup, isIdleTimerStart]);
 
   return (
     <>
