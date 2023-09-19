@@ -208,7 +208,7 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <div className="w-full space-y-3 max-h-screen md:min-h-[87vh] min-h-[87vh] flex flex-col justify-between">
+        <div className="w-full space-y-3 max-h-screen min-h-[85vh] flex flex-col justify-between">
           {/* <List
             onClick={() => setActiveComponent("dashboard")}
             className={` ${openSidebar ? "justify-start" : "justify-center"} `}
