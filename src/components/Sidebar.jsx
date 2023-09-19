@@ -77,7 +77,7 @@ const Sidebar = ({
             } transition`}
           />
         </p>
-        <div className="w-full  text-sm flex flex-col min-h-screen max-h-screen justify-between">
+        <div className="w-full  text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
           <ul className="w-full space-y-3">
             {/* <List
               onClick={() => setActiveComponent("dashboard")}
@@ -192,7 +192,7 @@ const Sidebar = ({
       {/* for tablet / mobile */}
       <div
         ref={sidebarRef}
-        className={`min-h-screen absolute scrollbar overflow-y-scroll max-h-screen md:w-1/2 w-4/5 z-50 bg-white ${
+        className={`min-h-screen fixed scrollbar overflow-y-scroll max-h-screen md:w-1/2 w-4/5 z-50 bg-white ${
           openSidebar ? "translate-x-0" : "-translate-x-[100%]"
         } md:px-4 px-2 transition duration-300 ease-in-out lg:hidden block py-3 shadow-xl`}
       >
@@ -208,7 +208,7 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <div className="w-full space-y-3 max-h-screen min-h-[85vh] flex flex-col justify-between">
+        <div className="w-full space-y-3 max-h-screen md:min-h-[87vh] min-h-[87vh] flex flex-col justify-between">
           {/* <List
             onClick={() => setActiveComponent("dashboard")}
             className={` ${openSidebar ? "justify-start" : "justify-center"} `}
@@ -321,7 +321,7 @@ const Sidebar = ({
         </div>
       </div>
       {openSidebar && (
-        <div className="absolute lg:hidden block z-30 inset-0 bg-black bg-opacity-20 backdrop-blur-sm max-w-[100%] h-full overflow-hidden" />
+        <div className="fixed lg:hidden block z-30 inset-0 bg-black bg-opacity-20 backdrop-blur-sm max-w-[100%] h-full overflow-hidden" />
       )}
     </div>
   );
