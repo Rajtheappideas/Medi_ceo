@@ -77,7 +77,7 @@ const Sidebar = ({
             } transition`}
           />
         </p>
-        <div className="w-full  text-sm flex flex-col h-[80vh] justify-between">
+        <div className="w-full  text-sm flex flex-col min-h-screen max-h-screen justify-between">
           <ul className="w-full space-y-3">
             {/* <List
               onClick={() => setActiveComponent("dashboard")}
@@ -208,7 +208,7 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <div className="w-full space-y-3 max-h-screen h-full flex flex-col justify-between">
+        <div className="w-full space-y-3 max-h-screen min-h-[100vh] flex flex-col justify-between">
           {/* <List
             onClick={() => setActiveComponent("dashboard")}
             className={` ${openSidebar ? "justify-start" : "justify-center"} `}
@@ -295,11 +295,9 @@ const Sidebar = ({
               {openSidebar && <span>Source Management</span>}
             </List>
           </ul>
-          <ul>
+          <ul className="mt-auto">
             <List
-              onClick={() => {
-                setOpenSidebar(false);
-              }}
+              onClick={() => {}}
               className={` ${
                 openSidebar ? "justify-start" : "justify-center"
               } `}
@@ -311,7 +309,13 @@ const Sidebar = ({
                   <span className="block text-gray-500">example@xyz.com</span>
                 </p>
               )}
-              {openSidebar && <FiLogOut size={20} className="ml-auto" />}
+              {openSidebar && (
+                <FiLogOut
+                  onClick={() => handlelogout()}
+                  size={20}
+                  className="ml-auto"
+                />
+              )}
             </List>
           </ul>
         </div>
