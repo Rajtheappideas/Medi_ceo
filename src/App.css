@@ -73,3 +73,7 @@ body::-webkit-scrollbar-thumb {
 .common_button_disable {
   @apply md:px-5 px-3 md:py-3 py-2 duration-100 border cursor-not-allowed;
 }
+
+.error {
+  @apply font-light xl:text-base text-sm text-red-500;
+}

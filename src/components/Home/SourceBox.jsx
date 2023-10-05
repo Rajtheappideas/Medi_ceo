@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 const SourceBox = () => {
   const [isChangesAreThere, setIsChangesAreThere] = useState(false);
 
+  const { t } = useTranslation();
   const handleOnChange = () => {
     setIsChangesAreThere(true);
   };
@@ -17,7 +19,7 @@ const SourceBox = () => {
     <div className="w-full border border-gray-300 rounded-lg md:p-5 p-3 h-auto md:space-y-5 space-y-3 text-left">
       {/* source id */}
       <div className="w-full">
-        <label className="font-medium ">Source ID</label>
+        <label className="font-medium ">{t("Source ID")}</label>
         <input
           type="text"
           className="w-full border-gray-300 border rounded-md p-2 outline-none my-1"
@@ -26,13 +28,15 @@ const SourceBox = () => {
           }}
         />
         <div className="flex justify-between">
-          <p className="text-[#475467] text-sm">30 characters</p>
-          <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+          <p className="text-[#475467] text-sm">{t("30 characters")}</p>
+          <p className="text-[#475467] text-sm">
+            {t("Maximum 256 characters")}
+          </p>
         </div>
       </div>
       {/* sources */}
       <div>
-        <label className="font-medium">Sources</label>
+        <label className="font-medium">{t("Sources")}</label>
         <JoditEditor
           //   ref={editor}
           value="placeholder..."
@@ -46,7 +50,7 @@ const SourceBox = () => {
       </div>
       {/* filters */}
       <div className="w-full">
-        <label className="font-medium">Filters</label>
+        <label className="font-medium">{t("Filters")}</label>
         <input
           type="text"
           className="w-full border-gray-300 border rounded-md p-2 outline-none my-1"
@@ -55,13 +59,15 @@ const SourceBox = () => {
           }}
         />
         <div className="flex justify-between">
-          <p className="text-[#475467] text-sm">22 characters</p>
-          <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+          <p className="text-[#475467] text-sm">{t("22 characters")}</p>
+          <p className="text-[#475467] text-sm">
+            {t("Maximum 256 characters")}
+          </p>
         </div>
       </div>
       {/* internal title */}
       <div>
-        <label className="font-medium">Internal title</label>
+        <label className="font-medium">{t("Internal title")}</label>
         <JoditEditor
           //   ref={editor}
           value="placeholder..."
@@ -76,7 +82,7 @@ const SourceBox = () => {
       </div>
       {/* is quick help */}
       <div className="w-full">
-        <label className="font-medium">IsQuick Help</label>
+        <label className="font-medium">{t("IsQuick Help")}</label>
         <input
           type="text"
           className="w-full border-gray-300 border rounded-md p-2 outline-none my-1"
@@ -95,7 +101,7 @@ const SourceBox = () => {
               }}
             />
             <label htmlFor="yes">
-              <span>Yes</span>
+              <span>{t("Yes")}</span>
             </label>
           </div>
           <div className="flex items-center gap-x-1">
@@ -109,7 +115,7 @@ const SourceBox = () => {
                 }}
               />
               <label htmlFor="no">
-                <span>No</span>
+                <span>{t("No")}</span>
               </label>
             </div>
           </div>
@@ -117,14 +123,14 @@ const SourceBox = () => {
       </div>
       {/* new filter add */}
       <div className="w-full ">
-        <label className="font-medium">New Filters</label>
+        <label className="font-medium">{t("New Filters")}</label>
         <div className="bg-gray-50 w-full flex items-center justify-center p-4 rounded-lg border border-gray-200">
           <div
             role="button"
             className="bg-white p-2 rounded-lg border border-gray-300 flex items-center gap-x-2"
           >
             <AiOutlinePlusCircle size={30} color="gray" />
-            <p>Add Content</p>
+            <p>{t("Add Content")}</p>
           </div>
         </div>
       </div>
@@ -138,7 +144,7 @@ const SourceBox = () => {
           } `}
           disabled={!isChangesAreThere}
         >
-          Cancel
+          {t("Cancel")}
         </button>
         <button
           disabled={!isChangesAreThere}
@@ -147,7 +153,7 @@ const SourceBox = () => {
             isChangesAreThere ? "yellow_button" : "yellow_button_disable"
           } `}
         >
-          Save Changes
+          {t("Save Changes")}
         </button>
       </div>
     </div>

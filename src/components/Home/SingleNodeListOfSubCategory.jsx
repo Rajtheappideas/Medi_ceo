@@ -9,11 +9,14 @@ import {
 } from "../../redux/GlobalStates";
 import { Draggable } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const SingleNodeListOfSubCategory = React.memo(({ data, index }) => {
   const { showEditBox } = useSelector((state) => state.root.globalStates);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   return (
     <>

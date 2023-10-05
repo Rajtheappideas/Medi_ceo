@@ -9,19 +9,23 @@ import { useDispatch } from "react-redux";
 import { handleChangeOrderOfResultPageDirectAfterSubCategory } from "../../redux/GlobalStates";
 import SingleListOfResultPage from "./SIngleListOfResultPage";
 import EditBox from "./EditBox";
+import { useTranslation } from "react-i18next";
 
 const ResultBoxDirectAfterNodeListOfSubcategory = () => {
   const {
     activeMainCategory,
     activeSubCategory,
     activeSingleNode,
-    resultPageDirectAfterNodeListOfSubcategory,showEditBox
+    resultPageDirectAfterNodeListOfSubcategory,
+    showEditBox,
   } = useSelector((state) => state.root.globalStates);
 
   const { boxes, sources, pageId, id, title, type, path } =
     resultPageDirectAfterNodeListOfSubcategory;
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -53,7 +57,7 @@ const ResultBoxDirectAfterNodeListOfSubcategory = () => {
           {/* your result */}
           <div>
             <p className="uppercase text-green-500 font-semibold">
-              Your result
+              {t("Your result")}
             </p>
             <p className="text-Yellow font-semibold">
               {activeSubCategory?.title} | {activeSingleNode?.title}

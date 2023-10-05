@@ -11,6 +11,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 import EditBox from "./EditBox";
 import { MdOutlineDragIndicator } from "react-icons/md";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useTranslation } from "react-i18next";
 
 const NodesList = memo(() => {
   const { activeSingleNode, showEditBox, data } = useSelector(
@@ -18,6 +19,8 @@ const NodesList = memo(() => {
   );
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const { boxes, id, title, type } =
     activeSingleNode !== null && activeSingleNode;
@@ -138,7 +141,7 @@ const NodesList = memo(() => {
             }}
             className="yellow_button"
           >
-            Add element
+            {t("Add element")}
           </button>
         </div>
         {showEditBox && (

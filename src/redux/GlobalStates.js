@@ -1,5 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import jsonData from "../placeholder.json";
+import { BroadcastChannel } from "broadcast-channel";
+import i18next from "i18next";
 
 const initialState = {
   activeMainCategory: "",
@@ -14,9 +16,11 @@ const initialState = {
   resultPageDirectAfterNodeListOfSubcategory: null,
   dataSendToEditBox: null,
   showExpirePopup: false,
-  loggedIn: false,
-  isIdleTimerStart: false,
+  userLanguage: JSON.parse(window.localStorage.getItem("lang")) ?? "en",
 };
+
+const logoutChannel = new BroadcastChannel("handleLogout");
+const loginChannel = new BroadcastChannel("handleSuccess");
 
 const GlobalStates = createSlice({
   name: "globalStates",
@@ -439,17 +443,35 @@ const GlobalStates = createSlice({
     handleChangeShowExpireSession: (state, { payload }) => {
       state.showExpirePopup = payload;
     },
-    handleChangeLoggedIn: (state, { payload }) => {
-      state.loggedIn = payload;
+
+    handleSuccess: () => {
+      loginChannel.postMessage("");
+      loginChannel.onmessage = (event) => {
+        loginChannel.close();
+      };
     },
-    handleChangeIsIdleTimerStart: (state, { payload }) => {
-      state.isIdleTimerStart = payload;
+    handleLogoutFromAllTabs: () => {
+      logoutChannel.postMessage("");
+      logoutChannel.onmessage = (event) => {
+        logoutChannel.close();
+      };
     },
-    handleLogout: (state) => {
-      state.loggedIn = false;
-      state.isIdleTimerStart = false;
-      window.localStorage.setItem("timer", JSON.stringify(0));
-      window.location.href=window.location.href.concat("login")
+    logoutAllTabsEventListener: () => {
+      logoutChannel.onmessage = (event) => {
+        logoutChannel.close();
+        window.location.reload();
+      };
+    },
+    loginAllTabsEventListener: () => {
+      loginChannel.onmessage = (event) => {
+        window.location.reload();
+        loginChannel.close();
+      };
+    },
+
+    handleChangeUserLanguage: (state, { payload }) => {
+      state.userLanguage = payload;
+      i18next.changeLanguage(payload);
     },
   },
 });
@@ -474,9 +496,11 @@ export const {
   handleChangeOrderOfResultPage,
   handleChangeValueOfResultPageFromEditBox,
   handleChangeShowExpireSession,
-  handleChangeLoggedIn,
-  handleChangeIsIdleTimerStart,
-  handleLogout,
+  handleChangeUserLanguage,
+  handleLogoutFromAllTabs,
+  handleSuccess,
+  logoutAllTabsEventListener,
+  loginAllTabsEventListener,
 } = GlobalStates.actions;
 
 export default GlobalStates.reducer;

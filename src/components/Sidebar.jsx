@@ -9,9 +9,11 @@ import apiManagement from "../assets/images/code-1 1.png";
 import cms from "../assets/images/objects.png";
 import sourceManagement from "../assets/images/document-filter 1.png";
 import tw from "tailwind-styled-components";
-import { useDispatch } from "react-redux";
-import { handleLogout } from "../redux/GlobalStates";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogout } from "../redux/AuthSlice";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { handleLogoutFromAllTabs } from "../redux/GlobalStates";
 
 const Sidebar = ({
   setActiveComponent,
@@ -19,9 +21,13 @@ const Sidebar = ({
   setOpenSidebar,
   openSidebar,
 }) => {
+  const { user } = useSelector((state) => state.root.auth);
+
   const sidebarRef = useRef(null);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (window.screen.width < 1024) {
@@ -47,6 +53,7 @@ const Sidebar = ({
     setTimeout(() => {
       toast.remove();
       dispatch(handleLogout());
+      dispatch(handleLogoutFromAllTabs());
     }, 2000);
   };
 
@@ -77,57 +84,57 @@ const Sidebar = ({
             } transition`}
           />
         </p>
-        <div className="w-full  text-sm flex flex-col h-[80vh] justify-between">
+        <div className="w-full  text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
           <ul className="w-full space-y-3">
             {/* <List
-              onClick={() => setActiveComponent("dashboard")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
-            >
-              <RiBarChartLine className={`text-textColor`} size={25} />
-              {openSidebar && <span>Dashboard</span>}
-            </List>
-            <List
-              onClick={() => setActiveComponent("user_management")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
-            >
-              <FiUsers className={`text-textColor`} size={25} />
-              {openSidebar && <span>Users Management</span>}
-            </List>
-            <List
-              onClick={() => setActiveComponent("api_management")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
-            >
-              <img
-                src={apiManagement}
-                alt="api management"
-                className="h-fit w-fit text-textColor object-contain object-center"
-              />
-              {openSidebar && <span>Api Management</span>}
-            </List>
-            <List
-              onClick={() => setActiveComponent("mail_service")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
-            >
-              <IoMailOutline className={`text-textColor`} size={25} />
-              {openSidebar && <span>Mail Service</span>}
-            </List>
-            <List
-              onClick={() => setActiveComponent("permission_management")}
-              className={` ${
-                openSidebar ? "justify-start" : "justify-center"
-              } `}
-            >
-              <BsShieldCheck className={`text-textColor`} size={25} />
-              {openSidebar && <span>Permission Management</span>}
-            </List> */}
+            onClick={() => setActiveComponent("dashboard")}
+            className={` ${
+              openSidebar ? "justify-start" : "justify-center"
+            } `}
+          >
+            <RiBarChartLine className={`text-textColor`} size={25} />
+            {openSidebar && <span>Dashboard</span>}
+          </List>
+          <List
+            onClick={() => setActiveComponent("user_management")}
+            className={` ${
+              openSidebar ? "justify-start" : "justify-center"
+            } `}
+          >
+            <FiUsers className={`text-textColor`} size={25} />
+            {openSidebar && <span>Users Management</span>}
+          </List>
+          <List
+            onClick={() => setActiveComponent("api_management")}
+            className={` ${
+              openSidebar ? "justify-start" : "justify-center"
+            } `}
+          >
+            <img
+              src={apiManagement}
+              alt="api management"
+              className="h-fit w-fit text-textColor object-contain object-center"
+            />
+            {openSidebar && <span>Api Management</span>}
+          </List>
+          <List
+            onClick={() => setActiveComponent("mail_service")}
+            className={` ${
+              openSidebar ? "justify-start" : "justify-center"
+            } `}
+          >
+            <IoMailOutline className={`text-textColor`} size={25} />
+            {openSidebar && <span>Mail Service</span>}
+          </List>
+          <List
+            onClick={() => setActiveComponent("permission_management")}
+            className={` ${
+              openSidebar ? "justify-start" : "justify-center"
+            } `}
+          >
+            <BsShieldCheck className={`text-textColor`} size={25} />
+            {openSidebar && <span>Permission Management</span>}
+          </List> */}
             <List
               onClick={() => setActiveComponent("content_list")}
               className={`items-start ${
@@ -139,7 +146,9 @@ const Sidebar = ({
                 alt="cms"
                 className="h-7 w-7 text-textColor object-contain object-center"
               />{" "}
-              {openSidebar && <span className="block">Content List</span>}
+              {openSidebar && (
+                <span className="block">{t("Content List")}</span>
+              )}
             </List>
             <List
               onClick={() => setActiveComponent("sandbox")}
@@ -148,7 +157,9 @@ const Sidebar = ({
               } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <FiEdit size={25} />
-              {openSidebar && <span className="block">Sandbox Mode</span>}
+              {openSidebar && (
+                <span className="block">{t("Sandbox Mode")}</span>
+              )}
             </List>
             <List
               onClick={() => setActiveComponent("source_management")}
@@ -162,7 +173,7 @@ const Sidebar = ({
                 alt="source management"
                 className="h-7 w-7 text-textColor object-contain object-center"
               />{" "}
-              {openSidebar && <span>Source Management</span>}
+              {openSidebar && <span>{t("Source Management")}</span>}
             </List>
           </ul>
           <ul>
@@ -174,8 +185,10 @@ const Sidebar = ({
               <span className="bg-gray-200 rounded-full w-9 h-9"></span>
               {openSidebar && (
                 <p>
-                  <span className="block">John Doe</span>
-                  <span className="block text-gray-500">example@xyz.com</span>
+                  <span className="block">
+                    {user?.first_name} {user?.last_name}
+                  </span>
+                  <span className="block text-gray-500">{user?.email}</span>
                 </p>
               )}
               {openSidebar && (
@@ -192,7 +205,7 @@ const Sidebar = ({
       {/* for tablet / mobile */}
       <div
         ref={sidebarRef}
-        className={`min-h-screen absolute scrollbar overflow-y-scroll max-h-screen md:w-1/2 w-4/5 z-50 bg-white ${
+        className={`min-h-screen fixed scrollbar overflow-y-scroll max-h-screen md:w-1/2 w-4/5 z-50 bg-white ${
           openSidebar ? "translate-x-0" : "-translate-x-[100%]"
         } md:px-4 px-2 transition duration-300 ease-in-out lg:hidden block py-3 shadow-xl`}
       >
@@ -208,46 +221,46 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <div className="w-full space-y-3 max-h-screen h-full flex flex-col justify-between">
+        <div className="w-full space-y-3 max-h-screen min-h-[85vh] flex flex-col justify-between">
           {/* <List
-            onClick={() => setActiveComponent("dashboard")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <RiBarChartLine className={`text-textColor`} size={25} />
-            {openSidebar && <span>Dashboard</span>}
-          </List>
-          <List
-            onClick={() => setActiveComponent("user_management")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <FiUsers className={`text-textColor`} size={25} />
-            {openSidebar && <span>Users Management</span>}
-          </List>
-          <List
-            onClick={() => setActiveComponent("api_management")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <img
-              src={apiManagement}
-              alt="api management"
-              className="h-fit w-fit text-textColor object-contain object-center"
-            />
-            {openSidebar && <span>Api Management</span>}
-          </List>
-          <List
-            onClick={() => setActiveComponent("mail_service")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <IoMailOutline className={`text-textColor`} size={25} />
-            {openSidebar && <span>Mail Service</span>}
-          </List>
-          <List
-            onClick={() => setActiveComponent("permission_management")}
-            className={` ${openSidebar ? "justify-start" : "justify-center"} `}
-          >
-            <BsShieldCheck className={`text-textColor`} size={25} />
-            {openSidebar && <span>Permission Management</span>}
-          </List> */}
+          onClick={() => setActiveComponent("dashboard")}
+          className={` ${openSidebar ? "justify-start" : "justify-center"} `}
+        >
+          <RiBarChartLine className={`text-textColor`} size={25} />
+          {openSidebar && <span>Dashboard</span>}
+        </List>
+        <List
+          onClick={() => setActiveComponent("user_management")}
+          className={` ${openSidebar ? "justify-start" : "justify-center"} `}
+        >
+          <FiUsers className={`text-textColor`} size={25} />
+          {openSidebar && <span>Users Management</span>}
+        </List>
+        <List
+          onClick={() => setActiveComponent("api_management")}
+          className={` ${openSidebar ? "justify-start" : "justify-center"} `}
+        >
+          <img
+            src={apiManagement}
+            alt="api management"
+            className="h-fit w-fit text-textColor object-contain object-center"
+          />
+          {openSidebar && <span>Api Management</span>}
+        </List>
+        <List
+          onClick={() => setActiveComponent("mail_service")}
+          className={` ${openSidebar ? "justify-start" : "justify-center"} `}
+        >
+          <IoMailOutline className={`text-textColor`} size={25} />
+          {openSidebar && <span>Mail Service</span>}
+        </List>
+        <List
+          onClick={() => setActiveComponent("permission_management")}
+          className={` ${openSidebar ? "justify-start" : "justify-center"} `}
+        >
+          <BsShieldCheck className={`text-textColor`} size={25} />
+          {openSidebar && <span>Permission Management</span>}
+        </List> */}
           <ul className="space-y-3">
             <List
               onClick={() => {
@@ -263,7 +276,9 @@ const Sidebar = ({
                 alt="cms"
                 className="h-7 w-7 text-textColor object-contain object-center"
               />{" "}
-              {openSidebar && <span className="block">Content List</span>}
+              {openSidebar && (
+                <span className="block">{t("Content List")}</span>
+              )}
             </List>
             <List
               onClick={() => {
@@ -275,7 +290,9 @@ const Sidebar = ({
               } ${openSidebar ? "justify-start" : "justify-center"} `}
             >
               <FiEdit size={25} />
-              {openSidebar && <span className="block">Sandbox Mode</span>}
+              {openSidebar && (
+                <span className="block">{t("Sandbox Mode")}</span>
+              )}
             </List>
             <List
               onClick={() => {
@@ -292,14 +309,12 @@ const Sidebar = ({
                 alt="source management"
                 className="h-7 w-7 text-textColor object-contain object-center"
               />{" "}
-              {openSidebar && <span>Source Management</span>}
+              {openSidebar && <span>{t("Source Management")}</span>}
             </List>
           </ul>
-          <ul>
+          <ul className="mt-auto">
             <List
-              onClick={() => {
-                setOpenSidebar(false);
-              }}
+              onClick={() => {}}
               className={` ${
                 openSidebar ? "justify-start" : "justify-center"
               } `}
@@ -307,17 +322,25 @@ const Sidebar = ({
               <span className="bg-gray-200 rounded-full w-9 h-9"></span>
               {openSidebar && (
                 <p>
-                  <span className="block">John Doe</span>
-                  <span className="block text-gray-500">example@xyz.com</span>
+                  <span className="block">
+                    {user?.first_name} {user?.last_name}
+                  </span>
+                  <span className="block text-gray-500">{user?.email}</span>
                 </p>
               )}
-              {openSidebar && <FiLogOut size={20} className="ml-auto" />}
+              {openSidebar && (
+                <FiLogOut
+                  onClick={() => handlelogout()}
+                  size={20}
+                  className="ml-auto"
+                />
+              )}
             </List>
           </ul>
         </div>
       </div>
       {openSidebar && (
-        <div className="absolute lg:hidden block z-30 inset-0 bg-black bg-opacity-20 backdrop-blur-sm max-w-[100%] h-full overflow-hidden" />
+        <div className="fixed lg:hidden block z-30 inset-0 bg-black bg-opacity-20 backdrop-blur-sm max-w-[100%] h-full overflow-hidden" />
       )}
     </div>
   );

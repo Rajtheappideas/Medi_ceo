@@ -7,84 +7,17 @@ import Lottie from "lottie-react";
 import React, { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import PrivateRoute from "./pages/PrivateRoute";
-import jsonData from "./placeholder.json";
 import loading from "./assets/animations/loading.json";
-import { useIdleTimer } from "react-idle-timer";
 import SessionExpirePopup from "./components/SessionExpirePopup";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  handleChangeShowExpireSession,
-  handleChangeIsIdleTimerStart,
-} from "./redux/GlobalStates";
 
 const Home = lazy(() => import("./pages/Home"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Login = lazy(() => import("./pages/Login"));
 
 function App() {
-  // const [remaining, setRemaining] = useState(0);
-
-  const { showExpirePopup, LoggedIn, isIdleTimerStart } = useSelector(
-    (state) => state.root.globalStates
-  );
-
-  // const dispatch = useDispatch();
-
-  // const onIdle = () => {
-  //   dispatch(handleChangeShowExpireSession(true));
-  //   dispatch(handleChangeIsIdleTimerStart(false));
-  // };
-
-  // var {
-  //   start,
-  //   pause,
-  //   resume,
-  //   getRemainingTime,
-  //   getLastActiveTime,
-  //   getTotalActiveTime,
-  //   isIdle,
-  //   getElapsedTime,
-  // } = useIdleTimer({
-  //   onIdle,
-  //   startManually: true,
-  //   startOnMount: false,
-  //   timeout: 10_000,
-  //   throttle: 500,
-  //   stopOnIdle: true,
-  //   events: [],
-  // });
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setRemaining(Math.ceil(getRemainingTime() / 1000));
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (LoggedIn && !showExpirePopup && !isIdleTimerStart) {
-  //     start();
-  //     dispatch(handleChangeIsIdleTimerStart(true));
-  //     console.log("start");
-  //   } else if (LoggedIn && !showExpirePopup && isIdleTimerStart) {
-  //     resume();
-  //     console.log("resume");
-  //   }
-  //   return () => {
-  //     pause();
-  //     console.log("pasuse");
-
-  //   };
-  // }, []);
-
-  // console.log(
-  //   remaining,
-  //   isIdle(),
-  //   getTotalActiveTime()
-  // );
+  const { showExpirePopup } = useSelector((state) => state.root.globalStates);
+  const dispatch = useDispatch();
 
   return (
     <BrowserRouter>

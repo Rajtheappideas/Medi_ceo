@@ -10,6 +10,7 @@ import { handleChangeOrderOfResultPage } from "../../redux/GlobalStates";
 import SingleListOfResultPage from "./SIngleListOfResultPage";
 import EditBox from "./EditBox";
 import SourceBox from "./SourceBox";
+import { useTranslation } from "react-i18next";
 
 const ResultBox = () => {
   const {
@@ -23,6 +24,8 @@ const ResultBox = () => {
   const { boxes, sources, pageId, id, title, type, path } = resultPage;
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -52,7 +55,7 @@ const ResultBox = () => {
           {/* your result */}
           <div className="text-left">
             <p className="uppercase text-green-500 font-semibold">
-              Your result
+              {t("Your result")}
             </p>
             <p className="text-Yellow font-semibold">
               {activeSubCategory?.title} | {activeSingleNode?.title}
@@ -114,9 +117,9 @@ const ResultBox = () => {
             )}
           </Droppable>
         </DragDropContext>
-          <button className="yellow_button">Add element</button>
+        <button className="yellow_button">{t("Add element")}</button>
         {/* source box */}
-        <SourceBox /> 
+        <SourceBox />
       </div>
 
       {showEditBox && (

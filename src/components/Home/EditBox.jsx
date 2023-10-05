@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Editor from "../Editor";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const EditBox = ({ from }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -19,6 +20,8 @@ const EditBox = ({ from }) => {
     useSelector((state) => state.root.globalStates);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const {
     fieldTitle,
@@ -144,7 +147,7 @@ const EditBox = ({ from }) => {
         className="w-full bg-Yellow z-10 cursor-pointer text-white p-3 rounded-md flex justify-between items-center"
         onClick={() => setShowDropdown(!showDropdown)}
       >
-        Add Entry
+        {t("Add Entry")}
         <IoIosArrowDown
           className={`text-white text-2xl  transition duration-300 ${
             showDropdown ? "rotate-180" : "rotate-0"
@@ -159,25 +162,25 @@ const EditBox = ({ from }) => {
       >
         <label htmlFor="field_title">
           <p className="w-full flex items-center justify-between my-1 cursor-pointer">
-            Field Title
+            {t("Field Title")}
             <input type="checkbox" id="field_title" className="" />
           </p>
         </label>
         <label htmlFor="title">
           <p className="w-full flex items-center justify-between my-1 cursor-pointer">
-            Title
+            {t("Title")}
             <input type="checkbox" id="title" className="" />
           </p>
         </label>
         <label htmlFor="resul_node_id">
           <p className="w-full flex items-center justify-between my-1 cursor-pointer">
-            Result Or Node ID
+            {t("Result Or Node ID")}
             <input type="checkbox" id="resul_node_id" className="" />
           </p>
         </label>
         <label htmlFor="filtered">
           <p className="w-full flex items-center justify-between my-1 cursor-pointer">
-            Filtered
+            {t("Filtered")}
             <input type="checkbox" id="filtered" className="" />
           </p>
         </label>
@@ -185,30 +188,34 @@ const EditBox = ({ from }) => {
       {/* field title */}
       {fieldTitle !== undefined && (
         <div className="my-3 w-full">
-          <p className="font-medium ">Field Title</p>
+          <p className="font-medium ">{t("Field Title")}</p>
           <input
             type="text"
             className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("fieldTitle")}
           />
           <div className="flex justify-between">
-            <p className="text-[#475467] text-sm">30 characters</p>
-            <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+            <p className="text-[#475467] text-sm">{t("30 characters")}</p>
+            <p className="text-[#475467] text-sm">
+              {t("Maximum 256 characters")}
+            </p>
           </div>
         </div>
       )}
       {/* id */}
       {id !== undefined && (
         <div className="my-3 w-full">
-          <p className="font-medium ">ID</p>
+          <p className="font-medium ">{t("ID")}</p>
           <input
             type="text"
             className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("id")}
           />
           <div className="flex justify-between">
-            <p className="text-[#475467] text-sm">30 characters</p>
-            <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+            <p className="text-[#475467] text-sm">{t("30 characters")}</p>
+            <p className="text-[#475467] text-sm">
+              {t("Maximum 256 characters")}
+            </p>
           </div>
         </div>
       )}
@@ -226,7 +233,7 @@ const EditBox = ({ from }) => {
             htmlFor="expandableContent"
             className="block mb-2  font-medium text-gray-90"
           >
-            Expandable Content
+            {t("Expandable Content")}
           </label>
           <Editor
             name="expandableContent"
@@ -242,7 +249,7 @@ const EditBox = ({ from }) => {
             htmlFor="expandableContent"
             className="block mb-2  font-medium text-gray-90"
           >
-            Content
+            {t("Content")}
           </label>
           <Editor name="content" control={control} setValue={setValue} />
         </div>
@@ -250,7 +257,7 @@ const EditBox = ({ from }) => {
       {/* result node */}
       {resultOrNodeId !== undefined && (
         <div className="my-3 w-full">
-          <p className="font-medium ">Result Or Node ID</p>
+          <p className="font-medium ">{t("Result Or Node ID")}</p>
           <Controller
             control={control}
             name="resultOrNodeId"
@@ -265,38 +272,40 @@ const EditBox = ({ from }) => {
             )}
           />
           <div className="flex justify-between">
-            <p className="text-[#475467] text-sm">22 characters</p>
-            <p className="text-[#475467] text-sm">Maximum 256 characters</p>
+            <p className="text-[#475467] text-sm">{t("22 characters")}</p>
+            <p className="text-[#475467] text-sm">
+              {t("Maximum 256 characters")}
+            </p>
           </div>
         </div>
       )}
       {/* filtered */}
       <div className="my-3 w-full">
-        <p className="font-medium ">Filtered</p>
+        <p className="font-medium ">{t("Filtered")}</p>
         <input
           type="text"
           className="w-full bg-white border rounded-md p-2 outline-none my-1"
         />
         <div className="flex justify-between">
-          <p className="text-[#475467] text-sm">0 characters</p>
+          <p className="text-[#475467] text-sm">{t("0 characters")}</p>
           <p className="text-[#475467] text-sm sm:text-sm">
-            Maximum 256 characters
+            {t("Maximum 256 characters")}
           </p>
         </div>
       </div>
       {/* result id */}
       {resultId !== undefined && (
         <div className="my-3 w-full">
-          <p className="font-medium ">Result ID</p>
+          <p className="font-medium ">{t("Result ID")}</p>
           <input
             type="text"
             className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("resultId")}
           />
           <div className="flex justify-between">
-            <p className="text-[#475467] text-sm">0 characters</p>
+            <p className="text-[#475467] text-sm">{t("0 characters")}</p>
             <p className="text-[#475467] text-sm sm:text-sm">
-              Maximum 256 characters
+              {t("Maximum 256 characters")}
             </p>
           </div>
         </div>
@@ -304,23 +313,23 @@ const EditBox = ({ from }) => {
       {/* color */}
       {color !== undefined && (
         <div className="my-3 w-full">
-          <p className="font-medium ">Color</p>
+          <p className="font-medium ">{t("Color")}</p>
           <input
             type="text"
             className="w-full bg-white border rounded-md p-2 outline-none my-1"
             {...register("color")}
           />
           <div className="flex justify-between">
-            <p className="text-[#475467] text-sm">0 characters</p>
+            <p className="text-[#475467] text-sm">{t("0 characters")}</p>
             <p className="text-[#475467] text-sm sm:text-sm">
-              Maximum 256 characters
+              {t("Maximum 256 characters")}
             </p>
           </div>
         </div>
       )}
       {/* content full id */}
       <div className="my-3 w-full">
-        <p className="font-medium ">Content full Id</p>
+        <p className="font-medium ">{t("Content full Id")}</p>
         <p className="w-full bg-gray-100 rounded-md p-2 outline-none my-1">
           {contentfulId}
           <AiFillCopy
@@ -340,10 +349,10 @@ const EditBox = ({ from }) => {
           }}
           className=" bg-white text-black text-md rounded-lg common_button"
         >
-          Cancel
+          {t("Cancel")}
         </button>
         <button type="submit" className="yellow_button">
-          Save Changes
+          {t("Save Changes")}
         </button>
       </div>
     </form>

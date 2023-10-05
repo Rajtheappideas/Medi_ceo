@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 function ErrorFallback({ error, resetErrorBoundary }) {
+  const { t } = useTranslation();
+
   return (
     <div role="alert" style={{ margin: "1rem", color: "red" }}>
       <p>Something went wrong:</p>
@@ -14,7 +18,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
           borderRadius: "5px",
         }}
       >
-        Reload
+        {t("Reload")}
       </button>
     </div>
   );

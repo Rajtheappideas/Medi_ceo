@@ -13,51 +13,59 @@ import ecg from "../../assets/images/ECG_tool.png";
 import anticogulant from "../../assets/images/anticogulant.png";
 import generally from "../../assets/images/generally.png";
 import specific from "../../assets/images/specific.png";
+import { useTranslation } from "react-i18next";
 
 const SubCategoryBox = () => {
   const [subcategory, setSubcategory] = useState([]);
 
+  console.log(subcategory);
   const { activeMainCategory, activeSubCategory, data } = useSelector(
     (state) => state.root.globalStates
   );
 
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+
   const subCategories = [
     {
       subcategories: [
-        { id: "1xzLPVyiVIpDQdMZ8Ur7Q5", title: "children", image: children },
-        { id: "6AG1ZhXOFg8RcZsjyakZ7V", title: "adult", image: adult },
+        { id: "1xzLPVyiVIpDQdMZ8Ur7Q5", title: t("children"), image: children },
+        { id: "6AG1ZhXOFg8RcZsjyakZ7V", title: t("adult"), image: adult },
         {
           id: "1TB45MsNqCaMMEL7VFAMIS",
-          title: "pre-existing conditions",
+          title: t("pre-existing conditions"),
           image: disease,
         },
         {
           id: "2XFXbZjnskSDJ70Irb3ybr",
-          title: "anesthesia of special disciplines",
+          title: t("anesthesia of special disciplines"),
           image: alphabet,
         },
       ],
-      title: "anesthesiology",
+      title: t("anesthesiology"),
     },
     {
       subcategories: [
         {
           id: "jcVdKsbPBk2s9N71RyLGD",
-          title: "anticogulant",
+          title: t("anticogulant"),
           image: anticogulant,
         },
-        { id: "4178gGF3MLAzbmN7wNQwFN", title: "ecg tool", image: ecg },
+        { id: "4178gGF3MLAzbmN7wNQwFN", title: t("ecg tool"), image: ecg },
       ],
-      title: "Cardiology",
+      title: t("Cardiology"),
     },
     {
       subcategories: [
-        { id: "5YBu7FGTYCZck1Yi4EN0MU", title: "generally", image: generally },
-        { id: "3GxEY7b9U2e0erapaxzHkR", title: "specific", image: specific },
+        {
+          id: "5YBu7FGTYCZck1Yi4EN0MU",
+          title: t("generally"),
+          image: generally,
+        },
+        { id: "3GxEY7b9U2e0erapaxzHkR", title: t("specific"), image: specific },
       ],
-      title: "Perioperative Complications",
+      title: t("Perioperative Complications"),
     },
   ];
 
@@ -95,9 +103,9 @@ const SubCategoryBox = () => {
     <div className="xl:w-1/2 md:w-10/12 w-full rounded-md p-5 mx-auto shadow-xl flex flex-col items-start justify-center">
       <div className="pb-10 w-full flex items-center justify-between">
         <div className="w-10/12 2xl:text-2xl text-base">
-          <p className="font-bold uppercase">CHOOSE category</p>
+          <p className="font-bold uppercase">{t("choose category")}</p>
           <p className="font-semibold 2xl:text-xl">
-            And immediately find the right treatment for your patient
+            {t("And immediately find the right treatment for your patient")}
           </p>
         </div>
         <p className="cursor-pointer border shadow-md border-Yellow p-2 rounded-md bg-white">
@@ -132,7 +140,7 @@ const SubCategoryBox = () => {
           ))
         ) : (
           <div className="col-span-full text-center font-semibold">
-            Found Nothing releated this category
+            {t("Found Nothing releated this category")}
           </div>
         )}
       </div>

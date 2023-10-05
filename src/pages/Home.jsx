@@ -9,11 +9,11 @@ import NodesList from "../components/Home/NodesList";
 import ResultBox from "../components/Home/ResultBox";
 import ResultBoxDirectAfterNodeListOfSubcategory from "../components/Home/ResultBoxDirectAfterNodeListOfSubcategory";
 import { useDispatch, useSelector } from "react-redux";
+import { handleChangeShowExpireSession } from "../redux/GlobalStates";
 import {
-  handleChangeShowExpireSession,
   handleChangeIsIdleTimerStart,
   handleChangeLoggedIn,
-} from "../redux/GlobalStates";
+} from "../redux/AuthSlice";
 import { useIdleTimer } from "react-idle-timer";
 
 const Home = () => {
@@ -31,9 +31,11 @@ const Home = () => {
     resultPage,
     resultPageDirectAfterNodeListOfSubcategory,
     showExpirePopup,
-    loggedIn,
-    isIdleTimerStart,
   } = useSelector((state) => state.root.globalStates);
+
+  const { loggedIn, isIdleTimerStart } = useSelector(
+    (state) => state.root.auth
+  );
 
   useEffect(() => {
     if (openSidebar && window.document.body.clientWidth < 1024) {
@@ -49,7 +51,6 @@ const Home = () => {
 
   const onIdle = () => {
     clearInterval(interval);
-
     dispatch(handleChangeShowExpireSession(true));
     dispatch(handleChangeIsIdleTimerStart(false));
     dispatch(handleChangeLoggedIn(false));

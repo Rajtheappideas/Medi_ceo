@@ -12,7 +12,9 @@ import {
   handleChangeNodes,
   handleChangeResultPage,
   handleToggleEditBox,
+  handleChangeUserLanguage,
 } from "../redux/GlobalStates";
+import { useTranslation } from "react-i18next";
 
 const Navbar = ({
   openSidebar,
@@ -31,9 +33,12 @@ const Navbar = ({
     resultPageDirectAfterNodeListOfSubcategory,
     activeSingleNode,
     showEditBox,
+    userLanguage,
   } = useSelector((state) => state.root.globalStates);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const handlePreviousChanges = () => {
     if (showEditBox) dispatch(handleToggleEditBox(false));
@@ -51,6 +56,18 @@ const Navbar = ({
       return dispatch(handleChangeSubCategory(null));
     } else if (activeMainCategory) {
       return dispatch(handleChangeMainCategory(""));
+    }
+  };
+
+  const handlechangelanguage = (value) => {
+    if (value === "en") {
+      window.localStorage.setItem("lang", JSON.stringify("en"));
+      dispatch(handleChangeUserLanguage("en"));
+      window.location.reload();
+    } else {
+      window.localStorage.setItem("lang", JSON.stringify("de"));
+      dispatch(handleChangeUserLanguage("de"));
+      window.location.reload();
     }
   };
 
@@ -76,11 +93,16 @@ const Navbar = ({
           className="lg:text-2xl text-xl lg:hidden"
         />
       )}
+
+      {/* <select onChange={(e) => handlechangelanguage(e.target.value)}>
+        <option value="de">de</option>
+        <option value="en">en</option>
+      </select> */}
       {activeMainCategory !== "" && (
         <div
           className={`w-full select-none ${
             isSticky && "sticky top-0 shadow-md z-10"
-          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center md:justify-between justify-end`}
+          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
         >
           {/* left side */}
           <div className="flex items-start gap-x-2 capitalize w-fit">
@@ -120,7 +142,7 @@ const Navbar = ({
             }}
             className="w-fit cursor-pointer flex items-center gap-x-1 relative font-semibold"
           >
-            <BsArrowLeft size={20} /> <span>Previous</span>
+            <BsArrowLeft size={20} /> <span>{t("Previous")}</span>
           </div>
         </div>
       )}

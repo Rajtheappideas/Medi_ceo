@@ -8,6 +8,7 @@ import {
   handleClearDataSendToEditbox,
 } from "../../redux/GlobalStates";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useTranslation } from "react-i18next";
 
 const NodeListOfSubcategory = () => {
   const { showEditBox, nodeListOfSubcategory } = useSelector(
@@ -15,6 +16,8 @@ const NodeListOfSubcategory = () => {
   );
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const { boxes, id, title, type } =
     nodeListOfSubcategory !== null && nodeListOfSubcategory;
@@ -72,7 +75,7 @@ const NodeListOfSubcategory = () => {
           }}
           className="yellow_button"
         >
-          Add element
+          {t("Add element")}
         </button>
       </div>
       {showEditBox && (
