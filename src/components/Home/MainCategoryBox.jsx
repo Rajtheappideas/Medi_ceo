@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { ImSearch } from "react-icons/im";
 import { useDispatch } from "react-redux";
 import { handleChangeMainCategory } from "../../redux/GlobalStates";
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,7 @@ const MainCategoryBox = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="xl:w-1/2 lg:w-2/3 w-full rounded-md p-5 mx-auto shadow-lg flex flex-col items-start justify-center">
+    <div className="xl:w-1/2 lg:w-2/3 w-full max-h-screen rounded-md p-5 mx-auto lg:shadow-none shadow-lg flex flex-col items-start justify-center">
       <div className="pb-10 w-full flex items-center justify-between">
         <div className="w-10/12 2xl:text-2xl">
           <p className="font-bold uppercase">{t("choose topic")}</p>
@@ -19,10 +19,10 @@ const MainCategoryBox = () => {
           </p>
         </div>
         <p className="cursor-pointer border shadow-md border-Yellow p-2 rounded-md bg-white">
-          <AiOutlineSearch size={25} />
+          <ImSearch size={25} color="black" />
         </p>
       </div>
-      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 2xl:h-[80vh] h-screen place-items-center 2xl:items-start items-center 2xl:gap-0 gap-5">
+      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 h-full place-items-center 2xl:items-start items-center 2xl:gap-0 gap-5">
         <div
           className="choose_topic_box"
           onClick={() => dispatch(handleChangeMainCategory("anesthesiology"))}

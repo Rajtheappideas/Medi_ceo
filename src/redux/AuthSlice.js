@@ -23,7 +23,7 @@ export const handleLoginUser = createAsyncThunk(
         return rejectWithValue(error?.response?.data);
       }
     }
-  }
+  },
 );
 const initialState = {
   loading: false,
@@ -52,6 +52,9 @@ const AuthSlice = createSlice({
     handleChangeIsIdleTimerStart: (state, { payload }) => {
       state.isIdleTimerStart = payload;
     },
+    handleChangeUser: (state, { payload }) => {
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     // login user
@@ -76,6 +79,7 @@ export const {
   handleLogout,
   handleChangeIsIdleTimerStart,
   handleChangeLoggedIn,
+  handleChangeUser,
 } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

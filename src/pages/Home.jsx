@@ -13,6 +13,7 @@ import { handleChangeShowExpireSession } from "../redux/GlobalStates";
 import {
   handleChangeIsIdleTimerStart,
   handleChangeLoggedIn,
+  handleChangeUser,
 } from "../redux/AuthSlice";
 import { useIdleTimer } from "react-idle-timer";
 
@@ -20,7 +21,7 @@ const Home = () => {
   const [activeComponent, setActiveComponent] = useState("sandbox");
   const [openSidebar, setOpenSidebar] = useState(false);
   const [timeout, setTimeout] = useState(
-    JSON.parse(window.localStorage.getItem("timer")) * 1000
+    JSON.parse(window.localStorage.getItem("timer")) * 1000,
   );
 
   const {
@@ -34,7 +35,7 @@ const Home = () => {
   } = useSelector((state) => state.root.globalStates);
 
   const { loggedIn, isIdleTimerStart } = useSelector(
-    (state) => state.root.auth
+    (state) => state.root.auth,
   );
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const Home = () => {
     dispatch(handleChangeShowExpireSession(true));
     dispatch(handleChangeIsIdleTimerStart(false));
     dispatch(handleChangeLoggedIn(false));
+    dispatch(handleChangeUser());
   };
 
   var { start, getRemainingTime, isIdle } = useIdleTimer({
@@ -73,7 +75,7 @@ const Home = () => {
         interval = setInterval(() => {
           window.localStorage.setItem(
             "timer",
-            JSON.stringify(Math.ceil(getRemainingTime() / 1000))
+            JSON.stringify(Math.ceil(getRemainingTime() / 1000)),
           );
         }, 1000);
       } else if (loggedIn && !showExpirePopup && isIdleTimerStart) {
@@ -81,7 +83,7 @@ const Home = () => {
         interval = setInterval(() => {
           window.localStorage.setItem(
             "timer",
-            JSON.stringify(Math.ceil(getRemainingTime() / 1000))
+            JSON.stringify(Math.ceil(getRemainingTime() / 1000)),
           );
         }, 1000);
       }

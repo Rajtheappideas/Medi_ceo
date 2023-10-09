@@ -105,11 +105,11 @@ const Navbar = ({
           } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
         >
           {/* left side */}
-          <div className="flex items-start gap-x-2 capitalize w-fit">
+          <div className="flex items-center gap-x-2 capitalize w-fit">
             <HiMenuAlt2
               onClick={() => setOpenSidebar(!openSidebar)}
               role="button"
-              className="text-2xl lg:hidden"
+              className="text-4xl lg:hidden inline-block"
             />
             <div className="flex flex-col items-start justify-start lg:gap-3 lg:text-xl md:text-base text-sm w-full">
               <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 whitespace-nowrap justify-start text-gray-400 flex-wrap">

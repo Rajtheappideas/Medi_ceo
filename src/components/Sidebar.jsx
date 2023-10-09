@@ -182,7 +182,6 @@ const Sidebar = ({
                 openSidebar ? "justify-start" : "justify-center"
               } `}
             >
-              <span className="bg-gray-200 rounded-full w-9 h-9"></span>
               {openSidebar && (
                 <p>
                   <span className="block">
@@ -319,7 +318,6 @@ const Sidebar = ({
                 openSidebar ? "justify-start" : "justify-center"
               } `}
             >
-              <span className="bg-gray-200 rounded-full w-9 h-9"></span>
               {openSidebar && (
                 <p>
                   <span className="block">

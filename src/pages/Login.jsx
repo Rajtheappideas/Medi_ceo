@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loading } = useSelector((state) => state.root.auth);
+  const { loading, user } = useSelector((state) => state.root.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Login = () => {
         user,
         password,
         signal: AbortControllerRef,
-      })
+      }),
     );
     if (response) {
       response.then((res) => {
@@ -74,19 +74,22 @@ const Login = () => {
   // Password: WWCNeTxyK4jr
 
   useEffect(() => {
+    if (user && user !== null) {
+      navigate("/");
+    }
     return () => abortApiCall();
   }, []);
 
   return (
-    <div className="h-screen w-screen relative flex items-center justify-center space-y-2 bg-bgGray">
+    <div className="h-screen w-screen relative flex md:items-center items-start md:pt-0 pt-16 justify-center space-y-2 bg-bgGray">
       <img
-        className="absolute bottom-0 xl:right-20 right-0 md:block hidden h-fit w-1/3 object-contain object-center z-0"
+        className="absolute bottom-0 xl:right-20 right-0 h-fit md:w-1/3 w-1/3 object-contain object-center z-0"
         src={require("../assets/images/bgImage.png")}
         alt=""
       />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white xl:w-1/3 md:w-1/2 w-11/12 h-auto md:space-y-5 space-y-3 lg:p-7 p-4 rounded-lg shadow-2xl drop-shadow-2xl z-0"
+        className="bg-white xl:w-1/3 md:w-1/2 w-11/12 h-auto md:space-y-5 space-y-3 md:p-7 p-6 rounded-lg shadow-2xl drop-shadow-2xl z-0"
       >
         <p className="font-bold lg:text-3xl md:text-2xl text-xl uppercase">
           {t("Log In to your account")}
@@ -98,7 +101,7 @@ const Login = () => {
           <input
             type="email"
             placeholder="Email"
-            className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-green-400 focus:border-[3px]"
+            className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-Yellow focus:border-[3px]"
             {...register("user")}
           />
           <span className="error">{errors?.user?.message}</span>
@@ -110,7 +113,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="*******"
-            className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-green-400 focus:border-[3px]"
+            className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-Yellow focus:border-[3px]"
             {...register("password")}
           />
           <span className="error">{errors?.password?.message}</span>
