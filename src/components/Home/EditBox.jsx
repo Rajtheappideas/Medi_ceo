@@ -127,6 +127,9 @@ const EditBox = ({ from }) => {
         content,
       });
     }
+    return () => {
+      setValue("title", "", { shouldDirty: false });
+    };
   }, [dataSendToEditBox]);
 
   async function copyContent() {
@@ -138,6 +141,8 @@ const EditBox = ({ from }) => {
       console.error("Failed to copy: ", err);
     }
   }
+
+  console.log(watch("title"), isDirty, resultOrNodeId);
 
   return (
     <form
