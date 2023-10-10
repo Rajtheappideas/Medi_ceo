@@ -12,6 +12,7 @@ import EditBox from "./EditBox";
 import { MdOutlineDragIndicator } from "react-icons/md";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const NodesList = memo(() => {
   const { activeSingleNode, showEditBox, data } = useSelector(
@@ -47,8 +48,13 @@ const NodesList = memo(() => {
 
   return (
     <>
-      <div className="w-full flex lg:flex-row flex-col gap-5 items-center justify-center mx-auto pb-10">
-        <div className="lg:w-1/2 md:w-2/3 w-full mx-auto md:space-y-5 space-y-4 text-center">
+      <div className="w-full overflow-x-hidden overflow-y-auto flex lg:flex-row flex-col gap-5 items-start justify-start mx-auto pb-10">
+        <div
+          className={`${
+            showEditBox ? "lg:w-1/2 md:w-2/3 w-full" : "w-full"
+          }  md:space-y-5 space-y-4 text-center mx-auto`}
+        >
+          {" "}
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
@@ -139,16 +145,14 @@ const NodesList = memo(() => {
               dispatch(handleToggleEditBox(true));
               dispatch(handleClearDataSendToEditbox());
             }}
-            className="yellow_button"
+            className="yellow_button xl:w-1/3"
           >
+            <AiOutlinePlusCircle size={25} className="inline-block mr-2" />
+
             {t("Add element")}
           </button>
         </div>
-        {showEditBox && (
-          <div className="lg:w-1/2 md:w-2/3 w-full">
-            <EditBox from="nodeList" />
-          </div>
-        )}
+        <EditBox from="nodeList" />
       </div>
     </>
   );

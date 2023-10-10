@@ -9,6 +9,7 @@ import {
 } from "../../redux/GlobalStates";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const NodeListOfSubcategory = () => {
   const { showEditBox, nodeListOfSubcategory } = useSelector(
@@ -43,8 +44,12 @@ const NodeListOfSubcategory = () => {
   };
 
   return (
-    <div className="w-full flex lg:flex-row flex-col gap-5 items-center justify-center mx-auto">
-      <div className="lg:w-1/2 md:w-2/3 w-full md:space-y-5 space-y-4 text-center">
+    <div className="w-full transition-all overflow-x-hidden overflow-y-auto flex lg:flex-row flex-col gap-5 lg:items-start lg:justify-start items-center justify-center mx-auto">
+      <div
+        className={`${
+          showEditBox ? "lg:w-1/2 md:w-2/3 w-full" : "w-full"
+        }  md:space-y-5 space-y-4 text-center mx-auto`}
+      >
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -73,16 +78,13 @@ const NodeListOfSubcategory = () => {
             }
             dispatch(handleClearDataSendToEditbox());
           }}
-          className="yellow_button"
+          className="yellow_button xl:w-1/3"
         >
+          <AiOutlinePlusCircle size={25} className="inline-block mr-2" />
           {t("Add element")}
         </button>
       </div>
-      {showEditBox && (
-        <div className="lg:w-1/2 md:w-2/3 w-full">
-          <EditBox from="nodeListOfSubcategory" />
-        </div>
-      )}
+      <EditBox from="nodeListOfSubcategory" />
     </div>
   );
 };

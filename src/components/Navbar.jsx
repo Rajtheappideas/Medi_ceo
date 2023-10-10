@@ -90,7 +90,8 @@ const Navbar = ({
         <HiMenuAlt2
           onClick={() => setOpenSidebar(!openSidebar)}
           role="button"
-          className="lg:text-2xl text-xl lg:hidden"
+          size={30}
+          className="lg:hidden"
         />
       )}
 
@@ -101,17 +102,26 @@ const Navbar = ({
       {activeMainCategory !== "" && (
         <div
           className={`w-full select-none ${
-            isSticky && "sticky top-0 shadow-md z-10"
-          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center justify-between`}
+            isSticky && "sticky top-0 shadow-md z-20"
+          } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center`}
         >
           {/* left side */}
           <div className="flex items-center gap-x-2 capitalize w-fit">
             <HiMenuAlt2
               onClick={() => setOpenSidebar(!openSidebar)}
               role="button"
-              className="text-4xl lg:hidden inline-block"
+              size={30}
+              className="lg:hidden"
             />
-            <div className="flex flex-col items-start justify-start lg:gap-3 lg:text-xl md:text-base text-sm w-full">
+            <div
+              onClick={() => {
+                handlePreviousChanges();
+              }}
+              className="w-fit cursor-pointer flex items-center gap-x-1 relative font-semibold"
+            >
+              <BsArrowLeft size={20} className="mr-2" />
+            </div>
+            <div className="flex flex-col items-start justify-start lg:gap-2 lg:text-xl md:text-base text-sm w-full">
               <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 whitespace-nowrap justify-start text-gray-400 flex-wrap">
                 <span>{activeMainCategory}</span>
                 {activeSubCategory !== "" && (
@@ -135,15 +145,16 @@ const Navbar = ({
               </span>
             </div>
           </div>
+
           {/* right side profile */}
-          <div
+          {/* <div
             onClick={() => {
               handlePreviousChanges();
             }}
             className="w-fit cursor-pointer flex items-center gap-x-1 relative font-semibold"
           >
             <BsArrowLeft size={20} /> <span>{t("Previous")}</span>
-          </div>
+          </div> */}
         </div>
       )}
     </>

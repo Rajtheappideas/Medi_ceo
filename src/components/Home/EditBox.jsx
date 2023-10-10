@@ -16,8 +16,9 @@ import { useTranslation } from "react-i18next";
 const EditBox = ({ from }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { dataSendToEditBox, data, nodeListOfSubcategory, activeSingleNode } =
-    useSelector((state) => state.root.globalStates);
+  const { dataSendToEditBox, showEditBox } = useSelector(
+    (state) => state.root.globalStates
+  );
 
   const dispatch = useDispatch();
 
@@ -106,6 +107,8 @@ const EditBox = ({ from }) => {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     if (dataSendToEditBox === null) {
       reset({
         fieldTitle: "",
@@ -140,7 +143,11 @@ const EditBox = ({ from }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full relative flex items-start select-none justify-start shadow-md flex-col mx-auto rounded-lg p-4"
+      className={`scrollbar ${
+        showEditBox
+          ? "translate-x-0 p-4 mx-auto w-full lg:w-1/2 md:w-2/3 max-h-screen overflow-y-scroll"
+          : "scale-0 w-0 h-0"
+      } relative flex border items-start select-none transition duration-300 ease-in-out justify-start flex-col rounded-lg`}
     >
       {/* add entry */}
       <div
@@ -328,16 +335,18 @@ const EditBox = ({ from }) => {
         </div>
       )}
       {/* content full id */}
-      <div className="my-3 w-full">
-        <p className="font-medium ">{t("Content full Id")}</p>
-        <p className="w-full bg-gray-100 rounded-md p-2 outline-none my-1">
-          {contentfulId}
-          <AiFillCopy
-            onClick={() => copyContent()}
-            className="float-right text-xl cursor-pointer"
-          />
-        </p>
-      </div>
+      {contentfulId && (
+        <div className="my-3 w-full">
+          <p className="font-medium ">{t("Content full Id")}</p>
+          <p className="w-full bg-gray-100 rounded-md p-2 outline-none my-1">
+            {contentfulId}
+            <AiFillCopy
+              onClick={() => copyContent()}
+              className="float-right text-xl cursor-pointer"
+            />
+          </p>
+        </div>
+      )}
       <hr className="my-3 h-[1px] bg-gray-200 w-full" />
       {/* btns */}
       <div className="flex my-3 ml-auto gap-x-3">
@@ -351,7 +360,10 @@ const EditBox = ({ from }) => {
         >
           {t("Cancel")}
         </button>
-        <button type="submit" className="yellow_button">
+        <button
+          type={isDirty ? "submit" : "button"}
+          className={`${!isDirty ? "yellow_button_disable" : "yellow_button"} `}
+        >
           {t("Save Changes")}
         </button>
       </div>

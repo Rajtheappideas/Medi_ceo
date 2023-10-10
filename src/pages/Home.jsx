@@ -21,7 +21,7 @@ const Home = () => {
   const [activeComponent, setActiveComponent] = useState("sandbox");
   const [openSidebar, setOpenSidebar] = useState(false);
   const [timeout, setTimeout] = useState(
-    JSON.parse(window.localStorage.getItem("timer")) * 1000,
+    JSON.parse(window.localStorage.getItem("timer")) * 1000
   );
 
   const {
@@ -35,7 +35,7 @@ const Home = () => {
   } = useSelector((state) => state.root.globalStates);
 
   const { loggedIn, isIdleTimerStart } = useSelector(
-    (state) => state.root.auth,
+    (state) => state.root.auth
   );
 
   useEffect(() => {
@@ -65,7 +65,20 @@ const Home = () => {
     timeout: timeout !== null && timeout !== 0 ? timeout : 3_00_000,
     throttle: 500,
     stopOnIdle: true,
-    events: [],
+    events: [
+      "mousemove",
+      "keydown",
+      "wheel",
+      "DOMMouseScroll",
+      "mousewheel",
+      "mousedown",
+      "touchstart",
+      "touchmove",
+      "MSPointerDown",
+      "MSPointerMove",
+      "visibilitychange",
+      "focus",
+    ],
   });
 
   // for timer
@@ -75,7 +88,7 @@ const Home = () => {
         interval = setInterval(() => {
           window.localStorage.setItem(
             "timer",
-            JSON.stringify(Math.ceil(getRemainingTime() / 1000)),
+            JSON.stringify(Math.ceil(getRemainingTime() / 1000))
           );
         }, 1000);
       } else if (loggedIn && !showExpirePopup && isIdleTimerStart) {
@@ -83,7 +96,7 @@ const Home = () => {
         interval = setInterval(() => {
           window.localStorage.setItem(
             "timer",
-            JSON.stringify(Math.ceil(getRemainingTime() / 1000)),
+            JSON.stringify(Math.ceil(getRemainingTime() / 1000))
           );
         }, 1000);
       }
@@ -105,7 +118,7 @@ const Home = () => {
   return (
     <>
       <Helmet title={`Medi Ceo`} />
-      <div className="w-full flex items-start justify-start lg:gap-3 flex-row h-auto">
+      <div className="w-full bg-white flex items-start justify-start lg:gap-3 flex-row h-auto">
         <div
           className={`${openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"}`}
         >
@@ -117,7 +130,7 @@ const Home = () => {
           />
         </div>
         <section
-          className={`p-1 h-full space-y-5 min-h-screen ${
+          className={`p-1 space-y-3 min-h-screen ${
             openSidebar ? "xl:w-10/12 lg:w-4/5 w-full" : "lg:max-w-[90%] w-full"
           }`}
         >

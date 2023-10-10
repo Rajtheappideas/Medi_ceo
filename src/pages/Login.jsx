@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom/dist";
 import { useDispatch, useSelector } from "react-redux";
 import {
   handleSuccess,
@@ -14,7 +13,7 @@ import useAbortApiCall from "../hooks/useAbortApiCall";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 
@@ -50,7 +49,7 @@ const Login = () => {
         user,
         password,
         signal: AbortControllerRef,
-      }),
+      })
     );
     if (response) {
       response.then((res) => {
@@ -122,11 +121,15 @@ const Login = () => {
           role="button"
           className="text-Yellow inline-block tracking-wide hover:underline transition-all duration-100 md:text-lg"
         >
-          <b>{t("Forgot Password")}</b>
+          <Link to="/forgot-password">
+            <b>{t("Forgot Password")}</b>
+          </Link>
         </p>
         <div>
           <button
-            className="bg-Yellow active:scale-95 transition-all duration-100 uppercase md:text-lg font-semibold text-white text-center rounded-full p-3 w-full"
+            className={`bg-Yellow ${
+              loading && "bg-opacity-50"
+            } active:scale-95 transition-all duration-100 uppercase md:text-lg font-semibold text-white text-center rounded-full p-3 w-full`}
             disabled={loading}
             type="submit"
           >

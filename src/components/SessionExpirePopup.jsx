@@ -4,6 +4,7 @@ import { handleChangeShowExpireSession } from "../redux/GlobalStates";
 import {
   handleChangeLoggedIn,
   handleChangeIsIdleTimerStart,
+  handleChangeUser,
 } from "../redux/AuthSlice";
 import { useNavigate } from "react-router-dom/dist";
 import { useTranslation } from "react-i18next";
@@ -19,6 +20,7 @@ const SessionExpirePopup = () => {
     dispatch(handleChangeShowExpireSession(false));
     dispatch(handleChangeLoggedIn(false));
     dispatch(handleChangeIsIdleTimerStart(false));
+    dispatch(handleChangeUser());
     navigate("/login");
   };
 

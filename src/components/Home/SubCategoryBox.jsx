@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { ImSearch } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findDataReleatedSubcategory,
@@ -18,7 +18,6 @@ import { useTranslation } from "react-i18next";
 const SubCategoryBox = () => {
   const [subcategory, setSubcategory] = useState([]);
 
-  console.log(subcategory);
   const { activeMainCategory, activeSubCategory, data } = useSelector(
     (state) => state.root.globalStates
   );
@@ -100,8 +99,8 @@ const SubCategoryBox = () => {
   // };
 
   return (
-    <div className="xl:w-1/2 md:w-10/12 w-full rounded-md p-5 mx-auto shadow-xl flex flex-col items-start justify-center">
-      <div className="pb-10 w-full flex items-center justify-between">
+    <div className="xl:w-1/2 md:w-10/12 w-full md:max-h-screen h-auto rounded-md p-5 mx-auto lg:shadow-none shadow-lg flex flex-col items-start justify-center">
+      <div className="pb-5 w-full flex items-center justify-between">
         <div className="w-10/12 2xl:text-2xl text-base">
           <p className="font-bold uppercase">{t("choose category")}</p>
           <p className="font-semibold 2xl:text-xl">
@@ -109,10 +108,10 @@ const SubCategoryBox = () => {
           </p>
         </div>
         <p className="cursor-pointer border shadow-md border-Yellow p-2 rounded-md bg-white">
-          <AiOutlineSearch size={25} />
+          <ImSearch size={25} />
         </p>
       </div>
-      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 min-h-screen place-items-center 2xl:items-start items-center 2xl:gap-0 gap-5">
+      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 md:max-h-[70vh] place-items-center 2xl:items-start items-center lg:gap-5 gap-3">
         {subcategory.length > 0 ? (
           subcategory.map((category) => (
             <div
@@ -133,7 +132,7 @@ const SubCategoryBox = () => {
               </p>
               <img
                 src={category?.image}
-                className="h-fit md:w-2/3 w-1/3 object-contain object-center"
+                className="h-fit md:w-28 w-20 object-contain object-center"
                 alt={category?.title}
               />
             </div>

@@ -51,7 +51,12 @@ const ResultBoxDirectAfterNodeListOfSubcategory = () => {
 
   return (
     <div className=" w-full flex  items-center justify-center lg:p-5 p-3 mx-auto xl:flex-row flex-col gap-5">
-      <div className="xl:w-[60%] md:w-10/12 w-full lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto rounded-md shadow-lg">
+      <div
+        className={`${
+          showEditBox ? "xl:w-[60%] md:w-10/12" : "w-full"
+        }  text-center lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto rounded-md shadow-lg`}
+      >
+        {" "}
         {/* top div , your result */}
         <div className="w-full flex flex-wrap md:flex-row flex-col md:justify-between justify-start items-start md:gap-3 gap-1 ">
           {/* your result */}
@@ -72,9 +77,6 @@ const ResultBoxDirectAfterNodeListOfSubcategory = () => {
           </p>
           {/* options */}
           <div className="flex items-center gap-x-1 w-auto">
-            {/* <p className="md:w-10 md:h-10 w-7 h-7 text-Yellow text-center rounded-full md:p-1.5 p-1 transition border hover:border-2 hover:border-Yellow cursor-pointer">
-          <FiEdit2 className="mx-auto md:text-2xl text-base" />
-        </p> */}
             <p className="md:w-10 md:h-10 w-7 h-7 text-black text-center rounded-full md:p-1.5 p-1 transition border hover:border-2 border-black cursor-pointer">
               <BiMessage className="mx-auto md:text-2xl text-base" />
             </p>

@@ -6,7 +6,7 @@ import { BsShieldCheck } from "react-icons/bs";
 import { AiOutlineRight } from "react-icons/ai";
 import { HiOutlineXMark } from "react-icons/hi2";
 import apiManagement from "../assets/images/code-1 1.png";
-import cms from "../assets/images/objects.png";
+import cms from "../assets/images/icon.png";
 import sourceManagement from "../assets/images/document-filter 1.png";
 import tw from "tailwind-styled-components";
 import { useDispatch, useSelector } from "react-redux";

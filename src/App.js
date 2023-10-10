@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Home = lazy(() => import("./pages/Home"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Login = lazy(() => import("./pages/Login"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 
 function App() {
   const { showExpirePopup } = useSelector((state) => state.root.globalStates);
@@ -54,6 +55,7 @@ function App() {
               caseSensitive
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </Suspense>
