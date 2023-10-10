@@ -130,7 +130,7 @@ const Home = () => {
           />
         </div>
         <section
-          className={`p-1 space-y-3 min-h-screen ${
+          className={`p-1 overflow-x-hidden space-y-3 min-h-screen ${
             openSidebar ? "xl:w-10/12 lg:w-4/5 w-full" : "lg:max-w-[90%] w-full"
           }`}
         >

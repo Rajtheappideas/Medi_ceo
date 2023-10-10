@@ -44,11 +44,11 @@ const NodeListOfSubcategory = () => {
   };
 
   return (
-    <div className="w-full transition-all overflow-x-hidden overflow-y-auto flex lg:flex-row flex-col gap-5 lg:items-start lg:justify-start items-center justify-center mx-auto">
+    <div className="w-full transition-all no_scrollbar lg:max-h-[80vh] max-h-[150vh] overflow-y-scroll overflow-x-hidden flex lg:flex-row flex-col gap-5 lg:items-start lg:justify-start items-center justify-center mx-auto">
       <div
         className={`${
           showEditBox ? "lg:w-1/2 md:w-2/3 w-full" : "w-full"
-        }  md:space-y-5 space-y-4 text-center mx-auto`}
+        }  md:space-y-5 space-y-4 text-center mx-auto lg:max-h-[80vh] max-h-[150vh] overflow-y-scroll overflow-x-hidden scrollbar`}
       >
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
@@ -84,6 +84,9 @@ const NodeListOfSubcategory = () => {
           {t("Add element")}
         </button>
       </div>
+      {showEditBox && (
+        <hr className="lg:w-[0.1px] w-[99vw] h-[0.5px] lg:h-[80vh] bg-black " />
+      )}
       <EditBox from="nodeListOfSubcategory" />
     </div>
   );

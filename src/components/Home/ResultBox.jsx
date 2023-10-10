@@ -45,12 +45,12 @@ const ResultBox = () => {
   };
 
   return (
-    <div className=" w-full overflow-x-hidden overflow-y-auto flex items-start justify-start lg:p-5 p-3 mx-auto xl:flex-row flex-col gap-5">
-      <div className={`${
-        showEditBox
-          ? "xl:w-[60%] md:w-10/12"
-          : "w-full"
-      }  text-center lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto rounded-md shadow-lg`}>
+    <div className=" w-full no_scrollbar lg:max-h-[80vh] max-h-[150vh] overflow-y-scroll overflow-x-hidden flex items-start justify-start lg:p-5 p-3 mx-auto xl:flex-row flex-col gap-5">
+      <div
+        className={`${
+          showEditBox ? "xl:w-[60%] md:w-10/12" : "w-full"
+        }  text-center lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto scrollbar lg:max-h-[80vh] max-h-[150vh] overflow-y-scroll overflow-x-hidden rounded-md shadow-lg`}
+      >
         {/* top div , your result */}
         <div className="w-full flex flex-wrap md:flex-row flex-col md:justify-between justify-start items-start md:gap-3 gap-1 ">
           {/* your result */}
@@ -118,8 +118,10 @@ const ResultBox = () => {
         <button className="yellow_button">{t("Add element")}</button>
         {/* source box */}
         <SourceBox />
-      </div>
-
+      </div>{" "}
+      {showEditBox && (
+        <hr className="lg:w-[0.1px] w-[99vw] h-[0.5px] lg:h-[80vh] bg-black " />
+      )}
       <EditBox from="resultPage" />
     </div>
   );

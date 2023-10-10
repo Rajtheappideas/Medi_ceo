@@ -147,7 +147,7 @@ const EditBox = ({ from }) => {
       onSubmit={handleSubmit(onSubmit)}
       className={`scrollbar ${
         showEditBox
-          ? "translate-x-0 p-4 mx-auto w-full lg:w-1/2 md:w-2/3 max-h-screen overflow-y-scroll"
+          ? "translate-x-0 p-4 mx-auto w-full lg:w-1/2 md:w-2/3 lg:max-h-[80vh] max-h-[150vh] overflow-y-scroll"
           : "scale-0 w-0 h-0"
       } relative flex border items-start select-none transition duration-300 ease-in-out justify-start flex-col rounded-lg`}
     >

@@ -22,7 +22,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .scrollbar::-webkit-scrollbar {
   width: 0.5em !important;
-  height: 10px;
+  max-height: 10px;
 }
 .no_scrollbar::-webkit-scrollbar {
   display: none;
@@ -37,10 +37,11 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #f4c430;
   width: 2px;
   border-radius: 10px;
+  max-height: 10%;
 }
 body::-webkit-scrollbar {
   width: 0.5em !important;
-  height: 10px;
+  max-height: 10px;
 }
 
 body::-webkit-scrollbar-track {
