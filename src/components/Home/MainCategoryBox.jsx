@@ -22,7 +22,7 @@ const MainCategoryBox = () => {
           <ImSearch size={25} color="black" />
         </p>
       </div>
-      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 h-full place-items-center 2xl:items-start items-center 2xl:gap-0 gap-5">
+      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 max-h-screen place-items-center 2xl:items-start items-center 2xl:gap-0 gap-5">
         <div
           className="choose_topic_box"
           onClick={() => dispatch(handleChangeMainCategory("anesthesiology"))}
@@ -33,7 +33,7 @@ const MainCategoryBox = () => {
           <img
             src={require("../../assets/images/anesthesiology.png")}
             alt="anesthesiology"
-            className="h-fit md:w-2/3 w-1/3 object-contain object-center"
+            className="h-fit md:w-1/4 w-1/3 object-contain object-center"
           />
         </div>
         <div
@@ -48,7 +48,7 @@ const MainCategoryBox = () => {
           <img
             src={require("../../assets/images/preporactive.png")}
             alt="anesthesiology"
-            className="h-fit md:w-2/3 w-1/3 object-contain object-center"
+            className="h-fit md:w-1/4 w-1/3 object-contain object-center"
           />
         </div>
         <div
@@ -61,7 +61,7 @@ const MainCategoryBox = () => {
           <img
             src={require("../../assets/images/cardiology.png")}
             alt="anesthesiology"
-            className="h-fit 2xl:w-3/6 md:w-2/3 w-1/3 object-contain object-center"
+            className="h-fit md:w-1/4 w-1/3 object-contain object-center"
           />{" "}
         </div>
       </div>
