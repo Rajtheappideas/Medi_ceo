@@ -21,6 +21,7 @@ const SessionExpirePopup = () => {
     dispatch(handleChangeLoggedIn(false));
     dispatch(handleChangeIsIdleTimerStart(false));
     dispatch(handleChangeUser());
+    window.localStorage.clear();
     navigate("/login");
   };
 

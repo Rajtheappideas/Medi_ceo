@@ -142,8 +142,6 @@ const EditBox = ({ from }) => {
     }
   }
 
-  console.log(watch("title"), isDirty, resultOrNodeId);
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

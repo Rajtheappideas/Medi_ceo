@@ -183,6 +183,12 @@ const Editor = memo(({ name, control, setValue }) => {
     //     textIcons: false,
   };
 
+  useEffect(() => {
+    return () => {
+      setValue("title", "", { shouldDirty: false });
+    };
+  }, [dataSendToEditBox]);
+
   return (
     <>
       <Controller
