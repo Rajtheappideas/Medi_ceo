@@ -28,7 +28,7 @@ const Login = () => {
   const { AbortControllerRef, abortApiCall } = useAbortApiCall();
 
   const signinSchema = yup.object({
-    user: yup.string().email().required("email ips required").trim(),
+    user: yup.string().email().required("email is required").trim(),
     password: yup.string().required("password is required").trim(),
   });
 
@@ -128,7 +128,7 @@ const Login = () => {
         <div>
           <button
             className={`bg-Yellow ${
-              loading && "bg-opacity-50"
+              loading ? "bg-opacity-50" : "bg-opacity-100"
             } active:scale-95 transition-all duration-100 uppercase md:text-lg font-semibold text-white text-center rounded-full p-3 w-full`}
             disabled={loading}
             type="submit"

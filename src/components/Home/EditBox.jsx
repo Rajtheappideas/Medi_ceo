@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { AiFillCopy } from "react-icons/ai";
 import {
@@ -42,6 +42,7 @@ const EditBox = ({ from }) => {
     getValues,
     reset,
     control,
+    watch,
     formState: { errors, isDirty },
     setValue,
   } = useForm({
@@ -107,8 +108,6 @@ const EditBox = ({ from }) => {
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
     if (dataSendToEditBox === null) {
       reset({
         fieldTitle: "",

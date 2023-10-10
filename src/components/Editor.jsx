@@ -3,7 +3,7 @@ import JoditEditor from "jodit-react";
 import { useSelector } from "react-redux";
 import { Controller } from "react-hook-form";
 
-const Editor = memo(({ name, control }) => {
+const Editor = memo(({ name, control, setValue }) => {
   const { dataSendToEditBox } = useSelector((state) => state.root.globalStates);
 
   const editor = useRef(null);
@@ -195,7 +195,9 @@ const Editor = memo(({ name, control }) => {
             config={config}
             tabIndex={1}
             onBlur={onBlur}
-            onChange={onChange}
+            onChange={(e) => {
+              setValue("title", e, { shouldDirty: true });
+            }}
             className=""
           />
         )}

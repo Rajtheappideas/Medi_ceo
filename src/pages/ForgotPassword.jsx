@@ -18,7 +18,7 @@ const ForgotPassword = () => {
   const { AbortControllerRef, abortApiCall } = useAbortApiCall();
 
   const forgotSchema = yup.object({
-    email: yup.string().email().required("email ips required").trim(),
+    email: yup.string().email().required("email is required").trim(),
   });
 
   const {
