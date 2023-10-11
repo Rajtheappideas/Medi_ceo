@@ -32,7 +32,7 @@ const SingleNodeListOfSubCategory = React.memo(({ data, index }) => {
               size={30}
               className="cursor-grab active:cursor-grabbing min-w-[2rem]"
             />
-            <div className="md:p-4 p-2 w-full shadow-md rounded-md flex items-center justify-start md:gap-x-3 gap-x-1">
+            <div className="md:p-4 p-2 w-full border rounded-md flex items-center justify-start md:gap-x-3 gap-x-1">
               <label
                 htmlFor={data?.resultOrNodeId}
                 className="font-semibold cursor-pointer capitalize tracking-normal w-full text-left gap-x-2 flex items-center"

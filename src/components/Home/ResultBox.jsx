@@ -49,7 +49,7 @@ const ResultBox = () => {
       <div
         className={`${
           showEditBox ? "xl:w-[60%] md:w-10/12" : "w-full"
-        }  text-center lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto scrollbar lg:max-h-[80vh] max-h-[150vh] overflow-y-scroll overflow-x-hidden rounded-md shadow-lg`}
+        }  text-center lg:p-5 p-3 lg:space-y-5 md:space-y-3 space-y-2 mx-auto scrollbar lg:max-h-[80vh] max-h-[150vh] border overflow-y-scroll overflow-x-hidden rounded-md`}
       >
         {/* top div , your result */}
         <div className="w-full flex flex-wrap md:flex-row flex-col md:justify-between justify-start items-start md:gap-3 gap-1 ">

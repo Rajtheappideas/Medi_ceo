@@ -82,7 +82,7 @@ const NodesList = memo(() => {
                               size={30}
                               className="cursor-grab active:cursor-grabbing"
                             />
-                            <div className="md:p-4 p-2 w-full cursor-pointer font-semibold shadow-md rounded-md flex items-center justify-start md:gap-x-3 gap-x-1">
+                            <div className="md:p-4 p-2 w-full cursor-pointer font-semibold border rounded-md flex items-center justify-start md:gap-x-3 gap-x-1">
                               <label
                                 htmlFor={box?.resultOrNodeId}
                                 className="font-semibold cursor-pointer capitalize tracking-normal w-full text-left gap-x-2 flex items-center"
