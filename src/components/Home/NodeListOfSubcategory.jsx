@@ -85,7 +85,7 @@ const NodeListOfSubcategory = () => {
         </button>
       </div>
       {showEditBox && (
-        <hr className="lg:w-[0.1px] w-[99vw] h-[0.5px] lg:h-[80vh] bg-black " />
+        <hr className="lg:w-[1px] w-[99vw] h-[0.5px] lg:min-h-[80vh] lg:max-h-[80vh] bg-black " />
       )}
       <EditBox from="nodeListOfSubcategory" />
     </div>
