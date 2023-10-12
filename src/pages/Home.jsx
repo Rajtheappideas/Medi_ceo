@@ -18,7 +18,7 @@ import {
 import { useIdleTimer } from "react-idle-timer";
 
 const Home = () => {
-  const [activeComponent, setActiveComponent] = useState("sandbox");
+  const [activeComponent, setActiveComponent] = useState("content list");
   const [openSidebar, setOpenSidebar] = useState(false);
   const [timeout, setTimeout] = useState(
     JSON.parse(window.localStorage.getItem("timer")) * 1000
@@ -140,7 +140,7 @@ const Home = () => {
             activeComponent={activeComponent}
             setActiveComponent={setActiveComponent}
           />
-          {activeComponent === "sandbox" && (
+          {activeComponent === "content list" && (
             <>
               {/* main category component */}
               {activeMainCategory === "" && activeSubCategory === null && (
