@@ -8,7 +8,7 @@ module.exports = {
         textColor: "#101828",
         lightGray: "#EAECF0",
         Red: "#EB5757",
-        bgGray:"#E5E7EB"
+        bgGray: "#E5E7EB",
       },
     },
   },

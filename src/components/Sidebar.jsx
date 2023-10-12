@@ -2,12 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { FiLogOut, FiEdit } from "react-icons/fi";
 import { AiOutlineRight } from "react-icons/ai";
 import { HiOutlineXMark } from "react-icons/hi2";
-import heirarchy from "../assets/images/hierarchy-3.png";
-import environment from "../assets/images/3dcube.png";
-import usermanagement from "../assets/images/user-octagon.png";
-import contentmodel from "../assets/images/task-square.png";
-import contentlist from "../assets/images/slider-vertical.png";
-import admin from "../assets/images/element-4.svg";
 import tw from "tailwind-styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogout } from "../redux/AuthSlice";
@@ -273,17 +267,17 @@ const Sidebar = ({
 
   return (
     <div
-      className={`scrollbar border-r-2 ${
+      className={`scrollbar sidebar_text border-r-2 ${
         openSidebar ? "xl:w-[20%] lg:w-[25%]" : "lg:w-[10%]"
       } lg:fixed bg-white h-auto capitalize overflow-y-scroll no_scrollbar`}
     >
       {/* for desktop */}
       <div
-        className={`min-h-screen w-full xl:px-4 lg:px-2 lg:block hidden py-3`}
+        className={`min-h-screen w-full xl:px-4 lg:px-2 lg:block hidden py-4`}
       >
         <div
           onClick={() => setOpenSidebar(!openSidebar)}
-          className={`cursor-pointer my-3 mt-5 flex items-center  ${
+          className={`cursor-pointer pl-5 my-3 mt-5 flex items-center  ${
             openSidebar ? "justify-between" : "justify-center ml-7"
           } gap-x-3 py-1 xl:text-4xl text-2xl font-semibold text-center`}
         >
@@ -306,14 +300,16 @@ const Sidebar = ({
             } transition`}
           />
         </div>
-        <div className="w-full  text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
-          <ul className="w-full space-y-5">
+        <div className="w-full  xl:pt-10 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
+          <ul className="w-full xl:space-y-10 space-y-8 pl-5">
             {sidebarList.map((list, i) => (
               <List
                 key={i}
                 onClick={() => setActiveComponent(list.title)}
-                className={`items-center ${
-                  activeComponent === list.title && "bg-gray-200 rounded-md"
+                className={`items-center transition duration-100 ease-in-out ${
+                  activeComponent === list.title
+                    ? "bg-[#F5F5F7] rounded-md text-black p-4"
+                    : "text-[#6C6D6D]"
                 } ${openSidebar ? "justify-start" : "justify-center"} `}
               >
                 {/* svg */}
@@ -367,21 +363,21 @@ const Sidebar = ({
             className="inline-block float-right"
           />
         </p>
-        <div className="w-full space-y-3 max-h-screen min-h-[85vh] flex flex-col justify-between">
-          <ul className="space-y-3">
+        <div className="w-full pt-5 space-y-6 max-h-screen min-h-[85vh] flex flex-col justify-between">
+          <ul className="space-y-6">
             {sidebarList.map((list, i) => (
               <List
                 key={i}
-                onClick={() => {
-                  setActiveComponent(list.title);
-                  setOpenSidebar(false);
-                }}
-                className={`items-start ${
-                  activeComponent === list.title && "bg-gray-200 rounded-md"
+                onClick={() => setActiveComponent(list.title)}
+                className={`items-center transition duration-100 ease-in-out ${
+                  activeComponent === list.title
+                    ? "bg-gray-100 rounded-md text-black p-3"
+                    : "text-[#6C6D6D]"
                 } ${openSidebar ? "justify-start" : "justify-center"} `}
               >
                 {/* svg */}
                 {list.icon}
+
                 {openSidebar && <span className="block">{list.title}</span>}
               </List>
             ))}
@@ -422,5 +418,5 @@ const Sidebar = ({
 export default Sidebar;
 
 const List = tw.li`
-flex items-center text-black xl:px-2 px-1 py-1 rounded-md xl:gap-x-3 gap-x-4 w-full font-medium cursor-pointer
+flex items-center text-xl text-black xl:px-2 px-1 py-2 rounded-md xl:gap-x-3 gap-x-4 w-full font-medium cursor-pointer
 `;
