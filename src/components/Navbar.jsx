@@ -106,7 +106,7 @@ const Navbar = ({
           } lg:p-5 md:p-3 p-2 bg-white flex flex-wrap gap-y-2 items-center`}
         >
           {/* left side */}
-          <div className="flex items-center gap-x-2 capitalize w-fit">
+          <div className="flex items-center gap-x-2 capitalize">
             <HiMenuAlt2
               onClick={() => setOpenSidebar(!openSidebar)}
               role="button"
@@ -117,11 +117,10 @@ const Navbar = ({
               onClick={() => {
                 handlePreviousChanges();
               }}
-              className="w-fit cursor-pointer flex items-center gap-x-1 relative font-semibold"
             >
-              <BsArrowLeft size={20} className="mr-2" />
+              <BsArrowLeft size={20} className="mt-1" />
             </div>
-            <div className="flex flex-col items-start justify-start lg:gap-2 lg:text-xl md:text-base text-sm w-full">
+            <div className="flex flex-col items-start justify-center lg:text-xl md:text-base text-sm w-full">
               <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 whitespace-nowrap justify-start text-gray-400 flex-wrap">
                 <span>{activeMainCategory}</span>
                 {activeSubCategory !== "" && (

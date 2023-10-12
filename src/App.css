@@ -60,11 +60,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .choose_topic_box {
-  @apply border-[3px] bg-white cursor-pointer text-center w-full h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
+  @apply border-[3px] bg-white cursor-pointer text-center w-full h-full md:aspect-square md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
 }
 
 .choose_category_box {
-  @apply border-[3px] bg-white cursor-pointer text-center w-full h-full md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
+  @apply border-[3px] bg-white cursor-pointer text-center w-full h-full md:aspect-square md:p-4 p-2 rounded-xl border-Yellow flex items-center justify-center md:gap-2 gap-1 flex-col;
 }
 
 .yellow_button {

@@ -82,7 +82,7 @@ const Login = () => {
   return (
     <div className="h-screen w-screen relative flex md:items-center items-start md:pt-0 pt-16 justify-center space-y-2 bg-bgGray">
       <img
-        className="absolute bottom-0 xl:right-20 right-0 h-fit md:w-1/3 w-1/3 object-contain object-center z-0"
+        className="absolute lg:bottom-0 bottom-3 xl:right-20 right-2 h-fit xl:w-1/3 w-1/4 object-contain object-center z-0"
         src={require("../assets/images/bgImage.png")}
         alt=""
       />

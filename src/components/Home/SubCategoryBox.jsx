@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ImSearch } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findDataReleatedSubcategory,
@@ -99,19 +98,14 @@ const SubCategoryBox = () => {
   // };
 
   return (
-    <div className="xl:w-1/2 md:w-10/12 w-full md:max-h-screen h-auto rounded-md p-5 mx-auto lg:shadow-none shadow-lg flex flex-col items-start justify-center">
-      <div className="pb-5 w-full flex items-center justify-between">
-        <div className="w-10/12 2xl:text-2xl text-base">
-          <p className="font-bold uppercase">{t("choose category")}</p>
-          <p className="font-semibold 2xl:text-xl">
-            {t("And immediately find the right treatment for your patient")}
-          </p>
-        </div>
-        <p className="cursor-pointer border shadow-md border-Yellow p-2 rounded-md bg-white">
-          <ImSearch size={25} />
+    <div className="xl:w-1/2 md:w-10/12 w-full md:max-h-screen md:min-h-screen h-auto rounded-md p-5 mx-auto lg:shadow-none shadow-lg flex flex-col items-start justify-start">
+      <div className="pb-5 w-full 2xl:text-2xl text-base">
+        <p className="font-bold uppercase">{t("choose category")}</p>
+        <p className="font-semibold 2xl:text-xl">
+          {t("And immediately find the right treatment for your patient")}
         </p>
       </div>
-      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 md:max-h-[70vh] place-items-center 2xl:items-start items-center lg:gap-5 gap-3">
+      <div className="w-full grid md:grid-cols-2 md:grid-rows-2 md:max-h-[70vh] md:min-h-[70vh] place-items-center 2xl:items-start items-center lg:gap-5 gap-3">
         {subcategory.length > 0 ? (
           subcategory.map((category) => (
             <div
@@ -132,7 +126,7 @@ const SubCategoryBox = () => {
               </p>
               <img
                 src={category?.image}
-                className="h-fit md:w-28 w-20 object-contain object-center"
+                className="h-fit w-1/2 object-contain object-center"
                 alt={category?.title}
               />
             </div>
