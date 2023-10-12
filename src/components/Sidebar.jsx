@@ -307,12 +307,12 @@ const Sidebar = ({
           />
         </div>
         <div className="w-full  text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
-          <ul className="w-full space-y-3">
+          <ul className="w-full space-y-5">
             {sidebarList.map((list, i) => (
               <List
                 key={i}
                 onClick={() => setActiveComponent(list.title)}
-                className={`items-start ${
+                className={`items-center ${
                   activeComponent === list.title && "bg-gray-200 rounded-md"
                 } ${openSidebar ? "justify-start" : "justify-center"} `}
               >
