@@ -118,7 +118,7 @@ const Navbar = ({
                 handlePreviousChanges();
               }}
             >
-              <BsArrowLeft size={20} className="mt-1" />
+              <BsArrowLeft size={20} className="mt-1 cursor-pointer" />
             </div>
             <div className="flex flex-col items-start justify-center lg:text-xl md:text-base text-sm w-full">
               <div className="flex font-semibold items-center md:gap-x-2 gap-x-1 whitespace-nowrap justify-start text-gray-400 flex-wrap">
