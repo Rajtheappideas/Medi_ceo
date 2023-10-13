@@ -57,8 +57,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="2vw"
+          height="2vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -86,8 +86,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="2vw"
+          height="2vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -120,8 +120,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="2vw"
+          height="2vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -145,8 +145,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="2vw"
+          height="2vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -193,8 +193,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="2vw"
+          height="2vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -227,8 +227,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="2vw"
+          height="2vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -277,38 +277,44 @@ const Sidebar = ({
       >
         <div
           onClick={() => setOpenSidebar(!openSidebar)}
-          className={`cursor-pointer pl-5 my-3 mt-5 flex items-center  ${
-            openSidebar ? "justify-between" : "justify-center ml-7"
+          className={`cursor-pointer my-3 mt-5 flex items-center  ${
+            openSidebar
+              ? "justify-between lg:pl-5 pl-3"
+              : "justify-center ml-7 pl-0"
           } gap-x-3 py-1 xl:text-4xl text-2xl font-semibold text-center`}
         >
           <div className="flex items-center gap-2">
             <img
               src={require("../assets/images/logo_mediceo.png")}
-              className="w-10 h-10 text-red-400 object-contain object-center"
+              className="w-[3vw] w-[3vw]  text-red-400 object-contain object-center"
             />
             {openSidebar && (
               <img
                 src={require("../assets/images/Mediceo.png")}
-                className="w-fit h-fit object-contain object-center"
+                className="w-[10vw] w-[10vw] object-contain object-center"
               />
             )}
           </div>
           <AiOutlineRight
-            size={20}
+            size={25}
             className={`inline-block ${
               openSidebar ? "rotate-180" : "rotate-0"
             } transition`}
           />
         </div>
         <div className="w-full  xl:pt-10 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
-          <ul className="w-full xl:space-y-10 space-y-8 pl-5">
+          <ul
+            className={`w-full 2xl:space-y-14 xl:space-y-6 lg:space-y-5 ${
+              openSidebar ? "lg:pl-5 pl-3" : "pl-0"
+            }`}
+          >
             {sidebarList.map((list, i) => (
               <List
                 key={i}
                 onClick={() => setActiveComponent(list.title)}
                 className={`items-center transition duration-100 ease-in-out ${
                   activeComponent === list.title
-                    ? "bg-[#F5F5F7] rounded-md text-black p-4"
+                    ? "bg-[#F5F5F7] rounded-md text-black 2xl:p-4 p-2"
                     : "text-[#6C6D6D]"
                 } ${openSidebar ? "justify-start" : "justify-center"} `}
               >
@@ -336,7 +342,7 @@ const Sidebar = ({
               {openSidebar && (
                 <FiLogOut
                   onClick={() => handlelogout()}
-                  size={20}
+                  size={25}
                   className="ml-auto"
                 />
               )}
@@ -351,20 +357,26 @@ const Sidebar = ({
           openSidebar ? "translate-x-0" : "-translate-x-[100%]"
         } md:px-4 px-2 transition duration-300 ease-in-out lg:hidden block py-3 shadow-xl`}
       >
-        <p className="my-2 font-semibold">
-          <img
-            src={require("../assets/images/logo.png")}
-            className="w-fit h-fit object-contain object-center inline-block"
-          />
+        <div className="my-2 font-semibold flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <img
+              src={require("../assets/images/logo_mediceo.png")}
+              className="w-10 h-10 text-red-400 object-contain object-center"
+            />
+            <img
+              src={require("../assets/images/Mediceo.png")}
+              className="w-fit h-fit object-contain object-center"
+            />
+          </div>
           <HiOutlineXMark
             onClick={() => setOpenSidebar(false)}
             role="button"
             size={25}
             className="inline-block float-right"
           />
-        </p>
+        </div>
         <div className="w-full pt-5 space-y-6 max-h-screen min-h-[85vh] flex flex-col justify-between">
-          <ul className="space-y-6">
+          <ul className="space-y-2">
             {sidebarList.map((list, i) => (
               <List
                 key={i}
@@ -418,5 +430,5 @@ const Sidebar = ({
 export default Sidebar;
 
 const List = tw.li`
-flex items-center text-xl text-black xl:px-2 px-1 py-2 rounded-md xl:gap-x-3 gap-x-4 w-full font-medium cursor-pointer
+flex items-center 2xl:text-3xl md:text-xl text-black xl:px-2 px-1 py-2 rounded-md xl:gap-x-3 gap-x-4 w-full font-medium cursor-pointer
 `;
