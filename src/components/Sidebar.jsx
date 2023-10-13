@@ -314,7 +314,7 @@ const Sidebar = ({
                 onClick={() => setActiveComponent(list.title)}
                 className={`items-center transition duration-100 ease-in-out ${
                   activeComponent === list.title
-                    ? "bg-[#F5F5F7] rounded-2xl text-black 2xl:py-5 py-2"
+                    ? "bg-[#F5F5F7] text-black 2xl:py-5 py-2"
                     : "text-[#6C6D6D]"
                 } ${openSidebar ? "justify-start" : "justify-center"} gap-x-3 `}
               >
