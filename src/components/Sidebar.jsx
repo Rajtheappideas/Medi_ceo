@@ -314,7 +314,7 @@ const Sidebar = ({
                 onClick={() => setActiveComponent(list.title)}
                 className={`items-center transition duration-100 ease-in-out ${
                   activeComponent === list.title
-                    ? "bg-[#F5F5F7] rounded-lg text-black 2xl:py-5 p-2"
+                    ? "bg-[#F5F5F7] rounded-2xl text-black 2xl:py-5 p-2"
                     : "text-[#6C6D6D]"
                 } ${openSidebar ? "justify-start" : "justify-center"} gap-x-3 `}
               >
@@ -430,5 +430,5 @@ const Sidebar = ({
 export default Sidebar;
 
 const List = tw.li`
-flex items-center 2xl:text-[1vw] md:text-lg text-black 2xl:px-6 xl:px-2 px-1 py-2 rounded-md 2xl:gap-x-8 xl:gap-x-5 gap-x-4 w-full font-medium cursor-pointer
+flex items-center 2xl:text-[1vw] md:text-lg text-black 2xl:px-6 xl:px-2 px-1 py-2 2xl:rounded-2xl rounded-xl 2xl:gap-x-8 xl:gap-x-5 gap-x-4 w-full font-medium cursor-pointer
 `;
