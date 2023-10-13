@@ -57,8 +57,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="2vw"
-          height="2vw"
+          width="1.8vw"
+          height="1.8vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -86,8 +86,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="2vw"
-          height="2vw"
+          width="1.8vw"
+          height="1.8vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -120,8 +120,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="2vw"
-          height="2vw"
+          width="1.8vw"
+          height="1.8vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -145,8 +145,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="2vw"
-          height="2vw"
+          width="1.8vw"
+          height="1.8vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -193,8 +193,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="2vw"
-          height="2vw"
+          width="1.8vw"
+          height="1.8vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -227,8 +227,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="2vw"
-          height="2vw"
+          width="1.8vw"
+          height="1.8vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -273,7 +273,7 @@ const Sidebar = ({
     >
       {/* for desktop */}
       <div
-        className={`min-h-screen w-full xl:px-4 lg:px-2 lg:block hidden py-4`}
+        className={`min-h-screen w-full 2xl:px-9 xl:px-4 md:px-2 lg:block hidden py-4`}
       >
         <div
           onClick={() => setOpenSidebar(!openSidebar)}
@@ -281,17 +281,17 @@ const Sidebar = ({
             openSidebar
               ? "justify-between lg:pl-5 pl-3"
               : "justify-center ml-7 pl-0"
-          } gap-x-3 py-1 xl:text-4xl text-2xl font-semibold text-center`}
+          } gap-x-3 py-1 font-semibold text-center`}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <img
               src={require("../assets/images/logo_mediceo.png")}
-              className="w-[3vw] w-[3vw]  text-red-400 object-contain object-center"
+              className="w-[3vw]   text-red-400 object-contain object-center"
             />
             {openSidebar && (
               <img
                 src={require("../assets/images/Mediceo.png")}
-                className="w-[10vw] w-[10vw] object-contain object-center"
+                className="w-[10vw] object-contain object-center"
               />
             )}
           </div>
@@ -302,9 +302,9 @@ const Sidebar = ({
             } transition`}
           />
         </div>
-        <div className="w-full  xl:pt-10 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
+        <div className="w-full 2xl:pt-20 xl:pt-10 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
           <ul
-            className={`w-full 2xl:space-y-14 xl:space-y-6 lg:space-y-5 ${
+            className={`w-full 2xl:space-y-16 xl:space-y-6 lg:space-y-5 ${
               openSidebar ? "lg:pl-5 pl-3" : "pl-0"
             }`}
           >
@@ -314,9 +314,9 @@ const Sidebar = ({
                 onClick={() => setActiveComponent(list.title)}
                 className={`items-center transition duration-100 ease-in-out ${
                   activeComponent === list.title
-                    ? "bg-[#F5F5F7] rounded-md text-black 2xl:p-4 p-2"
+                    ? "bg-[#F5F5F7] rounded-lg text-black 2xl:py-5 p-2"
                     : "text-[#6C6D6D]"
-                } ${openSidebar ? "justify-start" : "justify-center"} `}
+                } ${openSidebar ? "justify-start" : "justify-center"} gap-x-3 `}
               >
                 {/* svg */}
                 {list.icon}
@@ -430,5 +430,5 @@ const Sidebar = ({
 export default Sidebar;
 
 const List = tw.li`
-flex items-center 2xl:text-3xl md:text-xl text-black xl:px-2 px-1 py-2 rounded-md xl:gap-x-3 gap-x-4 w-full font-medium cursor-pointer
+flex items-center 2xl:text-[1vw] md:text-lg text-black 2xl:px-6 xl:px-2 px-1 py-2 rounded-md 2xl:gap-x-8 xl:gap-x-5 gap-x-4 w-full font-medium cursor-pointer
 `;
