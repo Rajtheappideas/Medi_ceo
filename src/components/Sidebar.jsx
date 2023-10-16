@@ -273,7 +273,7 @@ const Sidebar = ({
     >
       {/* for desktop */}
       <div
-        className={`min-h-screen overflow-y-scroll no_scrollbar max-h-screen w-full 2xl:px-7 xl:px-4 md:px-2 lg:block hidden py-4`}
+        className={`min-h-screen overflow-y-scroll no_scrollbar max-h-screen w-full 2xl:px-[1.5vw] xl:px-4 md:px-2 lg:block hidden py-4`}
       >
         <div
           onClick={() => setOpenSidebar(!openSidebar)}
