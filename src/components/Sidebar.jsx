@@ -273,7 +273,7 @@ const Sidebar = ({
     >
       {/* for desktop */}
       <div
-        className={`min-h-screen w-full 2xl:px-7 xl:px-4 md:px-2 lg:block hidden py-4`}
+        className={`min-h-screen overflow-y-scroll no_scrollbar max-h-screen w-full 2xl:px-7 xl:px-4 md:px-2 lg:block hidden py-4`}
       >
         <div
           onClick={() => setOpenSidebar(!openSidebar)}
@@ -301,7 +301,7 @@ const Sidebar = ({
             } transition`}
           />
         </div>
-        <div className="w-full 2xl:pt-[5vw] xl:pt-[4vw] pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
+        <div className="w-full 2xl:pt-[5vw] xl:pt-[4vw] pt-7 text-sm flex flex-col 2xl:min-h-[80vh] 2xl:max-h-[80vh] min-h-[85vh] max-h-[85vh] justify-between">
           <ul
             className={`w-full 2xl:space-y-[2vw] xl:space-y-6 lg:space-y-5 ${
               openSidebar ? "lg:pl-5 pl-3" : "pl-0"
