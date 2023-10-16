@@ -57,8 +57,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="1.8vw"
-          height="1.8vw"
+          width="1.7vw"
+          height="1.7vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -86,8 +86,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="1.8vw"
-          height="1.8vw"
+          width="1.7vw"
+          height="1.7vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -120,8 +120,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="1.8vw"
-          height="1.8vw"
+          width="1.7vw"
+          height="1.7vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -145,8 +145,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="1.8vw"
-          height="1.8vw"
+          width="1.7vw"
+          height="1.7vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -193,8 +193,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="1.8vw"
-          height="1.8vw"
+          width="1.7vw"
+          height="1.7vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -227,8 +227,8 @@ const Sidebar = ({
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="1.8vw"
-          height="1.8vw"
+          width="1.7vw"
+          height="1.7vw"
           viewBox="0 0 18 18"
           fill="none"
         >
@@ -296,15 +296,14 @@ const Sidebar = ({
             )}
           </div>
           <AiOutlineRight
-            size={25}
-            className={`inline-block ${
+            className={`inline-block w-[2vw] h-[2vw] ${
               openSidebar ? "rotate-180" : "rotate-0"
             } transition`}
           />
         </div>
-        <div className="w-full 2xl:pt-20 xl:pt-10 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
+        <div className="w-full 2xl:pt-[5vw] xl:pt-12 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
           <ul
-            className={`w-full 2xl:space-y-16 xl:space-y-6 lg:space-y-5 ${
+            className={`w-full 2xl:space-y-[2vw] xl:space-y-6 lg:space-y-5 ${
               openSidebar ? "lg:pl-5 pl-3" : "pl-0"
             }`}
           >
@@ -314,7 +313,7 @@ const Sidebar = ({
                 onClick={() => setActiveComponent(list.title)}
                 className={`items-center transition duration-100 ease-in-out ${
                   activeComponent === list.title
-                    ? "bg-[#F5F5F7] text-black 2xl:py-5 py-2"
+                    ? "bg-[#F5F5F7] text-black 2xl:py-[0.8vw] py-2"
                     : "text-[#6C6D6D]"
                 } ${openSidebar ? "justify-start" : "justify-center"} gap-x-3 `}
               >
@@ -332,7 +331,7 @@ const Sidebar = ({
               } `}
             >
               {openSidebar && (
-                <p>
+                <p className="space-y-0 2xl:space-y-1">
                   <span className="block">
                     {user?.first_name} {user?.last_name}
                   </span>
@@ -342,8 +341,7 @@ const Sidebar = ({
               {openSidebar && (
                 <FiLogOut
                   onClick={() => handlelogout()}
-                  size={25}
-                  className="ml-auto"
+                  className="ml-auto  w-[2vw] h-[2vw]"
                 />
               )}
             </List>
