@@ -301,7 +301,7 @@ const Sidebar = ({
             } transition`}
           />
         </div>
-        <div className="w-full 2xl:pt-[5vw] xl:pt-12 pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
+        <div className="w-full 2xl:pt-[5vw] xl:pt-[4vw] pt-7 text-sm flex flex-col min-h-[85vh] max-h-[85vh] justify-between">
           <ul
             className={`w-full 2xl:space-y-[2vw] xl:space-y-6 lg:space-y-5 ${
               openSidebar ? "lg:pl-5 pl-3" : "pl-0"
@@ -331,7 +331,7 @@ const Sidebar = ({
               } `}
             >
               {openSidebar && (
-                <p className="space-y-0 2xl:space-y-1">
+                <p className="space-y-0 2xl:space-y-[0.6vw]">
                   <span className="block">
                     {user?.first_name} {user?.last_name}
                   </span>
